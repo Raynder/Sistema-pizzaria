@@ -1,0 +1,13 @@
+nav{
+    background-color: rgba(255, 142, 27, 0.8);
+    padding: 10px;
+    color: white;
+    font-size: 16pt;
+}
+.corpo{
+    top: 60px;
+}
+a{
+    width: 20%;
+    color: white;
+}

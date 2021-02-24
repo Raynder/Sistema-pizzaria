@@ -33,3 +33,6 @@ textarea{
     border-radius: 30px;
     padding: 20px;
 }
+figcaption p{
+    font-size: 25pt;
+}

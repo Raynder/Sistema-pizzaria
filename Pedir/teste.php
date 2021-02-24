@@ -9,6 +9,7 @@ require_once "../config.php";
 		<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../_css/style.css">
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
+        <link rel="stylesheet" type="text/css" href="../_css/index.css">
         <script src="_JS/x2.js" type="text/javascript"></script>
         <script src="_JS/slids.js" type="text/javascript"></script>
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
@@ -36,6 +37,15 @@ require_once "../config.php";
     </style>
 
 	<body>
+        <nav>
+            <div class="row" id="">
+                <a><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
+                <a href="teste.php" class="nav-link">NOVO PEDIDO</a>
+                <a href="pedir-pizza2.php" class="nav-link">PEDIDOS</a>
+                <a class="nav-link">PRONTOS</a>
+            </div>
+        </nav>
+
 		<div class="container-fluid text-center">
 			<div class="row">
 					<div class="col-lg-12 corpo">

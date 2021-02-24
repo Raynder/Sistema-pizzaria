@@ -9,8 +9,10 @@ require_once "../config.php";
 		<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../_css/style.css">
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
+        <link rel="stylesheet" type="text/css" href="../_css/index.css">
         <script src="_JS/x2.js" type="text/javascript"></script>
         <script src="_JS/slids.js" type="text/javascript"></script>
+        <script src="_JS/auxiliar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../_JS/funcoes.js"></script>
 	</head>
 
@@ -35,6 +37,15 @@ require_once "../config.php";
     </style>
 
 	<body>
+        <nav>
+            <div class="row" id="">
+                <a><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
+                <a href="teste.php" class="nav-link">NOVO PEDIDO</a>
+                <a href="pedir-pizza2.php" class="nav-link">PEDIDOS</a>
+                <a class="nav-link">PRONTOS</a>
+            </div>
+        </nav>
+
 		<div class="container-fluid text-center">
 			<div class="row">
 					<div class="col-lg-12 corpo">
@@ -89,8 +100,10 @@ require_once "../config.php";
 
                                     <div class="bandeja_toda">
                                         <div class="centro x2">
-                                            <img id="direito" class="bandeja" src="_img2x/direito.png">
-                                            <img id="esquerdo" class="bandeja" src="_img2x/esquerdo.png">
+                                            <div class="tee">
+                                                <img id="direito" class="bandeja" src="_img2x/direito.png">
+                                                <img id="esquerdo" class="bandeja" src="_img2x/esquerdo.png">
+                                            </div>
 
                                             <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
                                                 <optgroup>
@@ -110,6 +123,10 @@ require_once "../config.php";
                                                 </optgroup>
 
                                             </select>
+
+                                            <figcaption>
+                                                <p onclick="aux()">R$30.00</p>
+                                            </figcaption>
 
                                             <input type="button" value="enviar" onclick="sair_bandeja()">
 
@@ -151,7 +168,7 @@ require_once "../config.php";
                                     </select>
                                 </div>
                                 <div class="col-lg-12">
-                                    <label id="titulo"><p>Deseja remover algo?<br>informe aqui:</p></label>
+                                    <label id="titulo"><p>Observações:</p></label>
                                 </div>
                                 <div class="col-lg-12">
 
@@ -171,7 +188,7 @@ require_once "../config.php";
 
         </div>
         <script>
-            window.onload = entrar_bandeja()
+            window.onload = iniciar()
         </script>
 	</body>
 </html>
