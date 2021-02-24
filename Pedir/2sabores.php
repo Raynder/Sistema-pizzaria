@@ -54,22 +54,22 @@ require_once "../config.php";
                             <div class="tamanhos" id="tamanhos" style="display:none">
                                 <h1>Qual tamanho da pizza?</h1>
 
-                                    <div class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="sabor1x.png" alt="" class="imgt">
+                                    <div onclick="selec('pequena')" class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <img src="sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
                                         <figcaption>
                                             <p>Pequena</p>
                                         </figcaption>
                                     </div>
 
-                                    <div class="imgem im2 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="sabor1x.png" alt="" class="imgt">
+                                    <div onclick="selec('media')" class="imgem im2 col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <img src="sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
                                         <figcaption>
                                             <p>Media</p>
                                         </figcaption>
                                     </div>
 
-                                    <div class="imgem im3 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="sabor1x.png" alt="" class="imgt">
+                                    <div onclick="selec('grande')" class="imgem im3 col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <img src="sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
                                         <figcaption>
                                             <p>Grande</p>
                                         </figcaption>
@@ -94,20 +94,18 @@ require_once "../config.php";
 
                                             <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
                                                 <optgroup>
-                                                    <option selected value="">Sabor 1</option>
-                                                    <option>Calabresa</option>
-                                                    <option>Bacon</option>
-                                                    <option>Atum</option>
+                                                    <option value="calabresa">Calabresa</option>
+                                                    <option value="bacon">Bacon</option>
+                                                    <option value="atum">Atum</option>
                                                     <option value="Frango_Catupiri">Frango Catupiri</option>
                                                 </optgroup>
                                             </select>
 
                                             <select onchange="mudaFoto2(this.value)" name="nsab2" id="isab2" class="entrada-hidden esquerdo2x">
                                                 <optgroup>
-                                                    <option selected value="">Sabor 2</option>
-                                                    <option>Calabresa</option>
-                                                    <option>Bacon</option>
-                                                    <option>Atum</option>
+                                                    <option value="calabresa">Calabresa</option>
+                                                    <option value="bacon">Bacon</option>
+                                                    <option value="atum">Atum</option>
                                                     <option value="Frango_Catupiri">Frango Catupiri</option>
                                                 </optgroup>
 
@@ -135,15 +133,14 @@ require_once "../config.php";
 
                             <div id="opc2" style="display:none">
                             
-                                <div class="col-lg-12">
-                                    <label for="ntam" class="tamanho"></label>
+                                <div class="checks">
+                                
+                                    <input type="checkbox" name="pequena" id="pequena">
+                                    <input type="checkbox" name="media" id="media">
+                                    <input type="checkbox" name="grande" id="grande">
 
-                                    <select class="entrada" name="ntam" id="itam">
-                                        <option value="G" onclick="detalhar()">Pizza Grande</option>
-                                        <option value="M">Pizza Média</option>
-                                        <option value="P">Pizza Pequena</option>
-                                    </select>
                                 </div>
+
                                 <div class="col-lg-12">
                                     <label for="nbor" class="bordas"></label>
 

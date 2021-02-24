@@ -56,3 +56,7 @@ form{
     margin: 0;
     padding: 0;
 }
+select.bordas {
+    padding: 20px;
+    border-radius: 30px;
+}
