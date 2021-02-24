@@ -17,8 +17,10 @@ p{
 input{
     font-size: 25pt;
     width: 80%;
-    margin-right: 10%;
     height: 60px;
+}
+textarea{
+    width: 80%;
 }
 .linha{
     height: 100px;

@@ -11,6 +11,7 @@ require_once "../config.php";
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <script src="_JS/x2.js" type="text/javascript"></script>
         <script src="_JS/slids.js" type="text/javascript"></script>
+        <script src="_JS/auxiliar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../_JS/funcoes.js"></script>
 	</head>
 
@@ -89,8 +90,10 @@ require_once "../config.php";
 
                                     <div class="bandeja_toda">
                                         <div class="centro x2">
-                                            <img id="direito" class="bandeja" src="_img2x/direito.png">
-                                            <img id="esquerdo" class="bandeja" src="_img2x/esquerdo.png">
+                                            <div class="tee">
+                                                <img id="direito" class="bandeja" src="_img2x/direito.png">
+                                                <img id="esquerdo" class="bandeja" src="_img2x/esquerdo.png">
+                                            </div>
 
                                             <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
                                                 <optgroup>
@@ -110,6 +113,10 @@ require_once "../config.php";
                                                 </optgroup>
 
                                             </select>
+
+                                            <figcaption>
+                                                <p onclick="aux()">R$30.00</p>
+                                            </figcaption>
 
                                             <input type="button" value="enviar" onclick="sair_bandeja()">
 
@@ -151,7 +158,7 @@ require_once "../config.php";
                                     </select>
                                 </div>
                                 <div class="col-lg-12">
-                                    <label id="titulo"><p>Deseja remover algo?<br>informe aqui:</p></label>
+                                    <label id="titulo"><p>Observações:</p></label>
                                 </div>
                                 <div class="col-lg-12">
 
@@ -171,7 +178,7 @@ require_once "../config.php";
 
         </div>
         <script>
-            window.onload = entrar_bandeja()
+            window.onload = iniciar()
         </script>
 	</body>
 </html>

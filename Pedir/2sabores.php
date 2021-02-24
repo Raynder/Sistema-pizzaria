@@ -52,7 +52,7 @@ require_once "../config.php";
                             </div>
 
                             <div class="tamanhos" id="tamanhos" style="display:none">
-                                <h1>Qual tamanho da pizza?</h1>
+                                <h1>TAMANHO DA PIZZA?</h1>
 
                                     <div onclick="selec('pequena')" class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
                                         <img src="sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
@@ -132,7 +132,8 @@ require_once "../config.php";
                             </div>
 
                             <div id="opc2" style="display:none">
-                            
+
+
                                 <div class="checks">
                                 
                                     <input type="checkbox" name="pequena" id="pequena">
@@ -141,10 +142,10 @@ require_once "../config.php";
 
                                 </div>
 
-                                <div class="col-lg-12">
-                                    <label for="nbor" class="bordas"></label>
+                                <h1>DEFINA A BORDA!</h1>
 
-                                    <select name="nbor" class="entrada">
+                                <div>
+                                    <select name="nbor" class="bordas">
                                         <option selected value=" ">Nenhuma Borda</option>
                                         <option value="Catupiri ">Borda de Catupiri</option>
                                     </select>
