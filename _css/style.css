@@ -1,0 +1,28 @@
+p{
+    font-size: 16pt;
+    font-weight: bold;
+}
+.abs{
+    position: absolute;
+}
+.rel{
+    position: relative;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+input{
+    font-size: 25pt;
+    width: 80%;
+    margin-right: 10%;
+    height: 60px;
+}
+.linha{
+    height: 100px;
+}
+.corpo h1{
+    margin: 20px 0 20px 0;
+}

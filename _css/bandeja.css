@@ -1,0 +1,58 @@
+.entrada-hidden{
+    opacity: .0;
+    position: relative;
+    float: left;
+}
+.direito{
+    right: 0;
+    top: 25px;
+    width: 50%;
+}
+.esquerdo{
+    left: 0;
+    top: 25px;
+    width: 50%;
+}
+.bottom{
+    left: 0;
+    top: 250px;
+    width: 100%;
+}
+.centro img{
+    left: 0;
+    width: 100%;
+}
+.x3 select{
+    height: 200px;
+}
+
+.x2 select{
+    height: 450px;
+    width: 50%;
+}
+.esquerdo2x{
+    left: 0;
+}
+.bandeja_toda img{
+    position: absolute;
+}
+.tamanhos{
+    margin: 40px;
+}
+.tamanhos img{
+    width: 20%;
+    height: 20%;
+    margin: 0 20px 0 20px
+}
+form{
+    position: relative;
+}
+#band{
+    left: -800px;
+}
+.checks input {
+    position: relative;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+}
