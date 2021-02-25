@@ -4,20 +4,29 @@ session_start();
 $_SESSION['nome'] = "Raynder";
 if(isset($_POST['tamanho'])){
     if(!empty($_POST['tamanho'])){
-        $cont = 0;
-        $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
-        $array = array();
         $array[":NOME"] = $_SESSION['nome'];
-    
-        foreach($_POST as $key => $value){
-            if($cont < 6){
-                $array[$nomes[$cont]] = $value;
-            }
-            $cont++;
+        $cont = 0;
+
+        if(isset($_POST['editar']) && !empty($_POST['editar'])){
+            $nomes = array(":TAM", ":BOR", ":OBS");
+            print_r($_POST);
         }
+        else{
+            print_r($_POST);
+
+            $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
+            $array = array();
         
-        $pedir = new Pedidos();
-        $pedir->add_pizza($array);
+            foreach($_POST as $key => $value){
+                if($cont < 6){
+                    $array[$nomes[$cont]] = $value;
+                }
+                $cont++;
+            }
+            
+            $pedir = new Pedidos();
+            $pedir->add_pizza($array);
+        }
     }
 
 }
@@ -265,7 +274,7 @@ $iniciar_aux = 1;
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/editar.png" alt="">
+                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pizza(<?=$id_pizza;?>)">
                                         <p>editar</p>
                                     </div>
                                 </div>

@@ -7,12 +7,17 @@ function aux(situacao){
         },1000)
     }
     else{
-        clearInterval(intervalo_aux)
+        if(situacao == 2){
+            console.log(situacao)
+        }
+        else{
+            clearInterval(intervalo_aux)
+        }
     }
 }
 function iniciar(valor){
-    entrar_bandeja()
     aux(valor)
+    entrar_bandeja()
 }
 
 function mostrar_pedidos(){
