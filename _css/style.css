@@ -36,3 +36,6 @@ textarea{
 figcaption p{
     font-size: 25pt;
 }
+.sem_margin{
+    margin: 0;
+}

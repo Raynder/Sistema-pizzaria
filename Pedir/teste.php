@@ -1,5 +1,6 @@
 <?php
 require_once "../config.php";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,6 @@ require_once "../config.php";
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
         <script src="_JS/x2.js" type="text/javascript"></script>
-        <script src="_JS/slids.js" type="text/javascript"></script>
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../_JS/funcoes.js"></script>
 	</head>
@@ -128,7 +128,7 @@ require_once "../config.php";
                                                 <p onclick="aux()">R$30.00</p>
                                             </figcaption>
 
-                                            <input type="button" value="enviar" onclick="sair_bandeja()">
+                                            <input type="button" value="enviar" onclick="sair_bandeja(1)">
 
                                         </div>
                                         
@@ -174,9 +174,34 @@ require_once "../config.php";
 
                                 <textarea id="entrada-text" class="entrada"
                                         placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7"
-                                        name="obs"></textarea>
-                                        <input type="submit">                                </div>
+                                        name="obs">
+                                </textarea>
+                                        <input type="button" onclick="sair_bandeja(2)">                                
+                                </div>
 
+                            </div>
+
+                            <div id="opc3" style="display:none">
+
+                                <h1>Pedidos de Nome</h1>
+                                <div class="pedido col-lg-12 col-md-12 col-sm-12">
+                                    <div class="bloco">
+                                        <img src="sabor3x.png" class="pizza" alt="">
+                                    </div>
+
+                                    <div class="bloco">
+                                        <h2 class="sem_margin">Calabresa X Bacom</h2>
+                                        <p class="sem_margin">Borda catupry</p>
+                                        <p class="vermelhor sem_margin">observações</p>
+                                    </div>
+                                    
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/remover.png" alt="">
+                                        <p>remover</p>
+                                    </div>
+
+                                </div>
+                                
                             </div>
 
                         </form>
@@ -187,6 +212,16 @@ require_once "../config.php";
 			</div>
 
         </div>
+        
+        <script src="_JS/slids.js" type="text/javascript"></script>
+        <?php
+            if(isset($_GET['ver'])){
+                $f = $_GET['ver'];
+                if($f == "meusPedidos"){
+                    echo("<script>mostrar_pedidos()</script>");
+                }
+            }
+        ?>
         <script>
             window.onload = iniciar()
         </script>

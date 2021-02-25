@@ -1,5 +1,11 @@
+var bandeja = document.getElementById('band')
+var opc1 = document.getElementById('opc1')
+var opc2 = document.getElementById('opc2')
+var opc3 = document.getElementById('opc3')
+var sabores = document.getElementById('sabores')
+var tamanhos = document.getElementById('tamanhos')
+
 function entrar_bandeja(){
-    bandeja = document.getElementById('band')
     x = -800
 
     intervalo = setInterval(function(){
@@ -14,13 +20,8 @@ function entrar_bandeja(){
     }, 25)
     
 }
-function sair_bandeja(){
+function sair_bandeja(pos){
     console.log('entrei aqui')
-    bandeja = document.getElementById('band')
-    opc1 = document.getElementById('opc1')
-    opc2 = document.getElementById('opc2')
-    sabores = document.getElementById('sabores')
-    tamanhos = document.getElementById('tamanhos')
 
     x = 0
     func = 1
@@ -33,10 +34,17 @@ function sair_bandeja(){
         }
         else{
             if(func == 1){
-                opc1.style.display = "none"
-                tamanhos.style.display = "block"
-                sabores.style.display = "none"
-                opc2.style.display = "block"
+                if(pos == 1){
+                    opc1.style.display = "none"
+                    tamanhos.style.display = "block"
+                    sabores.style.display = "none"
+                    opc2.style.display = "block"
+                }
+                if(pos == 2){
+                    tamanhos.style.display = "none"
+                    opc2.style.display = "none"
+                    opc3.style.display = "block"
+                }
                 intervalo2 = setInterval(function(){
                     if(x < 0){
                         x = x + 50
