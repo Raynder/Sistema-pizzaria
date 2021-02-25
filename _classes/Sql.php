@@ -27,6 +27,7 @@
         }
 
         public function setParam($key, $value, $sql){
+            echo("inserindo $value in $key");
             $sql->bindParam($key, $value);
         }
     }

@@ -1,5 +1,30 @@
 <?php
 require_once "../config.php";
+session_start();
+$_SESSION['nome'] = "Raynder";
+if(isset($_POST['nsab1'])){
+    $cont = 0;
+    $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS","VER");
+    $array = array();
+    $array[":NOME"] = $_SESSION['nome'];
+
+    foreach($_POST as $key => $value){
+        
+        if($value == "on"){
+            $array[$nomes[$cont]] = $key;
+        }
+        else{
+            if($nomes[$cont] != "VER"){
+                $array[$nomes[$cont]] = $value;
+            }
+        }
+        $cont++;
+    }
+    //print_r($array);
+    $pedir = new Pedidos();
+    $pedir->add_pizza($array);
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +75,7 @@ require_once "../config.php";
 			<div class="row">
 					<div class="col-lg-12 corpo">
 
-                        <form action="" method="get" id="band">
+                        <form action="" method="post" id="band">
 
                                 
                             
@@ -123,6 +148,13 @@ require_once "../config.php";
                                                 </optgroup>
 
                                             </select>
+                                            
+                                            <select name="nsab3" id="isab3" style="display:none">
+                                                <optgroup>
+                                                    <option value=""></option>
+                                                </optgroup>
+
+                                            </select>
 
                                             <figcaption>
                                                 <p onclick="aux()">R$30.00</p>
@@ -176,14 +208,19 @@ require_once "../config.php";
                                         placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7"
                                         name="obs">
                                 </textarea>
-                                        <input type="button" onclick="sair_bandeja(2)">                                
+                                        <input type="text" name="ver" style="display:none" value="meusPedidos">
+                                        <input type="submit" value="Adicionar">                                
                                 </div>
 
                             </div>
 
+                            <?php
+                                
+                            ?>
+
                             <div id="opc3" style="display:none">
 
-                                <h1>Pedidos de Nome</h1>
+                                <h1>Pedidos de <?=$_SESSION['nome'];?></h1>
                                 <div class="pedido col-lg-12 col-md-12 col-sm-12">
                                     <div class="bloco">
                                         <img src="sabor3x.png" class="pizza" alt="">
@@ -192,12 +229,18 @@ require_once "../config.php";
                                     <div class="bloco">
                                         <h2 class="sem_margin">Calabresa X Bacom</h2>
                                         <p class="sem_margin">Borda catupry</p>
+                                        <p class="sem_margin">G</p>
                                         <p class="vermelhor sem_margin">observações</p>
                                     </div>
                                     
                                     <div class="bloco_a_direita">
                                         <img style="height:50px" src="../_img/remover.png" alt="">
                                         <p>remover</p>
+                                    </div>
+
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/editar.png" alt="">
+                                        <p>editar</p>
                                     </div>
 
                                 </div>
@@ -215,8 +258,8 @@ require_once "../config.php";
         
         <script src="_JS/slids.js" type="text/javascript"></script>
         <?php
-            if(isset($_GET['ver'])){
-                $f = $_GET['ver'];
+            if(isset($_POST['ver'])){
+                $f = $_POST['ver'];
                 if($f == "meusPedidos"){
                     echo("<script>mostrar_pedidos()</script>");
                 }
@@ -227,10 +270,4 @@ require_once "../config.php";
         </script>
 	</body>
 </html>
-<?php
-
-if(isset($_POST[''])){
-
-	
-}
 	
