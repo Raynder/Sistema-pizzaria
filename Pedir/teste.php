@@ -213,26 +213,47 @@ if(isset($_POST['nsab1'])){
                                 </div>
 
                             </div>
+                            <div id="opc3" style="display:none">
+                                <h1>Pedidos de <?=$_SESSION['nome'];?></h1>
 
                             <?php
+                                if(isset($_POST['ver'])){
+                                    $pedidos = $pedir->mostrar_pedidos($_SESSION['nome']);
+                                    foreach($pedidos as $pedido){
+                                        ?>
+                                            
+
                                 
-                            ?>
-
-                            <div id="opc3" style="display:none">
-
-                                <h1>Pedidos de <?=$_SESSION['nome'];?></h1>
                                 <div class="pedido col-lg-12 col-md-12 col-sm-12">
                                     <div class="bloco">
                                         <img src="sabor3x.png" class="pizza" alt="">
                                     </div>
 
                                     <div class="bloco">
-                                        <h2 class="sem_margin">Calabresa X Bacom</h2>
-                                        <p class="sem_margin">Borda catupry</p>
-                                        <p class="sem_margin">G</p>
-                                        <p class="vermelhor sem_margin">observações</p>
+                                        <?php
+                                        $sabor1 = $pedido['sabor1'];
+                                        $sabor2 = $pedido['sabor2'];
+                                        $sabor3 = $pedido['sabor3'];
+                                        $borda = $pedido['borda'];
+                                        $tamanho = $pedido['tamanho'];
+                                        $observacao = $pedido['observacao'];
+                                        if($sabor3 != ""){
+                                            echo("<h2 class='sem_margin'>$sabor1 X $sabor2 X $sabor3</h2>");
+                                        }
+                                        else{
+                                            if($sabor2 != ""){
+                                                echo("<h2 class='sem_margin'>$sabor1 X $sabor2</h2>");
+                                            } 
+                                            else{
+                                                echo("<h2 class='sem_margin'>$sabor1");
+                                            }
+                                        }
+                                        echo("<p class='sem_margin'>$borda</p>");
+                                        echo("<p class='sem_margin'>$tamanho</p>");
+                                        echo("<p class='vermelhor sem_margin'>$observacao</p>");
+                                        ?>
                                     </div>
-                                    
+                                            
                                     <div class="bloco_a_direita">
                                         <img style="height:50px" src="../_img/remover.png" alt="">
                                         <p>remover</p>
@@ -242,6 +263,13 @@ if(isset($_POST['nsab1'])){
                                         <img style="height:50px" src="../_img/editar.png" alt="">
                                         <p>editar</p>
                                     </div>
+                                </div>
+
+                                        <?php
+                                        
+                                    }
+                                }
+                            ?>
 
                                 </div>
                                 

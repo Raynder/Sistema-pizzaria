@@ -13,10 +13,17 @@
             $this->conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
         }
 
-        public function insere($array = array(), $query){
+        public function insere($query, $array = array()){
             $sql = $this->conn->prepare($query);
             $this->setParams($array, $sql);
             $sql->execute();
+        }
+
+        public function select($query){
+            $sql = $this->conn->prepare($query);
+            $sql->execute();
+            $res = $sql->fetchALL(PDO::FETCH_ASSOC);
+            return $res;
         }
 
         public function setParams($array = array(), $sql){
@@ -27,7 +34,6 @@
         }
 
         public function setParam($key, $value, $sql){
-            echo("inserindo $value in $key");
             $sql->bindParam($key, $value);
         }
     }
