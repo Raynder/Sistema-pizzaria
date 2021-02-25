@@ -77,3 +77,12 @@ img.pizza {
     padding: 15px;
     display: inline-block;
 }
+.bt{
+    border-radius: 15px;
+    width: 30%;
+    background-image: linear-gradient(45deg, #dcab13, transparent);
+    margin: 1%;
+}
+.confirm{
+    background-image: linear-gradient(45deg, #13dc60, transparent);
+}

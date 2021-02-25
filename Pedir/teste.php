@@ -2,25 +2,34 @@
 require_once "../config.php";
 session_start();
 $_SESSION['nome'] = "Raynder";
-if(isset($_POST['nsab1'])){
-    $cont = 0;
-    $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS","VER");
-    $array = array();
-    $array[":NOME"] = $_SESSION['nome'];
-
-    foreach($_POST as $key => $value){
-       
-        if($nomes[$cont] != "VER"){
-            $array[$nomes[$cont]] = $value;
+if(isset($_POST['tamanho'])){
+    if(!empty($_POST['tamanho'])){
+        $cont = 0;
+        $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
+        $array = array();
+        $array[":NOME"] = $_SESSION['nome'];
+    
+        foreach($_POST as $key => $value){
+            if($cont < 6){
+                $array[$nomes[$cont]] = $value;
+            }
+            $cont++;
         }
-        $cont++;
+        
+        $pedir = new Pedidos();
+        $pedir->add_pizza($array);
     }
-    print_r($array);
-    $pedir = new Pedidos();
-    $pedir->add_pizza($array);
 
 }
+else{
+    if(isset($_POST['apagar'])){ 
+        $id_apagar = $_POST['apagar'];
+        $pedir = new Pedidos();
+        $pedir->remover_pizza($id_apagar);
+    }
+}
 
+$iniciar_aux = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,6 +42,7 @@ if(isset($_POST['nsab1'])){
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
         <script src="_JS/x2.js" type="text/javascript"></script>
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
+        <script src="_JS/modificar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../_JS/funcoes.js"></script>
 	</head>
 
@@ -202,7 +212,7 @@ if(isset($_POST['nsab1'])){
                                 <div class="col-lg-12">
 
                                 <textarea id="entrada-text" class="entrada" placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7" name="obs"></textarea>
-                                        <input type="text" id="ver" name="ver" style="display:none" value="">
+                                        
                                         <input type="button" value="Adicionar" onclick="conferir(2)">                                
                                 </div>
 
@@ -225,6 +235,7 @@ if(isset($_POST['nsab1'])){
 
                                     <div class="bloco">
                                         <?php
+                                        $id_pizza = $pedido['id'];
                                         $sabor1 = $pedido['sabor1'];
                                         $sabor2 = $pedido['sabor2'];
                                         $sabor3 = $pedido['sabor3'];
@@ -249,7 +260,7 @@ if(isset($_POST['nsab1'])){
                                     </div>
                                             
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pizza(<?=$id_pizza;?>)">
                                         <p>remover</p>
                                     </div>
 
@@ -264,11 +275,17 @@ if(isset($_POST['nsab1'])){
                                     }
                                 }
                             ?>
+                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
+                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
+                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar()">
 
                                 </div>
                                 
                             </div>
-
+                                    
+                            <input type="text" id="ver" name="ver" style="display:none" value="">
+                            <input type="text" id="apagar" name="apagar" style="display:none" value="">
+                            <input type="text" id="editar" name="editar" style="display:none" value="">
                         </form>
 
                         
@@ -284,12 +301,12 @@ if(isset($_POST['nsab1'])){
                 $f = $_POST['ver'];
                 if($f == "meusPedidos"){
                     echo("<script>mostrar_pedidos()</script>");
-                    $_POST = array();
+                    $iniciar_aux = 2;
                 }
             }
         ?>
         <script>
-            window.onload = iniciar()
+            window.onload = iniciar(<?=$iniciar_aux;?>)
         </script>
 	</body>
 </html>

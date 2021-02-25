@@ -16,4 +16,9 @@
             $query = "SELECT * FROM pedidosTemp WHERE nome = '$nome'";
             return $this->conn->select($query);
         }
+
+        public function remover_pizza($id_apagar){
+            $query = "DELETE FROM pedidosTemp WHERE id = '$id_apagar'";
+            $this->conn->insere($query);
+        }
     }

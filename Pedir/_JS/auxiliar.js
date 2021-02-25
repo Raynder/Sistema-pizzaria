@@ -1,13 +1,18 @@
-function aux(){
-    setInterval(function (){
-        valor = document.getElementById('direito').height
-        document.getElementById('isab1').style.height = valor+'px'
-        document.getElementById('isab2').style.height = valor+'px'
-    },1000)
+function aux(situacao){
+    if(situacao == 1){
+        intervalo_aux = setInterval(function (){
+            valor = document.getElementById('direito').height
+            document.getElementById('isab1').style.height = valor+'px'
+            document.getElementById('isab2').style.height = valor+'px'
+        },1000)
+    }
+    else{
+        clearInterval(intervalo_aux)
+    }
 }
-function iniciar(){
+function iniciar(valor){
     entrar_bandeja()
-    aux()
+    aux(valor)
 }
 
 function mostrar_pedidos(){
@@ -44,4 +49,9 @@ function conferir(pos){
             alert('O tamanho da pizza deve ser definido.')
         }
     }
+}
+function pedir_mais(){  
+    form = document.getElementById('band')
+    form.reset()
+    sair_bandeja(0)
 }

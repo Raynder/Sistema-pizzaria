@@ -34,7 +34,14 @@ function sair_bandeja(pos){
         }
         else{
             if(func == 1){
+                if(pos == 0){
+                    sabores.style.display = "block"
+                    opc1.style.display = "block"
+                    opc3.style.display = "none"
+                    aux(1)
+                }
                 if(pos == 1){
+                    aux(2)
                     opc1.style.display = "none"
                     tamanhos.style.display = "block"
                     sabores.style.display = "none"
