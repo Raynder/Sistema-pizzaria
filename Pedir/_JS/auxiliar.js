@@ -17,3 +17,31 @@ function mostrar_pedidos(){
     opc2.style.display = "none"
     opc3.style.display = "block"
 }
+
+function conferir(pos){
+    if(pos == 1){
+        sabor1 = document.getElementById('isab1').value
+        sabor2 = document.getElementById('isab2').value
+
+        if(sabor1 != " " && sabor2 != " "){
+            sair_bandeja(1)
+        }
+        else{
+            alert("Escolha todos os sabores.")
+        }
+    }
+    else{
+        media = document.getElementById('media')
+        grande = document.getElementById('grande')
+        pequena = document.getElementById('pequena')
+
+        if(pequena.checked || media.checked || grande.checked){
+            form = document.getElementById('band')
+            document.getElementById('ver').value = "meusPedidos"
+            form.submit()
+        }
+        else{
+            alert('O tamanho da pizza deve ser definido.')
+        }
+    }
+}

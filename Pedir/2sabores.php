@@ -9,18 +9,13 @@ if(isset($_POST['nsab1'])){
     $array[":NOME"] = $_SESSION['nome'];
 
     foreach($_POST as $key => $value){
-        
-        if($value == "on"){
-            $array[$nomes[$cont]] = $key;
-        }
-        else{
-            if($nomes[$cont] != "VER"){
-                $array[$nomes[$cont]] = $value;
-            }
+       
+        if($nomes[$cont] != "VER"){
+            $array[$nomes[$cont]] = $value;
         }
         $cont++;
     }
-    //print_r($array);
+    print_r($array);
     $pedir = new Pedidos();
     $pedir->add_pizza($array);
 
@@ -132,6 +127,7 @@ if(isset($_POST['nsab1'])){
 
                                             <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
                                                 <optgroup>
+                                                    <option value=" " style="display:none" selected></option>
                                                     <option value="calabresa">Calabresa</option>
                                                     <option value="bacon">Bacon</option>
                                                     <option value="atum">Atum</option>
@@ -141,6 +137,7 @@ if(isset($_POST['nsab1'])){
 
                                             <select onchange="mudaFoto2(this.value)" name="nsab2" id="isab2" class="entrada-hidden esquerdo2x">
                                                 <optgroup>
+                                                    <option value=" " style="display:none" selected></option>
                                                     <option value="calabresa">Calabresa</option>
                                                     <option value="bacon">Bacon</option>
                                                     <option value="atum">Atum</option>
@@ -160,7 +157,7 @@ if(isset($_POST['nsab1'])){
                                                 <p onclick="aux()">R$30.00</p>
                                             </figcaption>
 
-                                            <input type="button" value="enviar" onclick="sair_bandeja(1)">
+                                            <input type="button" value="enviar" onclick="conferir(1)">
 
                                         </div>
                                         
@@ -185,9 +182,9 @@ if(isset($_POST['nsab1'])){
 
                                 <div class="checks">
                                 
-                                    <input type="checkbox" name="pequena" id="pequena">
-                                    <input type="checkbox" name="media" id="media">
-                                    <input type="checkbox" name="grande" id="grande">
+                                    <input type="checkbox" name="tamanho" value="pequena" id="pequena">
+                                    <input type="checkbox" name="tamanho" value="media" id="media">
+                                    <input type="checkbox" name="tamanho" value="grande" id="grande">
 
                                 </div>
 
@@ -204,12 +201,9 @@ if(isset($_POST['nsab1'])){
                                 </div>
                                 <div class="col-lg-12">
 
-                                <textarea id="entrada-text" class="entrada"
-                                        placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7"
-                                        name="obs">
-                                </textarea>
-                                        <input type="text" name="ver" style="display:none" value="meusPedidos">
-                                        <input type="submit" value="Adicionar">                                
+                                <textarea id="entrada-text" class="entrada" placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7" name="obs"></textarea>
+                                        <input type="text" id="ver" name="ver" style="display:none" value="">
+                                        <input type="button" value="Adicionar" onclick="conferir(2)">                                
                                 </div>
 
                             </div>
@@ -290,6 +284,7 @@ if(isset($_POST['nsab1'])){
                 $f = $_POST['ver'];
                 if($f == "meusPedidos"){
                     echo("<script>mostrar_pedidos()</script>");
+                    $_POST = array();
                 }
             }
         ?>

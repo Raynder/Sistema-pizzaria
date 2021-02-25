@@ -38,4 +38,5 @@ figcaption p{
 }
 .sem_margin{
     margin: 0;
+    text-transform: capitalize;
 }
