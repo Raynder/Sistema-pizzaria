@@ -71,9 +71,18 @@ img.pizza {
     margin-right: 2%;
     margin-top: 2%;
 }
-.pedido {
+.pizzas {
     margin-bottom: 2%;
     border: solid #d67a1c8c 8px;
+}
+.bebidas .bloco{
+    margin: 2%;
+    width: 29%;
+}
+.bebidas .bloco img{
+    width: 100%;
+}
+.pedido {
     padding: 15px;
     display: inline-block;
 }
@@ -85,4 +94,7 @@ img.pizza {
 }
 .confirm{
     background-image: linear-gradient(45deg, #13dc60, transparent);
+}
+#opc4{
+    width: 100%;
 }

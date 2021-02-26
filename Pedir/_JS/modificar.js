@@ -5,9 +5,23 @@ function remover_pizza(id_pizza){
     document.getElementById('ver').value = "meusPedidos"
     form.submit()
 }
+function remover_bebida(id_bebida){
+    form = document.getElementById('band')
+    form.reset()
+    document.getElementById('apagarbeb').value = id_bebida
+    document.getElementById('ver').value = "meusPedidos"
+    form.submit()
+}
 function editar_pizza(id_pizza){
     form = document.getElementById('band')
     form.reset()
     document.getElementById('editar').value = id_pizza
     sair_bandeja(1)
+}
+function add_bebida(bebida){
+    form = document.getElementById('band')
+    form.reset()
+    document.getElementById('bebida').value = bebida
+    document.getElementById('ver').value = "meusPedidos"
+    form.submit()
 }

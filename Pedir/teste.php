@@ -40,6 +40,16 @@ else{
         $pedir = new Pedidos();
         $pedir->remover_pizza($id_apagar);
     }
+    if(isset($_POST['apagarbeb'])){ 
+        $id_apagar = $_POST['apagarbeb'];
+        $pedir = new Pedidos();
+        $pedir->remover_bebida($id_apagar);
+    }
+    if(isset($_POST['bebida']) && !empty($_POST['bebida'])){
+        $bebida = $_POST['bebida'];
+        $pedir = new Pedidos();
+        $pedir->add_bebida($_SESSION['nome'], $bebida);
+    }
 }
 
 $iniciar_aux = 1;
@@ -53,6 +63,10 @@ $iniciar_aux = 1;
 		<link rel="stylesheet" type="text/css" href="../_css/style.css">
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="_JS/sweetAlert.js"></script>
+
         <script src="_JS/x2.js" type="text/javascript"></script>
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
         <script src="_JS/modificar.js" type="text/javascript"></script>
@@ -247,7 +261,7 @@ $iniciar_aux = 1;
                                             
 
                                 
-                                <div class="pedido col-lg-12 col-md-12 col-sm-12">
+                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
                                     <div class="bloco">
                                         <img src="sabor3x.png" class="pizza" alt="">
                                     </div>
@@ -292,6 +306,36 @@ $iniciar_aux = 1;
                                         <?php
                                         
                                     }
+
+                                    $bebidas = $pedir->mostrar_bebidas($_SESSION['nome']);
+                                    
+                                    foreach($bebidas as $beb){
+                                        ?>
+                                            
+
+                                
+                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                    <div class="bloco">
+                                        <img src="../_img/_bebidas/<?=$beb['bebida'];?>.png" class="pizza" alt="">
+                                    </div>
+
+                                    <div class="bloco">
+                                        <?php
+                                        $id_beb = $beb['id'];
+                                        $nomebeb = $beb['bebida'];
+
+                                        echo("<h1 class='sem_margin'>$nomebeb</h1>");
+                                        ?>
+                                    </div>
+                                            
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_bebida(<?=$id_beb;?>)">
+                                        <p>remover</p>
+                                    </div>
+
+                                </div>
+                                <?php
+                                    }
                             ?>
                                     <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
                                     <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
@@ -302,12 +346,52 @@ $iniciar_aux = 1;
                             </div>
 
                             <div id="opc4" style="display:none">
-                                <h1>minhas bebidas</h1>
+                                <div class="pedido bebidas col-lg-12 col-md-12 col-sm-12">
+
+                                <div class="bloco">
+                                        <img onclick="adicionarbeb('Coca_2lt')" src="../_img/_bebidas/Coca_2lt.png" alt="">
+                                        <figcaption>
+                                            <p>Coca-cola 2Lt</p>
+                                        </figcaption>
+                                    </div>
+                                    <div class="bloco">
+                                        <img onclick="adicionarbeb('Coca_600ml')" src="../_img/_bebidas/Coca_600ml.png" alt="">
+                                        <figcaption>
+                                            <p>Coca-cola 600ml</p>
+                                        </figcaption>
+                                    </div>
+                                    <div class="bloco">
+                                        <img onclick="adicionarbeb('Coca_lata')" src="../_img/_bebidas/Coca_lata.png" alt="">
+                                        <figcaption>
+                                            <p>Coca-cola Lata</p>
+                                        </figcaption>
+                                    </div>
+                                    <div class="bloco">
+                                        <img onclick="adicionarbeb('Guarana_2lt')" src="../_img/_bebidas/Guarana_2lt.png" alt="">
+                                        <figcaption>
+                                            <p>Guarana 2Lt</p>
+                                        </figcaption>
+                                    </div>
+                                    <div class="bloco">
+                                        <img onclick="adicionarbeb('Guarana_600ml')" src="../_img/_bebidas/Guarana_600ml.png" alt="">
+                                        <figcaption>
+                                            <p>Guarana 600ml</p>
+                                        </figcaption>
+                                    </div>
+                                    <div class="bloco">
+                                        <img onclick="adicionarbeb('Guarana_lata')" src="../_img/_bebidas/Guarana_lata.png" alt="">
+                                        <figcaption>
+                                            <p>Guarana Lata</p>
+                                        </figcaption>
+                                    </div>
+                                </div>
                             </div>
                                     
                             <input type="text" id="ver" name="ver" style="display:none" value="">
                             <input type="text" id="apagar" name="apagar" style="display:none" value="">
+                            <input type="text" id="apagarbeb" name="apagarbeb" style="display:none" value="">
                             <input type="text" id="editar" name="editar" style="display:none" value="">
+                            <input type="text" id="bebida" name="bebida" style="display:none" value="">
                         </form>
 
                         

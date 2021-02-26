@@ -33,7 +33,7 @@ function adicionarbeb(beb) {
                 'Sua bebida foi adicionada!',
                 'success'
             )
-            window.location.href="addbebida.php?beb="+beb;
+            add_bebida(beb);
         }
     })
 
