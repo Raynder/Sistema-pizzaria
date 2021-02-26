@@ -46,6 +46,7 @@ function sair_bandeja(pos){
                     tamanhos.style.display = "block"
                     sabores.style.display = "none"
                     opc2.style.display = "block"
+                    opc3.style.display = "none"
                 }
                 if(pos == 2){
                     tamanhos.style.display = "none"

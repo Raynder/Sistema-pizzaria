@@ -4,18 +4,22 @@ session_start();
 $_SESSION['nome'] = "Raynder";
 if(isset($_POST['tamanho'])){
     if(!empty($_POST['tamanho'])){
+        $array = array();
         $array[":NOME"] = $_SESSION['nome'];
         $cont = 0;
 
         if(isset($_POST['editar']) && !empty($_POST['editar'])){
-            $nomes = array(":TAM", ":BOR", ":OBS");
-            print_r($_POST);
+            $id_editar = $_POST['editar'];
+            $array = array(
+                ":TAM" => $_POST['tamanho'],
+                ":BOR" => $_POST['nbor'],
+                ":OBS" => $_POST['obs']
+            );
+            $pedir = new Pedidos();
+            $pedir->att_pizza($array, $id_editar);
         }
         else{
-            print_r($_POST);
-
             $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
-            $array = array();
         
             foreach($_POST as $key => $value){
                 if($cont < 6){

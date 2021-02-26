@@ -21,4 +21,8 @@
             $query = "DELETE FROM pedidosTemp WHERE id = '$id_apagar'";
             $this->conn->insere($query);
         }
+        public function att_pizza($array, $id_editar){
+            $query = "UPDATE pedidosTemp SET tamanho = :TAM, borda = :BOR, observacao = :OBS WHERE id = '$id_editar'";
+            $this->conn->insere($query, $array);
+        }
     }
