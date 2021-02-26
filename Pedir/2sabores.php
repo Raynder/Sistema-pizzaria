@@ -4,20 +4,33 @@ session_start();
 $_SESSION['nome'] = "Raynder";
 if(isset($_POST['tamanho'])){
     if(!empty($_POST['tamanho'])){
-        $cont = 0;
-        $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
         $array = array();
         $array[":NOME"] = $_SESSION['nome'];
-    
-        foreach($_POST as $key => $value){
-            if($cont < 6){
-                $array[$nomes[$cont]] = $value;
-            }
-            $cont++;
+        $cont = 0;
+
+        if(isset($_POST['editar']) && !empty($_POST['editar'])){
+            $id_editar = $_POST['editar'];
+            $array = array(
+                ":TAM" => $_POST['tamanho'],
+                ":BOR" => $_POST['nbor'],
+                ":OBS" => $_POST['obs']
+            );
+            $pedir = new Pedidos();
+            $pedir->att_pizza($array, $id_editar);
         }
+        else{
+            $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
         
-        $pedir = new Pedidos();
-        $pedir->add_pizza($array);
+            foreach($_POST as $key => $value){
+                if($cont < 6){
+                    $array[$nomes[$cont]] = $value;
+                }
+                $cont++;
+            }
+            
+            $pedir = new Pedidos();
+            $pedir->add_pizza($array);
+        }
     }
 
 }
@@ -167,7 +180,8 @@ $iniciar_aux = 1;
                                                 <p onclick="aux()">R$30.00</p>
                                             </figcaption>
 
-                                            <input type="button" value="enviar" onclick="conferir(1)">
+                                        <input class="bt" type="button" value="enviar" onclick="conferir(1)">
+                                        <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
 
                                         </div>
                                         
@@ -217,12 +231,17 @@ $iniciar_aux = 1;
                                 </div>
 
                             </div>
+
                             <div id="opc3" style="display:none">
                                 <h1>Pedidos de <?=$_SESSION['nome'];?></h1>
 
                             <?php
-                                if(isset($_POST['ver'])){
+                                    $pedir = new Pedidos();
                                     $pedidos = $pedir->mostrar_pedidos($_SESSION['nome']);
+                                    $a = count($pedidos);
+                                    if($a == 0){
+                                        echo("<script>document.getElementById('ver_pedidos').style.display = 'none'</script>");
+                                    }
                                     foreach($pedidos as $pedido){
                                         ?>
                                             
@@ -265,7 +284,7 @@ $iniciar_aux = 1;
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/editar.png" alt="">
+                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pizza(<?=$id_pizza;?>)">
                                         <p>editar</p>
                                     </div>
                                 </div>
@@ -273,7 +292,6 @@ $iniciar_aux = 1;
                                         <?php
                                         
                                     }
-                                }
                             ?>
                                     <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
                                     <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
@@ -281,6 +299,10 @@ $iniciar_aux = 1;
 
                                 </div>
                                 
+                            </div>
+
+                            <div id="opc4" style="display:none">
+                                <h1>minhas bebidas</h1>
                             </div>
                                     
                             <input type="text" id="ver" name="ver" style="display:none" value="">

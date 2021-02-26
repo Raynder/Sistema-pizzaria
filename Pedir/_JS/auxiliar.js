@@ -60,3 +60,6 @@ function pedir_mais(){
     form.reset()
     sair_bandeja(0)
 }
+function bebidas(){
+    sair_bandeja(3)
+}

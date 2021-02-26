@@ -180,7 +180,8 @@ $iniciar_aux = 1;
                                                 <p onclick="aux()">R$30.00</p>
                                             </figcaption>
 
-                                            <input type="button" value="enviar" onclick="conferir(1)">
+                                        <input class="bt" type="button" value="enviar" onclick="conferir(1)">
+                                        <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
 
                                         </div>
                                         
@@ -230,12 +231,17 @@ $iniciar_aux = 1;
                                 </div>
 
                             </div>
+
                             <div id="opc3" style="display:none">
                                 <h1>Pedidos de <?=$_SESSION['nome'];?></h1>
 
                             <?php
-                                if(isset($_POST['ver'])){
+                                    $pedir = new Pedidos();
                                     $pedidos = $pedir->mostrar_pedidos($_SESSION['nome']);
+                                    $a = count($pedidos);
+                                    if($a == 0){
+                                        echo("<script>document.getElementById('ver_pedidos').style.display = 'none'</script>");
+                                    }
                                     foreach($pedidos as $pedido){
                                         ?>
                                             
@@ -286,7 +292,6 @@ $iniciar_aux = 1;
                                         <?php
                                         
                                     }
-                                }
                             ?>
                                     <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
                                     <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
@@ -294,6 +299,10 @@ $iniciar_aux = 1;
 
                                 </div>
                                 
+                            </div>
+
+                            <div id="opc4" style="display:none">
+                                <h1>minhas bebidas</h1>
                             </div>
                                     
                             <input type="text" id="ver" name="ver" style="display:none" value="">
