@@ -37,4 +37,10 @@
             $query = "INSERT INTO bebidasTemp(nome, bebida) VALUES ('$nome','$bebida')";
             $this->conn->insere($query);
         }
+        public function enviar_pedido($nome){
+            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao FROM pedidosTemp WHERE nome = '$nome'";
+            $this->conn->insere($query);
+            $query = "DELETE FROM pedidosTemp WHERE nome = '$nome'";
+            $this->conn->insere($query);
+        }
     }

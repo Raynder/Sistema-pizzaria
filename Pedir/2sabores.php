@@ -52,6 +52,14 @@ else{
     }
 }
 
+if(isset($_POST['final']) && !empty($_POST['final'])){
+    if($_POST['final'] == 'ok'){
+        $pedir = new Pedidos();
+        $pedir->enviar_pedido($_SESSION['nome']);
+    }
+}
+$total_a_pagar = 0;
+
 $iniciar_aux = 1;
 ?>
 <!DOCTYPE html>
@@ -191,7 +199,7 @@ $iniciar_aux = 1;
                                             </select>
 
                                             <figcaption>
-                                                <p onclick="aux()">R$30.00</p>
+                                                <p onclick="aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
                                             </figcaption>
 
                                         <input class="bt" type="button" value="enviar" onclick="conferir(1)">
@@ -286,9 +294,23 @@ $iniciar_aux = 1;
                                                 echo("<h2 class='sem_margin'>$sabor1");
                                             }
                                         }
+
                                         echo("<p class='sem_margin'>$borda</p>");
                                         echo("<p class='sem_margin'>$tamanho</p>");
                                         echo("<p class='vermelhor sem_margin'>$observacao</p>");
+
+                                        //Calcular total a pagar
+                                        if($tamanho == 'g'){
+                                            $total_a_pagar += 30;
+                                        }
+                                        else{
+                                            if($tamanho == "m"){
+                                                $total_a_pagar += 28;
+                                            }
+                                            else{
+                                                $total_a_pagar += 26;
+                                            }
+                                        }
                                         ?>
                                     </div>
                                             
@@ -336,10 +358,12 @@ $iniciar_aux = 1;
                                 </div>
                                 <?php
                                     }
+                                    echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
+
                             ?>
                                     <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
                                     <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
-                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar()">
+                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
 
                                 </div>
                                 
@@ -392,6 +416,7 @@ $iniciar_aux = 1;
                             <input type="text" id="apagarbeb" name="apagarbeb" style="display:none" value="">
                             <input type="text" id="editar" name="editar" style="display:none" value="">
                             <input type="text" id="bebida" name="bebida" style="display:none" value="">
+                            <input type="text" id="final" name="final" style="display:none" value="">
                         </form>
 
                         
