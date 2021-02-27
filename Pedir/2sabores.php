@@ -53,10 +53,9 @@ else{
 }
 
 if(isset($_POST['final']) && !empty($_POST['final'])){
-    if($_POST['final'] == 'ok'){
-        $pedir = new Pedidos();
-        $pedir->enviar_pedido($_SESSION['nome']);
-    }
+    $hrbebida = $_POST['final'];
+    $pedir = new Pedidos();
+    $pedir->enviar_pedido($_SESSION['nome'], $hrbebida);
 }
 $total_a_pagar = 0;
 

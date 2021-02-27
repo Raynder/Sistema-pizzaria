@@ -4,7 +4,7 @@
     float: left;
 }
 .direito{
-    right: 0;
+    float: right;
     top: 25px;
     width: 50%;
 }
@@ -15,15 +15,12 @@
 }
 .bottom{
     left: 0;
-    top: 250px;
+    top: 0px;
     width: 100%;
 }
 .centro img{
     left: 0;
     width: 100%;
-}
-.x3 select{
-    height: 200px;
 }
 
 .x2 select{

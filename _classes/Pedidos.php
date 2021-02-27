@@ -37,8 +37,19 @@
             $query = "INSERT INTO bebidasTemp(nome, bebida) VALUES ('$nome','$bebida')";
             $this->conn->insere($query);
         }
-        public function enviar_pedido($nome){
+        public function enviar_pedido($nome, $hrbebida){
+
+            setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+            date_default_timezone_set('America/Sao_Paulo');
+            $hora = date('H:i:s');
+            $dia_sem = strftime('%A');
+            $dia_mes = strftime('%d');
+            $mes = strftime('%B');
+            $ano = strftime('%Y');        
+            
             $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao FROM pedidosTemp WHERE nome = '$nome'";
+            $this->conn->insere($query);
+            $query = "UPDATE pizzas SET dia_mes = '$dia_mes', dia_sem = '$dia_sem', hora = '$hora', bebida = '$hrbebida', situacao = 'aguardando' WHERE nome = '$nome'";
             $this->conn->insere($query);
             $query = "DELETE FROM pedidosTemp WHERE nome = '$nome'";
             $this->conn->insere($query);

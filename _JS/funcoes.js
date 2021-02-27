@@ -37,20 +37,19 @@ function finalizar_pedido(total) {
                 confirmButtonText: 'Agora.',
                 cancelButtonText: 'Junto com a pizza.'
             }).then((result) => {
+                form = document.getElementById('band')
+                form.reset()
                 if (result.value) {
-                    
+                    document.getElementById('final').value = 'agora'
                 }
                 else{
-
+                    document.getElementById('final').value = 'junto'
                 }
                 Swal.fire(
                     'Feito!',
                     'Seu pedido ficara pronto em torno de 30 minutos!',
                     'success'
                 )
-                form = document.getElementById('band')
-                form.reset()
-                document.getElementById('final').value = 'ok'
                 form.submit()
             })
         }

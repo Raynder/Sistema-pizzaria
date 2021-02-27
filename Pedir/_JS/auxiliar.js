@@ -1,20 +1,19 @@
-function aux(situacao){
-    if(situacao == 1){
-        intervalo_aux = setInterval(function (){
-            valor = document.getElementById('direito').height
-            document.getElementById('isab1').style.height = valor+'px'
-            document.getElementById('isab2').style.height = valor+'px'
-        },1000)
-    }
-    else{
-        if(situacao == 2){
-            console.log(situacao)
-        }
-        else{
-            clearInterval(intervalo_aux)
-        }
-    }
+function selec(valor){
+    console.log(valor)
+    document.getElementById('pequena').checked = 0
+    document.getElementById('media').checked = 0
+    document.getElementById('grande').checked = 0
+
+    document.getElementById('idpequena').style.backgroundColor = "#fff"
+    document.getElementById('idmedia').style.backgroundColor = "#fff"
+    document.getElementById('idgrande').style.backgroundColor = "#fff"
+
+    img = "id"+valor
+
+    document.getElementById(valor).checked = 1
+    document.getElementById(img).style.backgroundColor = "#b7e6b7"
 }
+
 function iniciar(valor){
     aux(valor)
     entrar_bandeja()
