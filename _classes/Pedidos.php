@@ -45,11 +45,13 @@
             $dia_sem = strftime('%A');
             $dia_mes = strftime('%d');
             $mes = strftime('%B');
-            $ano = strftime('%Y');        
-            
-            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao FROM pedidosTemp WHERE nome = '$nome'";
+            $ano = strftime('%Y');  
+
+            $query = "UPDATE pedidosTemp SET hora = '$hora', situacao = 'aguardando' WHERE nome = '$nome'";
             $this->conn->insere($query);
-            $query = "UPDATE pizzas SET dia_mes = '$dia_mes', dia_sem = '$dia_sem', hora = '$hora', bebida = '$hrbebida', situacao = 'aguardando' WHERE nome = '$nome'";
+            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, hora, situacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, hora, situacao FROM pedidosTemp WHERE nome = '$nome'";
+            $this->conn->insere($query);
+            $query = "UPDATE pizzas SET dia_mes = '$dia_mes', dia_sem = '$dia_sem', bebida = '$hrbebida' WHERE nome = '$nome'";
             $this->conn->insere($query);
             $query = "DELETE FROM pedidosTemp WHERE nome = '$nome'";
             $this->conn->insere($query);
