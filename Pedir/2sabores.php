@@ -120,9 +120,9 @@ $iniciar_aux = 1;
                             
                             <div class="tamanhos" id="sabores">
                                 <h1>QUANTOS SABORES?</h1>
-                                <a href="1sabores.php"><img src="sabor1x.png" alt=""></a>
-                                <a href="2sabores.php"><img src="sabor2x.png" alt=""></a>
-                                <a href="3sabores.php"><img src="sabor3x.png" alt=""></a>
+                                <a href="1sabores.php"><img src="../_img/sabor1x.png" alt=""></a>
+                                <a href="2sabores.php"><img src="../_img/sabor2x.png" alt=""></a>
+                                <a href="3sabores.php"><img src="../_img/sabor3x.png" alt=""></a>
 
                             </div>
 
@@ -130,21 +130,21 @@ $iniciar_aux = 1;
                                 <h1>TAMANHO DA PIZZA?</h1>
 
                                     <div onclick="selec('pequena')" class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
+                                        <img src="../_img/sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
                                         <figcaption>
                                             <p>Pequena</p>
                                         </figcaption>
                                     </div>
 
                                     <div onclick="selec('media')" class="imgem im2 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
+                                        <img src="../_img/sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
                                         <figcaption>
                                             <p>Media</p>
                                         </figcaption>
                                     </div>
 
                                     <div onclick="selec('grande')" class="imgem im3 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
+                                        <img src="../_img/sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
                                         <figcaption>
                                             <p>Grande</p>
                                         </figcaption>
@@ -198,7 +198,7 @@ $iniciar_aux = 1;
                                             </select>
 
                                             <figcaption>
-                                                <p onclick="aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
+                                                <p>R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
                                             </figcaption>
 
                                         <input class="bt" type="button" value="enviar" onclick="conferir(1)">
@@ -264,17 +264,6 @@ $iniciar_aux = 1;
                                         echo("<script>document.getElementById('ver_pedidos').style.display = 'none'</script>");
                                     }
                                     foreach($pedidos as $pedido){
-                                        ?>
-                                            
-
-                                
-                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
-                                    <div class="bloco">
-                                        <img src="sabor3x.png" class="pizza" alt="">
-                                    </div>
-
-                                    <div class="bloco">
-                                        <?php
                                         $id_pizza = $pedido['id'];
                                         $sabor1 = $pedido['sabor1'];
                                         $sabor2 = $pedido['sabor2'];
@@ -282,6 +271,18 @@ $iniciar_aux = 1;
                                         $borda = $pedido['borda'];
                                         $tamanho = $pedido['tamanho'];
                                         $observacao = $pedido['observacao'];
+                                        ?>
+                                            
+
+                                
+                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                    <div class="bloco">
+                                        <img src="_img1x/<?=$sabor1?>.png" class="pizza" alt="">
+                                    </div>
+
+                                    <div class="bloco">
+                                        <?php
+                                        
                                         if($sabor3 != ""){
                                             echo("<h2 class='sem_margin'>$sabor1 X $sabor2 X $sabor3</h2>");
                                         }

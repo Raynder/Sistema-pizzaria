@@ -47,11 +47,9 @@
             $mes = strftime('%B');
             $ano = strftime('%Y');  
 
-            $query = "UPDATE pedidosTemp SET hora = '$hora', situacao = 'aguardando' WHERE nome = '$nome'";
+            $query = "UPDATE pedidosTemp SET bebida = '$hrbebida', dia_sem = '$dia_sem', dia_mes = '$dia_mes', hora = '$hora', situacao = 'aguardando' WHERE nome = '$nome'";
             $this->conn->insere($query);
-            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, hora, situacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, hora, situacao FROM pedidosTemp WHERE nome = '$nome'";
-            $this->conn->insere($query);
-            $query = "UPDATE pizzas SET dia_mes = '$dia_mes', dia_sem = '$dia_sem', bebida = '$hrbebida' WHERE nome = '$nome'";
+            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao FROM pedidosTemp WHERE nome = '$nome'";
             $this->conn->insere($query);
             $query = "DELETE FROM pedidosTemp WHERE nome = '$nome'";
             $this->conn->insere($query);

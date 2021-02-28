@@ -1,19 +1,13 @@
 function mudaFoto1(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
     console.log(foto)
-    x = "_img2x/"+foto+"1.png";
+    x = "_img1x/"+foto+".png";
     document.getElementById("esquerdo").src = x;
-}
-function mudaFoto2(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
-    console.log(foto)
-    x = "_img2x/"+foto+"2.png";
-    document.getElementById("direito").src = x;
 }
 function aux(situacao){
     if(situacao == 1){
         intervalo_aux = setInterval(function (){
-            valor = document.getElementById('direito').height
+            valor = document.getElementById('esquerdo').height
             document.getElementById('isab1').style.height = valor+'px'
-            document.getElementById('isab2').style.height = valor+'px'
         },1000)
     }
     else{
@@ -28,9 +22,8 @@ function aux(situacao){
 function conferir(pos){
     if(pos == 1){
         sabor1 = document.getElementById('isab1').value
-        sabor2 = document.getElementById('isab2').value
 
-        if(sabor1 != " " && sabor2 != " "){
+        if(sabor1 != " "){
             sair_bandeja(1)
         }
         else{

@@ -32,3 +32,31 @@ function aux(situacao){
         }
     }
 }
+function conferir(pos){
+    if(pos == 1){
+        sabor1 = document.getElementById('isab1').value
+        sabor2 = document.getElementById('isab2').value
+        sabor3 = document.getElementById('isab3').value
+
+        if(sabor1 != " " && sabor2 != " " && sabor3 != " "){
+            sair_bandeja(1)
+        }
+        else{
+            alert("Escolha todos os sabores.")
+        }
+    }
+    else{
+        media = document.getElementById('media')
+        grande = document.getElementById('grande')
+        pequena = document.getElementById('pequena')
+
+        if(pequena.checked || media.checked || grande.checked){
+            form = document.getElementById('band')
+            document.getElementById('ver').value = "meusPedidos"
+            form.submit()
+        }
+        else{
+            alert('O tamanho da pizza deve ser definido.')
+        }
+    }
+}
