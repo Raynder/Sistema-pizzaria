@@ -83,7 +83,7 @@ else{
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="_JS/sweetAlert.js"></script>
+        <script src="../_JS/sweetAlert.js"></script>
 
         <script src="_JS/x1.js" type="text/javascript"></script>
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
@@ -114,10 +114,14 @@ else{
 	<body>
         <nav>
             <div class="row" id="">
-                <a><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
-                <a href="teste.php" class="nav-link">NOVO PEDIDO</a>
-                <a href="pedir-pizza2.php" class="nav-link">PEDIDOS</a>
-                <a class="nav-link">PRONTOS</a>
+                <a href="index.php"><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
+                <?php
+                    if($_SESSION['nome'] == "admin21"){
+                        echo("<a href='1sabores.php' class='nav-link'>NOVO PEDIDO</a>
+                        <a href='../gerenciar/index.php' class='nav-link'>PEDIDOS</a>
+                        <a href='..gerenciar/index.php?aba=prontos' class='nav-link'>PRONTOS</a>");
+                    }
+                ?>
             </div>
         </nav>
 

@@ -5,12 +5,13 @@ if(isset($_POST['cliente']) && !empty($_POST['cliente'])){
     $_SESSION['nome'] = $_POST['cliente'];
 }
 if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
+
     if(isset($_POST['tamanho'])){
         if(!empty($_POST['tamanho'])){
             $array = array();
             $array[":NOME"] = $_SESSION['nome'];
             $cont = 0;
-
+    
             if(isset($_POST['editar']) && !empty($_POST['editar'])){
                 $id_editar = $_POST['editar'];
                 $array = array(
@@ -35,7 +36,7 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
                 $pedir->add_pizza($array);
             }
         }
-
+    
     }
     else{
         if(isset($_POST['apagar'])){ 
@@ -54,7 +55,7 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
             $pedir->add_bebida($_SESSION['nome'], $bebida);
         }
     }
-
+    
     if(isset($_POST['final']) && !empty($_POST['final'])){
         $hrbebida = $_POST['final'];
         $pedir = new Pedidos();
@@ -63,7 +64,7 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
         header("location:index.php?resultado=concluido");
     }
     $total_a_pagar = 0;
-
+    
     $iniciar_aux = 1;
 }
 else{
@@ -82,9 +83,9 @@ else{
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="../_JS/sweetAlert.js"></script>
+        <script src="_JS/sweetAlert.js"></script>
 
-        <script src="_JS/x2.js" type="text/javascript"></script>
+        <script src="_JS/x1.js" type="text/javascript"></script>
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
         <script src="_JS/modificar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../_JS/funcoes.js"></script>
@@ -176,51 +177,43 @@ else{
 
                                 <section class="mesa col-lg-6 col-sm-6 col-md-6 container clearfix">
 
-                                    <div class="bandeja_toda">
-                                        <div class="centro x2">
-                                            <div class="tee">
-                                                <img id="direito" class="bandeja" src="_img2x/direito.png">
-                                                <img id="esquerdo" class="bandeja" src="_img2x/esquerdo.png">
-                                            </div>
+                                <div class="bandeja_toda">
+                                    <div class="centro x3">
+                                        <img id="esquerdo" class="bandeja" src="_img1x/tudo.png">
 
-                                            <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
-                                                <optgroup>
-                                                    <option value=" " style="display:none" selected></option>
-                                                    <option value="calabresa">Calabresa</option>
-                                                    <option value="bacon">Bacon</option>
-                                                    <option value="atum">Atum</option>
-                                                    <option value="Frango_Catupiri">Frango Catupiri</option>
-                                                </optgroup>
-                                            </select>
+                                        <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden bottom">
+                                            <optgroup>
+                                                <option value=" " style="display:none" selected></option>
+                                                <option>Calabresa</option>
+                                                <option>Bacon</option>
+                                                <option>Atum</option>
+                                                <option value="Frango_Catupiri">Frango Catupiri</option>
+                                            </optgroup>
 
-                                            <select onchange="mudaFoto2(this.value)" name="nsab2" id="isab2" class="entrada-hidden esquerdo2x">
-                                                <optgroup>
-                                                    <option value=" " style="display:none" selected></option>
-                                                    <option value="calabresa">Calabresa</option>
-                                                    <option value="bacon">Bacon</option>
-                                                    <option value="atum">Atum</option>
-                                                    <option value="Frango_Catupiri">Frango Catupiri</option>
-                                                </optgroup>
+                                        </select>
+                                        
+                                        <select name="nsab2" id="isab2" style="display:none">
+                                            <optgroup>
+                                                <option value=""></option>
+                                            </optgroup>
+                                        </select>
 
-                                            </select>
-                                            
-                                            <select name="nsab3" id="isab3" style="display:none">
-                                                <optgroup>
-                                                    <option value=""></option>
-                                                </optgroup>
+                                        <select name="nsab3" id="isab3" style="display:none">
+                                            <optgroup>
+                                                <option value=""></option>
+                                            </optgroup>
+                                        </select>
 
-                                            </select>
-
-                                            <figcaption>
-                                                <p>R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
-                                            </figcaption>
+                                        <figcaption>
+                                            <p onclick="aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
+                                        </figcaption>
 
                                         <input class="bt" type="button" value="enviar" onclick="conferir(1)">
                                         <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
 
-                                        </div>
-                                        
                                     </div>
+                                    
+                                </div>
 
 
                                     <!--BOTÃO DE PEDIR PIZZA, E VALOR DO PEDIDO -->
