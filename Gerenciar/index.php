@@ -5,6 +5,11 @@ $total_a_pagar = 0;
 
 if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
     if($_SESSION['nome'] == "admin21"){
+        if(isset($_POST['preparar']) && !empty($_POST['preparar'])){
+            $nomePedido = $_POST['preparar'];
+            $gerir = new Gerente();
+            $gerir->preparar($nomePedido);
+        }
     }
     else{
         header("location:../pedir/index.php");
@@ -24,11 +29,12 @@ else{
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
         
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="../_JS/sweetAlert.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="_JS/sweetAlert.js"></script>
 
         <script src="_JS/slids.js" type="text/javascript"></script>
         <script src="_JS/modificar.js" type="text/javascript"></script>
+
         
 	</head>
 
@@ -48,8 +54,9 @@ else{
                 <?php
                     if($_SESSION['nome'] == "admin21"){
                         echo("<a href='../pedir/1sabores.php' class='nav-link'>NOVO PEDIDO</a>
-                        <a class='nav-link'>PEDIDOS</a>
-                        <a class='nav-link'>PRONTOS</a>");
+                        <a onclick='sair_bandeja(0)' class='nav-link'>PEDIDOS</a>
+                        <a onclick='sair_bandeja(1)' class='nav-link'>PREPARANDO</a>
+                        <a onclick='sair_bandeja(2)' class='nav-link'>PRONTOS</a>");
                     }
                 ?>
             </div>
@@ -70,7 +77,153 @@ else{
                                 window.onload = entrar_bandeja()
                             </script>
 
-                            <div id="opc3" style="display:block">
+                            <div id="opc1" style="display:block">
+                                <h1>FILA DE PEDIDOS</h1>
+
+                            <?php
+                                    $gerir = new Gerente();
+                                    $pedidos = $gerir->mostrar_agurdando();
+                                   
+                                    foreach($pedidos as $pedido){
+                                        $id_pizza = $pedido['id'];
+                                        $nomeCliente = $pedido['nome'];
+                                        $situacao = $pedido['situacao'];
+
+                                        $totPizzas = $gerir->total_pizzas($nomeCliente);
+                                        $totBebidas = $gerir->total_bebidas($nomeCliente);
+                                        ?>
+                                            
+
+                                
+                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                    <div class="bloco bloco_img">
+                                        <img src="_img/cliente.png" class="pizza" alt="">
+                                    </div>
+
+                                    <div class="bloco">
+                                        <?php
+
+                                        echo("<h2 class='sem_margin'>$nomeCliente</h2>");
+                                        echo("<p class='sem_margin'>$situacao</p>");
+                                        echo("<p class='sem_margin'>Pizzas $totPizzas</p>");
+                                        echo("<p class='sem_margin'>Bebidas $totBebidas</p>");
+                                        ?>
+                                    </div>
+                                            
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>'')">
+                                        <p>remover</p>
+                                    </div>
+
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pedido('<?=$nomeCliente;?>')">
+                                        <p>editar</p>
+                                    </div>
+
+                                    <div class="bloco_a_direita">
+                                    
+                                        <script src="_JS/modificar.js" type="text/javascript"></script>
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="prepara('<?=$nomeCliente;?>')">
+                                        <p>Preparar</p>
+                                        
+                                        <script src="_JS/modificar.js" type="text/javascript"></script>
+                                    </div>
+                                </div>
+
+                                        <?php
+                                        
+                                    }
+
+                                    $bebidas = $gerir->mostrar_bebidas($_SESSION['nome']);
+                                    
+                                    foreach($bebidas as $beb){
+                                        
+                                        $id_beb = $beb['id'];
+                                        $nomebeb = $beb['bebida'];
+
+                                       
+                                    }
+                                    echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
+
+                            ?>
+                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
+                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
+                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
+
+                            </div>
+
+                            <div id="opc2" style="display:none">
+                                <h1>FILA DE PEDIDOS</h1>
+
+                            <?php
+                                    $gerir = new Gerente();
+                                    $pedidos = $gerir->mostrar_preparando();
+                                   
+                                    foreach($pedidos as $pedido){
+                                        $id_pizza = $pedido['id'];
+                                        $nomeCliente = $pedido['nome'];
+                                        $situacao = $pedido['situacao'];
+
+                                        $totPizzas = $gerir->total_pizzas($nomeCliente);
+                                        $totBebidas = $gerir->total_bebidas($nomeCliente);
+                                        ?>
+                                            
+
+                                
+                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                    <div class="bloco bloco_img">
+                                        <img src="_img/cliente.png" class="pizza" alt="">
+                                    </div>
+
+                                    <div class="bloco">
+                                        <?php
+
+                                        echo("<h2 class='sem_margin'>$nomeCliente</h2>");
+                                        echo("<p class='sem_margin'>$situacao</p>");
+                                        echo("<p class='sem_margin'>Pizzas $totPizzas</p>");
+                                        echo("<p class='sem_margin'>Bebidas $totBebidas</p>");
+                                        ?>
+                                    </div>
+                                            
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>'')">
+                                        <p>remover</p>
+                                    </div>
+
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pedido('<?=$nomeCliente;?>')">
+                                        <p>editar</p>
+                                    </div>
+
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="Termina('<?=$nomeCliente;?>')">
+                                        <p>Terminar</p>
+                                    </div>
+                                </div>
+
+                                        <?php
+                                        
+                                    }
+
+                                    $bebidas = $gerir->mostrar_bebidas_preparando($_SESSION['nome']);
+                                    
+                                    foreach($bebidas as $beb){
+                                        
+                                        $id_beb = $beb['id'];
+                                        $nomebeb = $beb['bebida'];
+
+                                       
+                                    }
+                                    echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
+
+                            ?>
+                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
+                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
+                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
+
+                            </div>
+
+                            <div id="opc3" style="display:none">
                                 <h1>FILA DE PEDIDOS</h1>
 
                             <?php
@@ -139,58 +292,81 @@ else{
                                     <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
                                     <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
 
-                                </div>
-                                
                             </div>
 
                             <div id="opc4" style="display:none">
-                                <div class="pedido bebidas col-lg-12 col-md-12 col-sm-12">
+                                <h1>FILA DE PEDIDOS</h1>
 
-                                <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_2lt')" src="../_img/_bebidas/Coca_2lt.png" alt="">
-                                        <figcaption>
-                                            <p>Coca-cola 2Lt</p>
-                                        </figcaption>
+                            <?php
+                                    $gerir = new Gerente();
+                                    $pedidos = $gerir->mostrar_agurdando();
+                                   
+                                    foreach($pedidos as $pedido){
+                                        $id_pizza = $pedido['id'];
+                                        $nomeCliente = $pedido['nome'];
+                                        $situacao = $pedido['situacao'];
+
+                                        $totPizzas = $gerir->total_pizzas($nomeCliente);
+                                        $totBebidas = $gerir->total_bebidas($nomeCliente);
+                                        ?>
+                                            
+
+                                
+                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                    <div class="bloco bloco_img">
+                                        <img src="_img/cliente.png" class="pizza" alt="">
                                     </div>
+
                                     <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_600ml')" src="../_img/_bebidas/Coca_600ml.png" alt="">
-                                        <figcaption>
-                                            <p>Coca-cola 600ml</p>
-                                        </figcaption>
+                                        <?php
+
+                                        echo("<h2 class='sem_margin'>$nomeCliente</h2>");
+                                        echo("<p class='sem_margin'>$situacao</p>");
+                                        echo("<p class='sem_margin'>Pizzas $totPizzas</p>");
+                                        echo("<p class='sem_margin'>Bebidas $totBebidas</p>");
+                                        ?>
                                     </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_lata')" src="../_img/_bebidas/Coca_lata.png" alt="">
-                                        <figcaption>
-                                            <p>Coca-cola Lata</p>
-                                        </figcaption>
+                                            
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>'')">
+                                        <p>remover</p>
                                     </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_2lt')" src="../_img/_bebidas/Guarana_2lt.png" alt="">
-                                        <figcaption>
-                                            <p>Guarana 2Lt</p>
-                                        </figcaption>
+
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pedido('<?=$nomeCliente;?>')">
+                                        <p>editar</p>
                                     </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_600ml')" src="../_img/_bebidas/Guarana_600ml.png" alt="">
-                                        <figcaption>
-                                            <p>Guarana 600ml</p>
-                                        </figcaption>
-                                    </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_lata')" src="../_img/_bebidas/Guarana_lata.png" alt="">
-                                        <figcaption>
-                                            <p>Guarana Lata</p>
-                                        </figcaption>
+
+                                    <div class="bloco_a_direita">
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="preparar('<?=$nomeCliente;?>')">
+                                        <p>Preparar</p>
                                     </div>
                                 </div>
+
+                                        <?php
+                                        
+                                    }
+
+                                    $bebidas = $gerir->mostrar_bebidas($_SESSION['nome']);
+                                    
+                                    foreach($bebidas as $beb){
+                                        
+                                        $id_beb = $beb['id'];
+                                        $nomebeb = $beb['bebida'];
+
+                                       
+                                    }
+                                    echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
+
+                            ?>
+                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
+                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
+                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
+
                             </div>
                                     
-                            <input type="text" id="ver" name="ver" style="display:none" value="">
-                            <input type="text" id="apagar" name="apagar" style="display:none" value="">
-                            <input type="text" id="apagarbeb" name="apagarbeb" style="display:none" value="">
-                            <input type="text" id="editar" name="editar" style="display:none" value="">
-                            <input type="text" id="bebida" name="bebida" style="display:none" value="">
-                            <input type="text" id="final" name="final" style="display:none" value="">
+                            <input type="text" id="preparar" name="preparar" style="display:none" value="">
+                            <input type="text" id="terminar" name="terminar" style="display:none" value="">
                             
                         </form>
 
@@ -202,7 +378,7 @@ else{
         </div>
         
         <?php
-            if($_GET['resultado']){
+            if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
                 if($_GET['resultado'] == 'concluido'){
                     echo("<script>alteracao_concluida()</script>");
                 }

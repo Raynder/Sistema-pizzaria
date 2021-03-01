@@ -2,6 +2,16 @@
 
     Class Gerente {
         private $conn;
+        private $dia_mes;
+        private $hora;
+
+        public function __construct(){
+            setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+            date_default_timezone_set('America/Sao_Paulo');
+            
+            $this->hora = date('H:i:s');
+            $this->dia_mes = strftime('%d');
+        }
 
         public function mostrar_agurdando(){
             $sql = new SQL();
@@ -13,6 +23,30 @@
             $query = "SELECT * FROM bebidas WHERE situacao = 'aguardando' GROUP BY nome";
             return $sql->select($query);
         }
+
+        public function mostrar_preparando(){
+            $sql = new SQL();
+            $query = "SELECT * FROM pizzas WHERE situacao = 'preparando' GROUP BY nome";
+            return $sql->select($query);
+        }
+        public function mostrar_bebidas_preparando(){
+            $sql = new SQL();
+            $query = "SELECT * FROM bebidas WHERE situacao = 'preparando' GROUP BY nome";
+            return $sql->select($query);
+        }
+
+        public function mostrar_pronto(){
+            $sql = new SQL();
+            $query = "SELECT * FROM pizzas WHERE situacao = 'pronto' GROUP BY nome";
+            return $sql->select($query);
+        }
+        public function mostrar_bebidas_pronto(){
+            $sql = new SQL();
+            $query = "SELECT * FROM bebidas WHERE situacao = 'pronto' GROUP BY nome";
+            return $sql->select($query);
+        }
+
+
         public function total_pizzas($nome){
             $sql = new SQL();
             $query = "SELECT * FROM pizzas WHERE nome = '$nome'";
@@ -23,6 +57,30 @@
             $query = "SELECT * FROM bebidas WHERE nome = '$nome'";
             return Count($sql->select($query));
         }
+
+        public function preparar($nome){
+            $sql = new SQL();
+            $query = "UPDATE pizzas SET situacao = 'preparando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $sql->insere($query);
+            $query = "UPDATE bebidas SET situacao = 'preparando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $sql->insere($query);
+        }
+        public function terminar($nome){
+            $sql = new SQL();
+            $query = "UPDATE pizzas SET situacao = 'pronto' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $sql->insere($query);
+            $query = "UPDATE bebidas SET situacao = 'pronto' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $sql->insere($query);
+        }
+        public function finalizar($nome){
+            $sql = new SQL();
+            $query = "UPDATE pizzas SET situacao = 'aguardando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $sql->insere($query);
+            $query = "UPDATE bebidas SET situacao = 'aguardando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $sql->insere($query);
+        }
+
+
         public function criar_db(){
             $host = 'localhost';
             $usuario = 'root';
