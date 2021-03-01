@@ -1,65 +1,75 @@
 <?php
 require_once "../config.php";
 session_start();
-$_SESSION['nome'] = "Raynder";
-if(isset($_POST['tamanho'])){
-    if(!empty($_POST['tamanho'])){
-        $array = array();
-        $array[":NOME"] = $_SESSION['nome'];
-        $cont = 0;
+if(isset($_POST['cliente']) && !empty($_POST['cliente'])){
+    $_SESSION['nome'] = $_POST['cliente'];
+}
+if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
+    if(isset($_POST['tamanho'])){
+        if(!empty($_POST['tamanho'])){
+            $array = array();
+            $array[":NOME"] = $_SESSION['nome'];
+            $cont = 0;
 
-        if(isset($_POST['editar']) && !empty($_POST['editar'])){
-            $id_editar = $_POST['editar'];
-            $array = array(
-                ":TAM" => $_POST['tamanho'],
-                ":BOR" => $_POST['nbor'],
-                ":OBS" => $_POST['obs']
-            );
-            $pedir = new Pedidos();
-            $pedir->att_pizza($array, $id_editar);
-        }
-        else{
-            $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
-        
-            foreach($_POST as $key => $value){
-                if($cont < 6){
-                    $array[$nomes[$cont]] = $value;
-                }
-                $cont++;
+            if(isset($_POST['editar']) && !empty($_POST['editar'])){
+                $id_editar = $_POST['editar'];
+                $array = array(
+                    ":TAM" => $_POST['tamanho'],
+                    ":BOR" => $_POST['nbor'],
+                    ":OBS" => $_POST['obs']
+                );
+                $pedir = new Pedidos();
+                $pedir->att_pizza($array, $id_editar);
             }
+            else{
+                $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
             
+                foreach($_POST as $key => $value){
+                    if($cont < 6){
+                        $array[$nomes[$cont]] = $value;
+                    }
+                    $cont++;
+                }
+                
+                $pedir = new Pedidos();
+                $pedir->add_pizza($array);
+            }
+        }
+
+    }
+    else{
+        if(isset($_POST['apagar'])){ 
+            $id_apagar = $_POST['apagar'];
             $pedir = new Pedidos();
-            $pedir->add_pizza($array);
+            $pedir->remover_pizza($id_apagar);
+        }
+        if(isset($_POST['apagarbeb'])){ 
+            $id_apagar = $_POST['apagarbeb'];
+            $pedir = new Pedidos();
+            $pedir->remover_bebida($id_apagar);
+        }
+        if(isset($_POST['bebida']) && !empty($_POST['bebida'])){
+            $bebida = $_POST['bebida'];
+            $pedir = new Pedidos();
+            $pedir->add_bebida($_SESSION['nome'], $bebida);
         }
     }
 
+    if(isset($_POST['final']) && !empty($_POST['final'])){
+        $hrbebida = $_POST['final'];
+        $pedir = new Pedidos();
+        $pedir->enviar_pedido($_SESSION['nome'], $hrbebida);
+        session_destroy();
+        header("location:index.php?resultado=concluido");
+    }
+    $total_a_pagar = 0;
+
+    $iniciar_aux = 1;
 }
 else{
-    if(isset($_POST['apagar'])){ 
-        $id_apagar = $_POST['apagar'];
-        $pedir = new Pedidos();
-        $pedir->remover_pizza($id_apagar);
-    }
-    if(isset($_POST['apagarbeb'])){ 
-        $id_apagar = $_POST['apagarbeb'];
-        $pedir = new Pedidos();
-        $pedir->remover_bebida($id_apagar);
-    }
-    if(isset($_POST['bebida']) && !empty($_POST['bebida'])){
-        $bebida = $_POST['bebida'];
-        $pedir = new Pedidos();
-        $pedir->add_bebida($_SESSION['nome'], $bebida);
-    }
+    header("location:index.php");
 }
 
-if(isset($_POST['final']) && !empty($_POST['final'])){
-    $hrbebida = $_POST['final'];
-    $pedir = new Pedidos();
-    $pedir->enviar_pedido($_SESSION['nome'], $hrbebida);
-}
-$total_a_pagar = 0;
-
-$iniciar_aux = 1;
 ?>
 <!DOCTYPE html>
 <html>

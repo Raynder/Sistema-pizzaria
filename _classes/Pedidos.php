@@ -16,6 +16,10 @@
             $query = "SELECT * FROM pedidosTemp WHERE nome = '$nome'";
             return $this->conn->select($query);
         }
+        public function contar_pedidos(){
+            $query = "SELECT * FROM pizzas WHERE situacao = 'aguardando'";
+            return Count($this->conn->select($query));
+        }
         public function mostrar_bebidas($nome){
             $query = "SELECT * FROM bebidasTemp WHERE nome = '$nome'";
             return $this->conn->select($query);
