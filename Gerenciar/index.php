@@ -5,10 +5,11 @@ $total_a_pagar = 0;
 
 if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
     if($_SESSION['nome'] == "admin21"){
-        if(isset($_POST['preparar']) && !empty($_POST['preparar'])){
-            $nomePedido = $_POST['preparar'];
+        if(isset($_POST['acao']) && !empty($_POST['acao'])){
+            $nomePedido = $_POST['cliente_acao'];
+            $acao = $_POST['acao'];
             $gerir = new Gerente();
-            $gerir->preparar($nomePedido);
+            $gerir->$acao($nomePedido);
         }
     }
     else{
@@ -70,6 +71,11 @@ else{
                             <input type="text" name="ver" id="ver">
                             <input type="text" name="cliente" id="cliente">
                             <input type="text" name="voltar" id="voltar">
+                        </form>
+
+                        <form id="func_interna" action="" method="post" style="display:none">
+                            <input type="text" id="acao" name="acao">
+                            <input type="text" id="cliente_acao" name="cliente_acao">
                         </form>
 
                         <form action="" method="post" id="band">
@@ -196,7 +202,7 @@ else{
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="Termina('<?=$nomeCliente;?>')">
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="termina('<?=$nomeCliente;?>')">
                                         <p>Terminar</p>
                                     </div>
                                 </div>
@@ -228,7 +234,7 @@ else{
 
                             <?php
                                     $gerir = new Gerente();
-                                    $pedidos = $gerir->mostrar_agurdando();
+                                    $pedidos = $gerir->mostrar_pronto();
                                    
                                     foreach($pedidos as $pedido){
                                         $id_pizza = $pedido['id'];
@@ -267,8 +273,8 @@ else{
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="preparar('<?=$nomeCliente;?>')">
-                                        <p>Preparar</p>
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="finaliza('<?=$nomeCliente;?>')">
+                                        <p>Finalizar</p>
                                     </div>
                                 </div>
 
@@ -365,8 +371,7 @@ else{
 
                             </div>
                                     
-                            <input type="text" id="preparar" name="preparar" style="display:none" value="">
-                            <input type="text" id="terminar" name="terminar" style="display:none" value="">
+                            
                             
                         </form>
 
@@ -381,6 +386,14 @@ else{
             if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
                 if($_GET['resultado'] == 'concluido'){
                     echo("<script>alteracao_concluida()</script>");
+                }
+            }
+            if(isset($_POST['acao']) && !empty($_POST['acao'])){
+                if($_POST['acao'] == 'preparar'){
+                    echo("<script>muda(1)</script>");
+                }
+                if($_POST['acao'] == 'terminar'){
+                    echo("<script>muda(2)</script>");
                 }
             }
         ?>

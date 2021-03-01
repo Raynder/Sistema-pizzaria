@@ -13,7 +13,7 @@ function remover_pedido(cliente){
 }
 
 function acao_pedido(cliente, acao){
-    form = document.getElementById('band')
+    form = document.getElementById('func_interna')
     form.reset()
     document.getElementById('acao').value = acao
     document.getElementById('cliente_acao').value = cliente
@@ -25,4 +25,7 @@ function prepara(cliente){
 }
 function termina(cliente){
     pedido_pronto(cliente)
+}
+function finaliza(cliente){
+    console.log('vamos pagar?')
 }
