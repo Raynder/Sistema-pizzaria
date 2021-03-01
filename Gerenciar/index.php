@@ -24,8 +24,11 @@ else{
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
         
-        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="../_JS/sweetAlert.js"></script>
+
         <script src="_JS/slids.js" type="text/javascript"></script>
+        <script src="_JS/modificar.js" type="text/javascript"></script>
         
 	</head>
 
@@ -55,6 +58,12 @@ else{
 		<div class="container-fluid text-center">
 			<div class="row">
 					<div class="col-lg-12 corpo">
+                        
+                        <form id="func" action="../pedir/1sabores.php" method="post" style="display:none">
+                            <input type="text" name="ver" id="ver">
+                            <input type="text" name="cliente" id="cliente">
+                            <input type="text" name="voltar" id="voltar">
+                        </form>
 
                         <form action="" method="post" id="band">
                             <script>
@@ -67,12 +76,14 @@ else{
                             <?php
                                     $gerir = new Gerente();
                                     $pedidos = $gerir->mostrar_agurdando();
+                                   
                                     foreach($pedidos as $pedido){
                                         $id_pizza = $pedido['id'];
                                         $nomeCliente = $pedido['nome'];
                                         $situacao = $pedido['situacao'];
 
                                         $totPizzas = $gerir->total_pizzas($nomeCliente);
+                                        $totBebidas = $gerir->total_bebidas($nomeCliente);
                                         ?>
                                             
 
@@ -88,21 +99,22 @@ else{
                                         echo("<h2 class='sem_margin'>$nomeCliente</h2>");
                                         echo("<p class='sem_margin'>$situacao</p>");
                                         echo("<p class='sem_margin'>Pizzas $totPizzas</p>");
+                                        echo("<p class='sem_margin'>Bebidas $totBebidas</p>");
                                         ?>
                                     </div>
                                             
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pizza(<?=$nomeCliente;?>)">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>'')">
                                         <p>remover</p>
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pizza(<?=$nomeCliente;?>)">
+                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pedido('<?=$nomeCliente;?>')">
                                         <p>editar</p>
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="preparar(<?=$nomeCliente;?>)">
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="preparar('<?=$nomeCliente;?>')">
                                         <p>Preparar</p>
                                     </div>
                                 </div>
@@ -111,34 +123,14 @@ else{
                                         
                                     }
 
-                                    $bebidas = $pedir->mostrar_bebidas($_SESSION['nome']);
+                                    $bebidas = $gerir->mostrar_bebidas($_SESSION['nome']);
                                     
                                     foreach($bebidas as $beb){
-                                        ?>
-                                            
-
-                                
-                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
-                                    <div class="bloco">
-                                        <img src="../_img/_bebidas/<?=$beb['bebida'];?>.png" class="pizza" alt="">
-                                    </div>
-
-                                    <div class="bloco">
-                                        <?php
+                                        
                                         $id_beb = $beb['id'];
                                         $nomebeb = $beb['bebida'];
 
-                                        echo("<h1 class='sem_margin'>$nomebeb</h1>");
-                                        ?>
-                                    </div>
-                                            
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_bebida(<?=$id_beb;?>)">
-                                        <p>remover</p>
-                                    </div>
-
-                                </div>
-                                <?php
+                                       
                                     }
                                     echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
 
@@ -209,7 +201,13 @@ else{
 
         </div>
         
-        
+        <?php
+            if($_GET['resultado']){
+                if($_GET['resultado'] == 'concluido'){
+                    echo("<script>alteracao_concluida()</script>");
+                }
+            }
+        ?>
         
 	</body>
 </html>

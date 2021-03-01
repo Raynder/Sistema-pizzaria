@@ -40,3 +40,10 @@ function marksabor() {
         background: '#dcab13',
     })
 }
+function alteracao_concluida() {
+    Swal.fire({
+        icon: 'sucess',
+        title: 'Alteração concluida com sucesso!',
+        background: '#dcab13',
+    })
+}

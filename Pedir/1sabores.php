@@ -2,14 +2,27 @@
 require_once "../config.php";
 session_start();
 if(isset($_POST['cliente']) && !empty($_POST['cliente'])){
-    $_SESSION['nome'] = $_POST['cliente'];
+    if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
+        $nome = $_POST['cliente'];
+        $_SESSION['cliente'] = $_POST['cliente'];
+    }
+    else{
+        $_SESSION['nome'] = $_POST['cliente'];
+        $_SESSION['cliente'] = $_POST['cliente'];
+        $nome = $_POST['cliente'];
+    }
+    
+}
+else{
+    if(isset($_SESSION['cliente']) && !empty($_SESSION['cliente']))
+    $nome = $_SESSION['cliente'];
 }
 if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
 
     if(isset($_POST['tamanho'])){
         if(!empty($_POST['tamanho'])){
             $array = array();
-            $array[":NOME"] = $_SESSION['nome'];
+            $array[":NOME"] = $nome;
             $cont = 0;
     
             if(isset($_POST['editar']) && !empty($_POST['editar'])){
@@ -52,16 +65,25 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
         if(isset($_POST['bebida']) && !empty($_POST['bebida'])){
             $bebida = $_POST['bebida'];
             $pedir = new Pedidos();
-            $pedir->add_bebida($_SESSION['nome'], $bebida);
+            $pedir->add_bebida($nome, $bebida);
+        }
+        if(isset($_POST['voltar']) && !empty($_POST['voltar'])){
+            $nomeCliente = $_POST['cliente'];
+            $pedir = new Pedidos();
+            $pedir->voltar_pizza($nomeCliente);
         }
     }
     
     if(isset($_POST['final']) && !empty($_POST['final'])){
         $hrbebida = $_POST['final'];
         $pedir = new Pedidos();
-        $pedir->enviar_pedido($_SESSION['nome'], $hrbebida);
-        session_destroy();
-        header("location:index.php?resultado=concluido");
+        $pedir->enviar_pedido($nome, $hrbebida);
+        if($_SESSION[nome] != 'admin21'){
+            session_destroy();
+            header("location:index.php?resultado=concluido");
+        }
+        header("location:../gerenciar/index.php?resultado=concluido");
+        
     }
     $total_a_pagar = 0;
     
@@ -261,11 +283,11 @@ else{
                             </div>
 
                             <div id="opc3" style="display:none">
-                                <h1>Pedidos de <?=$_SESSION['nome'];?></h1>
+                                <h1>Pedidos de <?=$nome;?></h1>
 
                             <?php
                                     $pedir = new Pedidos();
-                                    $pedidos = $pedir->mostrar_pedidos($_SESSION['nome']);
+                                    $pedidos = $pedir->mostrar_pedidos($nome);
                                     $a = count($pedidos);
                                     if($a == 0){
                                         echo("<script>document.getElementById('ver_pedidos').style.display = 'none'</script>");
@@ -336,7 +358,7 @@ else{
                                         
                                     }
 
-                                    $bebidas = $pedir->mostrar_bebidas($_SESSION['nome']);
+                                    $bebidas = $pedir->mostrar_bebidas($nome);
                                     
                                     foreach($bebidas as $beb){
                                         ?>

@@ -5,8 +5,17 @@
         private $conn;
 
         public function __construct(){
+            setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+            date_default_timezone_set('America/Sao_Paulo');
+            $meses = ['janeiro', 'fevereiro','marco', 'abriu','maio', 'junho','julho', 'agosto','setembro', 'outubro','novembro', 'dezembro'];
+            $mes = strftime('%m');
+            $ano = strftime('%Y');
+
+            $valor = $mes - 1;
+             
+            $db = $meses[$valor].$ano;
+             
             $host = "localhost";
-            $db = "dados";
             $user = "root";
             $pass = "";
 
