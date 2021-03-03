@@ -4,7 +4,18 @@ var opc2 = document.getElementById('opc2')
 var opc3 = document.getElementById('opc3')
 var opc4 = document.getElementById('opc4')
 
-function iniciar(){
+function iniciar(pos){
+    
+    document.getElementById('opc1').style.display = "none"
+    document.getElementById('opc2').style.display = "none"
+    document.getElementById('opc3').style.display = "none"
+    document.getElementById('opc4').style.display = "none"
+
+    pos += 1
+    posslide = 'opc'+pos
+    var slide = document.getElementById(posslide)
+    slide.style.display = "block"
+
     entrar_bandeja()
 }
 function entrar_bandeja(){
@@ -46,6 +57,7 @@ function sair_bandeja(pos){
                 opc1.style.display = "none"
                 opc2.style.display = "none"
                 opc3.style.display = "none"
+                opc4.style.display = "none"
 
                 posslide = 'opc'+pos
                 var slide = document.getElementById(posslide)

@@ -26,6 +26,17 @@ function prepara(cliente){
 function termina(cliente){
     pedido_pronto(cliente)
 }
-function finaliza(cliente){
-    console.log('vamos pagar?')
+function finaliza(cliente, total, situ){
+    document.getElementById("valor_total").value = total
+    document.getElementById("total_pagar").value = total
+    document.getElementById("cliente_pagador").value = cliente
+    if(situ == 1){
+        sair_bandeja(3)
+    }
+}
+function alterar_valor(element){ 
+    porcentagem = element.value
+    total = document.getElementById("valor_total").value
+
+    document.getElementById("total_pagar").value = total - (total / 100 * porcentagem)
 }

@@ -95,3 +95,23 @@ img.pizza {
 #opc4{
     width: 100%;
 }
+.pg {
+    float: left;
+    width: 30%;
+}
+.pg input{
+    text-align: center;
+}
+.total_pagar {
+    background-color: #0000007a;
+    color: white;
+    font-weight: bolder;
+}
+input#desconto {
+    border: black solid;
+}
+.receber {
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}

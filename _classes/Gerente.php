@@ -13,6 +13,7 @@
             $this->dia_mes = strftime('%d');
         }
 
+        //FUNÇÕES DOS SLIDS
         public function mostrar_agurdando(){
             $sql = new SQL();
             $query = "SELECT * FROM pizzas WHERE situacao = 'aguardando' GROUP BY nome";
@@ -45,8 +46,9 @@
             $query = "SELECT * FROM bebidas WHERE situacao = 'pronto' GROUP BY nome";
             return $sql->select($query);
         }
+        //FIM DAS FUNÇÕES DO SLIDE
 
-
+        //FUNÇÕES QUE CAUCULAM TOTAIS
         public function total_pizzas($nome){
             $sql = new SQL();
             $query = "SELECT * FROM pizzas WHERE nome = '$nome'";
@@ -57,6 +59,56 @@
             $query = "SELECT * FROM bebidas WHERE nome = '$nome'";
             return Count($sql->select($query));
         }
+
+        public function calc_total($nome){
+            $total_a_pagar = 0;
+            $sql = new SQL();
+            $query = "SELECT tamanho FROM pizzas WHERE nome = '$nome'";
+            $pizzas = $sql->select($query);
+            $query = "SELECT bebida FROM bebidas WHERE nome = '$nome'";
+            $bebidas = $sql->select($query);
+
+            foreach ($pizzas as $pizza){
+                //Calcular total a pagar
+                if($pizza['tamanho'] == 'g'){
+                    $total_a_pagar += 30;
+                }
+                else{
+                    if($pizza['tamanho'] == "m"){
+                        $total_a_pagar += 28;
+                    }
+                    else{
+                        $total_a_pagar += 26;
+                    }
+                }
+            }
+            
+            foreach ($bebidas as $bebida){
+                //Calcular total a pagar
+                $res = strpos($bebida['bebida'], '2');
+                if($res === true){
+                    $total_a_pagar += 8;
+                }
+                else{
+                    $res = strpos($bebida['bebida'], '600');
+                    if($res === false){
+                        $total_a_pagar += 5;
+                    }
+                    else{
+                        $total_a_pagar += 3;
+                    }
+                }
+            }
+            
+            $query = "UPDATE pizzas SET total = '$total_a_pagar' WHERE nome = '$nome'";
+            $sql->insere($query);
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $valores = $sql->select($query);
+            $valores = $valores[0];
+
+            return $valores['total'] - $valores['dinheiro'] - $valores['cartao'];
+        }
+        //FIM DAS FUNÇÕES QUE CAUCULAM TOTAIS
 
         public function preparar($nome){
             $sql = new SQL();
@@ -79,6 +131,41 @@
             $query = "UPDATE bebidas SET situacao = 'aguardando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
             $sql->insere($query);
         }
+
+        //PAGAMENTO
+        public function pg_dinheiro($valor, $nome){
+            $sql = new SQL();
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $valores = $sql->select($query);
+            $valores = $valores[0];
+            $valor += $valores['dinheiro'];
+            $query = "UPDATE pizzas SET dinheiro = '$valor' WHERE nome = '$nome'";
+            $sql->insere($query);
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $valores = $sql->select($query);
+            $valores = $valores[0];
+            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'];
+            if($resul == 0){
+                $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome'";
+                $sql->insere($query);
+            }
+            return $resul;
+        }
+        public function pg_cartao($valor, $nome){
+            $sql = new SQL();
+            $query = "UPDATE pizzas SET cartao = '$valor' WHERE nome = '$nome'";
+            $sql->insere($query);
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $valores = $sql->select($query);
+            $valores = $valores[0];
+            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'];
+            if($resul == 0){
+                $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome'";
+                $sql->insere($query);
+            }
+            return $resul;
+        }
+        //FIM DAS FUNÇÕES DE PAGAMENTOS
 
 
         public function criar_db(){

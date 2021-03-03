@@ -79,10 +79,6 @@ else{
                         </form>
 
                         <form action="" method="post" id="band">
-                            <script>
-                                window.onload = entrar_bandeja()
-                            </script>
-
                             <div id="opc1" style="display:block">
                                 <h1>FILA DE PEDIDOS</h1>
 
@@ -152,9 +148,6 @@ else{
                                     echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
 
                             ?>
-                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
-                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
-                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
 
                             </div>
 
@@ -223,9 +216,6 @@ else{
                                     echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
 
                             ?>
-                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
-                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
-                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
 
                             </div>
 
@@ -273,7 +263,7 @@ else{
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="finaliza('<?=$nomeCliente;?>')">
+                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="finaliza('<?=$nomeCliente?>',<?=$gerir->calc_total($nomeCliente);?>, 1)">
                                         <p>Finalizar</p>
                                     </div>
                                 </div>
@@ -291,85 +281,64 @@ else{
 
                                        
                                     }
-                                    echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
 
                             ?>
-                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
-                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
-                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
 
                             </div>
 
                             <div id="opc4" style="display:none">
-                                <h1>FILA DE PEDIDOS</h1>
-
-                            <?php
-                                    $gerir = new Gerente();
-                                    $pedidos = $gerir->mostrar_agurdando();
-                                   
-                                    foreach($pedidos as $pedido){
-                                        $id_pizza = $pedido['id'];
-                                        $nomeCliente = $pedido['nome'];
-                                        $situacao = $pedido['situacao'];
-
-                                        $totPizzas = $gerir->total_pizzas($nomeCliente);
-                                        $totBebidas = $gerir->total_bebidas($nomeCliente);
-                                        ?>
-                                            
-
-                                
-                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
-                                    <div class="bloco bloco_img">
-                                        <img src="_img/cliente.png" class="pizza" alt="">
+                                <form action="" method="get" id="pagamento">
+                                    <h1>PAGAMENTO</h1>
+                                    <div class="pg">
+                                        <p>Valor total: <input class="valor_total" type="text" name="valor_total" id="valor_total" disabled>&nbsp;R$</p>
                                     </div>
-
-                                    <div class="bloco">
-                                        <?php
-
-                                        echo("<h2 class='sem_margin'>$nomeCliente</h2>");
-                                        echo("<p class='sem_margin'>$situacao</p>");
-                                        echo("<p class='sem_margin'>Pizzas $totPizzas</p>");
-                                        echo("<p class='sem_margin'>Bebidas $totBebidas</p>");
-                                        ?>
+                                    <div class="pg">
+                                        <p>Desconto %<input type="number" name="desconto" id="desconto" onchange="alterar_valor(this)">&nbsp;R$</p>
                                     </div>
-                                            
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>'')">
-                                        <p>remover</p>
+                                    <div class="pg">
+                                        <p>Total a pagar <input type="number" class="total_pagar" name="total_pagar" id="total_pagar" disabled>&nbsp;R$</p>
                                     </div>
+                                    <h1>FORMA DE PAGAMENTO</h1>
 
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pedido('<?=$nomeCliente;?>')">
-                                        <p>editar</p>
+                                    <input class="bt" type="button" value="Dinheiro" onclick="">
+                                    <input class="bt" type="button" value="Cartão" onclick="">
+
+                                    <div>
+                                        <h1>Dinheiro</h1>
+                                        <div class="pg receber">
+                                            <p class="">Valor <input type="number" name="valor_recebido_din" id="valor_recebido">&nbsp;R$</p>
+                                            <p class="">Troco <input type="number" id="troco">&nbsp;R$</p>
+                                            <input type="text" id="cliente_pagador" name="cliente_pagador" style="display:none">
+                                        </div>
                                     </div>
-
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="_img/relogio.png" alt="" onclick="preparar('<?=$nomeCliente;?>')">
-                                        <p>Preparar</p>
-                                    </div>
-                                </div>
-
-                                        <?php
-                                        
-                                    }
-
-                                    $bebidas = $gerir->mostrar_bebidas($_SESSION['nome']);
                                     
-                                    foreach($bebidas as $beb){
+                                    <input class="" type="submit" value="" onclick="">
+                                    <?php
                                         
-                                        $id_beb = $beb['id'];
-                                        $nomebeb = $beb['bebida'];
-
-                                       
-                                    }
-                                    echo("<script>document.getElementById('total_a_pagar').innerHTML = $total_a_pagar</script>");
-
-                            ?>
-                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
-                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
-                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido(<?=$total_a_pagar?>)">
-
+                                    ?>
+                                
+                                </form>
                             </div>
+                            <?php
+                                $test = 0;
+                                if(isset($_POST['valor_recebido_din']) && !empty($_POST['valor_recebido_din'])){
+                                    $cliente_pagador = $_POST['cliente_pagador'];
+                                    $resul = $gerir->pg_dinheiro($_POST['valor_recebido_din'],$cliente_pagador);
+                                    if($resul == 0){
+                                        echo("<script>alert('Pagamento concluido')</script>");
+                                        echo("<script>window.location.href = 'http://localhost/Sistema-pizzaria/gerenciar/' </script>");
+                                    }
+                                    else{
+                                        $total_calc = $gerir->calc_total($cliente_pagador);
+                                        echo("<script>finaliza('$cliente_pagador',$total_calc, 0)</script>");
+                                        echo("<script>alert('Esperando pagamento restante')</script>");
+                                    }
+                                    $test = 3;
+                                }
+                            ?>
+                            <script>
+                                window.onload = iniciar(<?=$test?>)
+                            </script>
                                     
                             
                             
