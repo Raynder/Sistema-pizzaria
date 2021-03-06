@@ -7,9 +7,17 @@ if(isset($_POST['cliente']) && !empty($_POST['cliente'])){
         $_SESSION['cliente'] = $_POST['cliente'];
     }
     else{
-        $_SESSION['nome'] = $_POST['cliente'];
-        $_SESSION['cliente'] = $_POST['cliente'];
-        $nome = $_POST['cliente'];
+        $pedir = new Pedidos();
+        $nomes = $pedir->nomes($_POST['cliente']);
+        if(Count($nomes) > 0){
+            
+        }
+        else{
+            $_SESSION['nome'] = $_POST['cliente'];
+            $_SESSION['cliente'] = $_POST['cliente'];
+            $nome = $_POST['cliente'];
+        }
+        
     }
     
 }
@@ -80,17 +88,22 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
         $pedir->enviar_pedido($nome, $hrbebida);
         if($_SESSION[nome] != 'admin21'){
             session_destroy();
-            header("location:index.php?resultado=concluido");
+            //header("location:index.php?resultado=concluido");
         }
-        header("location:../gerenciar/index.php?resultado=concluido");
-        
+        $_SESSION['resultado'] = 'concluido';
+        header("location:../gerenciar/index.php"); 
     }
     $total_a_pagar = 0;
     
     $iniciar_aux = 1;
 }
 else{
-    header("location:index.php");
+    if(Count($nomes) > 0){
+        header("location:index.php?nome=jaexiste");
+    }
+    else{
+        header("location:index.php");
+    }
 }
 
 ?>
@@ -139,9 +152,8 @@ else{
                 <a href="index.php"><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
                 <?php
                     if($_SESSION['nome'] == "admin21"){
-                        echo("<a href='1sabores.php' class='nav-link'>NOVO PEDIDO</a>
-                        <a href='../gerenciar/index.php' class='nav-link'>PEDIDOS</a>
-                        <a href='..gerenciar/index.php?aba=prontos' class='nav-link'>PRONTOS</a>");
+                        echo("<a href='1sabores.php' class='nav-link aa'>NOVO PEDIDO</a>
+                        <a href='../gerenciar/index.php' class='nav-link aa'>PEDIDOS</a>");
                     }
                 ?>
             </div>
@@ -329,17 +341,7 @@ else{
                                         echo("<p class='vermelhor sem_margin'>$observacao</p>");
 
                                         //Calcular total a pagar
-                                        if($tamanho == 'g'){
-                                            $total_a_pagar += 30;
-                                        }
-                                        else{
-                                            if($tamanho == "m"){
-                                                $total_a_pagar += 28;
-                                            }
-                                            else{
-                                                $total_a_pagar += 26;
-                                            }
-                                        }
+                                        $total_a_pagar = $pedir->calc_total($nome);
                                         ?>
                                     </div>
                                             

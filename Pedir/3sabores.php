@@ -135,8 +135,7 @@ else{
                 <?php
                     if($_SESSION['nome'] == "admin21"){
                         echo("<a href='1sabores.php' class='nav-link'>NOVO PEDIDO</a>
-                        <a href='../gerenciar/index.php' class='nav-link'>PEDIDOS</a>
-                        <a href='..gerenciar/index.php?aba=prontos' class='nav-link'>PRONTOS</a>");
+                        <a href='../gerenciar/index.php' class='nav-link'>PEDIDOS</a>");
                     }
                 ?>
             </div>
@@ -336,17 +335,7 @@ else{
                                         echo("<p class='vermelhor sem_margin'>$observacao</p>");
 
                                         //Calcular total a pagar
-                                        if($tamanho == 'g'){
-                                            $total_a_pagar += 30;
-                                        }
-                                        else{
-                                            if($tamanho == "m"){
-                                                $total_a_pagar += 28;
-                                            }
-                                            else{
-                                                $total_a_pagar += 26;
-                                            }
-                                        }
+                                        $total_a_pagar = $pedir->calc_total($nome);
                                         ?>
                                     </div>
                                             

@@ -19,6 +19,11 @@
             $this->conn = new Sql();
         }
 
+        public function nomes($cliente_cadastrado){
+            $query = "SELECT * FROM pizzas WHERE nome = '$cliente_cadastrado'";
+            return $this->conn->select($query);
+        }
+
         public function add_pizza($array){
             $query = "INSERT INTO pedidosTemp(nome, sabor1, sabor2, sabor3, tamanho, borda, observacao) VALUES (:NOME, :S1, :S2, :S3, :TAM, :BOR, :OBS)";
             $this->conn->insere($query, $array);
@@ -77,5 +82,48 @@
             $this->conn->insere($query);
             $query = "DELETE FROM bebidas WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
             $this->conn->insere($query);
+        }
+
+        public function calc_total($nome){
+            $total_a_pagar = 0;
+            $query = "SELECT tamanho FROM pedidosTemp WHERE nome = '$nome'";
+            $pizzas = $this->conn->select($query);
+            $query = "SELECT bebida FROM bebidasTemp WHERE nome = '$nome'";
+            $bebidas = $this->conn->select($query);
+
+            foreach ($pizzas as $pizza){
+                //Calcular total a pagar
+                if($pizza['tamanho'] == 'g'){
+                    $total_a_pagar += 30;
+                }
+                else{
+                    if($pizza['tamanho'] == "m"){
+                        $total_a_pagar += 28;
+                    }
+                    else{
+                        $total_a_pagar += 26;
+                    }
+                }
+            }
+            
+            foreach ($bebidas as $bebida){
+                //Calcular total a pagar
+                $res = strpos($bebida['bebida'], '2');
+                if($res === true){
+                    $total_a_pagar += 8;
+                }
+                else{
+                    $res = strpos($bebida['bebida'], '600');
+                    if($res === false){
+                        $total_a_pagar += 3;
+                    }
+                    else{
+                        $total_a_pagar += 5;
+                    }
+                }
+            }
+
+            return $total_a_pagar;
+            
         }
     }

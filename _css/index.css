@@ -12,3 +12,6 @@ a{
     color: white;
     text-align: center;
 }
+a.nav-link.aa {
+    width: 30%;
+}

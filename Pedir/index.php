@@ -22,7 +22,7 @@ if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="_JS/sweetAlert.js"></script>
+        <script src="../_JS/sweetAlert.js"></script>
 	</head>
 
     <style>
@@ -160,6 +160,10 @@ if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
     </script>
 </html>
 <?php
-
+    if(isset($_GET['nome']) && !empty($_GET['nome'])){
+        if($_GET['nome'] == 'jaexiste'){
+            echo("<script>nomejaexiste()</script>");
+        }
+    }
 ?>
 	

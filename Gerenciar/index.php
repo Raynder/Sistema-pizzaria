@@ -19,6 +19,22 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
 else{
     header("location:../pedir/index.php");
 }
+if(isset($_POST['apagar'])){ 
+    $nome_apagar = $_POST['apagar'];
+    $gerir = new Gerente();
+    $gerir->remover_pedido($nome_apagar);
+}
+if(isset($_POST['desconto_removido'])){ 
+    $remov = $_POST['desconto_removido'];
+    $gerir = new Gerente();
+    $gerir->remover_desconto($remov);
+}
+if(isset($_POST['desconto']) && !empty($_POST['desconto'])){
+    $gerir = new Gerente();
+    $cliente_pagador = $_POST['cliente_pagador'];
+    $total_desconto = $_POST['valor_total'] - $_POST['total_pagar'];
+    $gerir->alterar_desconto($total_desconto,$cliente_pagador);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,6 +92,8 @@ else{
                         <form id="func_interna" action="" method="post" style="display:none">
                             <input type="text" id="acao" name="acao">
                             <input type="text" id="cliente_acao" name="cliente_acao">
+                            <input type="text" id="desconto_removido" name="desconto_removido">
+                            <input type="text" name="apagar" id="apagar">
                         </form>
 
                         <form action="" method="post" id="band">
@@ -113,7 +131,7 @@ else{
                                     </div>
                                             
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>'')">
+                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pedido('<?=$nomeCliente;?>')">
                                         <p>remover</p>
                                     </div>
 
@@ -230,6 +248,7 @@ else{
                                         $id_pizza = $pedido['id'];
                                         $nomeCliente = $pedido['nome'];
                                         $situacao = $pedido['situacao'];
+                                        $des = $pedido['desconto'];
 
                                         $totPizzas = $gerir->total_pizzas($nomeCliente);
                                         $totBebidas = $gerir->total_bebidas($nomeCliente);
@@ -287,32 +306,39 @@ else{
                             </div>
 
                             <div id="opc4" style="display:none">
-                                <form action="" method="get" id="pagamento">
+                                <form action="" method="post" id="pagamento">
                                     <h1>PAGAMENTO</h1>
                                     <div class="pg">
-                                        <p>Valor total: <input class="valor_total" type="text" name="valor_total" id="valor_total" disabled>&nbsp;R$</p>
+                                        <p>Valor total: <input value="0" class="valor_total" type="text" name="valor_total" id="valor_total" disabled>&nbsp;R$</p>
                                     </div>
                                     <div class="pg">
-                                        <p>Desconto %<input type="number" name="desconto" id="desconto" onchange="alterar_valor(this)">&nbsp;R$</p>
+                                        <p>Desconto %<input value="" type="number" name="desconto" id="desconto" onchange="alterar_valor(this)">&nbsp;R$</p>
                                     </div>
+                                    <input class="bt" type="button" value="Retirar Desconto" onclick="remover_desconto('<?=$nomeCliente?>')">
                                     <div class="pg">
-                                        <p>Total a pagar <input type="number" class="total_pagar" name="total_pagar" id="total_pagar" disabled>&nbsp;R$</p>
+                                        <p>Total a pagar <input value="0" type="number" class="total_pagar" name="total_pagar" id="total_pagar" disabled>&nbsp;R$</p>
                                     </div>
                                     <h1>FORMA DE PAGAMENTO</h1>
 
-                                    <input class="bt" type="button" value="Dinheiro" onclick="">
-                                    <input class="bt" type="button" value="Cartão" onclick="">
+                                    <input class="bt" type="button" value="Dinheiro" onclick="pagar_com('valor_recebido_din')">
+                                    <input class="bt" type="button" value="Cartão" onclick="pagar_com('valor_recebido_cart')">
 
-                                    <div>
+                                    <div style="display:none" id="valor_recebido_din">
                                         <h1>Dinheiro</h1>
                                         <div class="pg receber">
-                                            <p class="">Valor <input type="number" name="valor_recebido_din" id="valor_recebido">&nbsp;R$</p>
+                                            <p class="">Valor <input type="number" name="valor_recebido_din">&nbsp;R$</p>
                                             <p class="">Troco <input type="number" id="troco">&nbsp;R$</p>
+                                        </div>
+                                    </div>
+                                    <div style="display:none" id="valor_recebido_cart">
+                                        <h1>Cartão</h1>
+                                        <div class="pg receber">
+                                            <p class="">Valor <input type="number" name="valor_recebido_cart">&nbsp;R$</p>
                                             <input type="text" id="cliente_pagador" name="cliente_pagador" style="display:none">
                                         </div>
                                     </div>
                                     
-                                    <input class="" type="submit" value="" onclick="">
+                                    <input class="" type="button" value="Pagar" onclick="efetuar_pagamento()">
                                     <?php
                                         
                                     ?>
@@ -321,6 +347,9 @@ else{
                             </div>
                             <?php
                                 $test = 0;
+                                if($des > 0){
+                                    echo("<script>document.getElementById('desconto').disabled = true</script>");
+                                }
                                 if(isset($_POST['valor_recebido_din']) && !empty($_POST['valor_recebido_din'])){
                                     $cliente_pagador = $_POST['cliente_pagador'];
                                     $resul = $gerir->pg_dinheiro($_POST['valor_recebido_din'],$cliente_pagador);
@@ -334,6 +363,30 @@ else{
                                         echo("<script>alert('Esperando pagamento restante')</script>");
                                     }
                                     $test = 3;
+                                }
+                                if(isset($_POST['valor_recebido_cart']) && !empty($_POST['valor_recebido_cart'])){
+                                    $cliente_pagador = $_POST['cliente_pagador'];
+                                    $resul = $gerir->pg_cartao($_POST['valor_recebido_cart'],$cliente_pagador);
+                                    if($resul == 0){
+                                        echo("<script>alert('Pagamento concluido')</script>");
+                                        echo("<script>window.location.href = 'http://localhost/Sistema-pizzaria/gerenciar/' </script>");
+                                    }
+                                    else{
+                                        $total_calc = $gerir->calc_total($cliente_pagador);
+                                        echo("<script>finaliza('$cliente_pagador',$total_calc, 0)</script>");
+                                        echo("<script>alert('Esperando pagamento restante')</script>");
+                                    }
+                                    $test = 3;
+                                }
+                                if(isset($_POST['desconto']) && !empty($_POST['desconto'])){
+                                    $cliente_pagador = $_POST['cliente_pagador'];
+                                    $total_calc = $gerir->calc_total($cliente_pagador);
+                                    echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
+                                }
+                                if(isset($_POST['desconto_removido']) && !empty($_POST['desconto_removido'])){
+                                    $cliente_pagador = $_POST['desconto_removido'];
+                                    $total_calc = $gerir->calc_total($cliente_pagador);
+                                    echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
                                 }
                             ?>
                             <script>
@@ -352,9 +405,10 @@ else{
         </div>
         
         <?php
-            if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
-                if($_GET['resultado'] == 'concluido'){
+            if(isset($_SESSION['resultado']) && !empty($_SESSION['resultado'])){
+                if($_SESSION['resultado'] == 'concluido'){
                     echo("<script>alteracao_concluida()</script>");
+                    unset($_SESSION['resultado']);
                 }
             }
             if(isset($_POST['acao']) && !empty($_POST['acao'])){

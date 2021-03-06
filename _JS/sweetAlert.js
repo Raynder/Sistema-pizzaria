@@ -40,3 +40,10 @@ function marksabor() {
         background: '#dcab13',
     })
 }
+function nomejaexiste(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Nome ja encontrado dentro do local<br>Acrescente seu sobrenome ou nome completo',
+        background: 'black',
+    })
+}

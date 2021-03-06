@@ -51,21 +51,21 @@
         //FUNÇÕES QUE CAUCULAM TOTAIS
         public function total_pizzas($nome){
             $sql = new SQL();
-            $query = "SELECT * FROM pizzas WHERE nome = '$nome'";
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' AND situacao != 'pago'";
             return Count($sql->select($query));
         }
         public function total_bebidas($nome){
             $sql = new SQL();
-            $query = "SELECT * FROM bebidas WHERE nome = '$nome'";
+            $query = "SELECT * FROM bebidas WHERE nome = '$nome' AND situacao != 'pago'";
             return Count($sql->select($query));
         }
 
         public function calc_total($nome){
             $total_a_pagar = 0;
             $sql = new SQL();
-            $query = "SELECT tamanho FROM pizzas WHERE nome = '$nome'";
+            $query = "SELECT tamanho FROM pizzas WHERE nome = '$nome' AND situacao != 'pago'";
             $pizzas = $sql->select($query);
-            $query = "SELECT bebida FROM bebidas WHERE nome = '$nome'";
+            $query = "SELECT bebida FROM bebidas WHERE nome = '$nome' AND situacao != 'pago'";
             $bebidas = $sql->select($query);
 
             foreach ($pizzas as $pizza){
@@ -92,81 +92,106 @@
                 else{
                     $res = strpos($bebida['bebida'], '600');
                     if($res === false){
-                        $total_a_pagar += 5;
+                        $total_a_pagar += 3;
                     }
                     else{
-                        $total_a_pagar += 3;
+                        $total_a_pagar += 5;
                     }
                 }
             }
             
-            $query = "UPDATE pizzas SET total = '$total_a_pagar' WHERE nome = '$nome'";
+            $query = "UPDATE pizzas SET total = '$total_a_pagar' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
-            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome AND situacao != 'pago'";
             $valores = $sql->select($query);
             $valores = $valores[0];
 
-            return $valores['total'] - $valores['dinheiro'] - $valores['cartao'];
+            return $valores['total'] - $valores['dinheiro'] - $valores['cartao'] - $valores['desconto'];
         }
         //FIM DAS FUNÇÕES QUE CAUCULAM TOTAIS
 
         public function preparar($nome){
             $sql = new SQL();
-            $query = "UPDATE pizzas SET situacao = 'preparando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "UPDATE pizzas SET situacao = 'preparando' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
-            $query = "UPDATE bebidas SET situacao = 'preparando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "UPDATE bebidas SET situacao = 'preparando' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
         }
         public function terminar($nome){
             $sql = new SQL();
-            $query = "UPDATE pizzas SET situacao = 'pronto' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "UPDATE pizzas SET situacao = 'pronto' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
-            $query = "UPDATE bebidas SET situacao = 'pronto' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "UPDATE bebidas SET situacao = 'pronto' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
         }
         public function finalizar($nome){
             $sql = new SQL();
-            $query = "UPDATE pizzas SET situacao = 'aguardando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "UPDATE pizzas SET situacao = 'aguardando' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
-            $query = "UPDATE bebidas SET situacao = 'aguardando' WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "UPDATE bebidas SET situacao = 'aguardando' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
         }
 
         //PAGAMENTO
+        public function alterar_desconto($desconto, $nome){
+            $sql = new SQL();
+            $query = "UPDATE pizzas SET desconto = '$desconto' WHERE nome = '$nome' AND situacao = 'pronto'";
+            $sql->insere($query);
+        }
+        public function remover_desconto($nome){
+            $sql = new SQL();
+            $query = "UPDATE pizzas SET desconto = '0' WHERE nome = '$nome' AND situacao = 'pronto'";
+            $sql->insere($query);
+        }
         public function pg_dinheiro($valor, $nome){
             $sql = new SQL();
-            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $query = "SELECT dinheiro FROM pizzas WHERE nome = '$nome' AND situacao = 'pronto' GROUP BY nome ";
             $valores = $sql->select($query);
             $valores = $valores[0];
             $valor += $valores['dinheiro'];
-            $query = "UPDATE pizzas SET dinheiro = '$valor' WHERE nome = '$nome'";
+            $query = "UPDATE pizzas SET dinheiro = '$valor' WHERE nome = '$nome' AND situacao = 'pronto'";
             $sql->insere($query);
-            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' AND situacao = 'pronto' GROUP BY nome";
             $valores = $sql->select($query);
             $valores = $valores[0];
-            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'];
+            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'] - $valores['desconto'];
             if($resul == 0){
-                $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome'";
+                $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome' AND situacao = 'pronto'";
+                $sql->insere($query);
+                $query = "UPDATE bebidas SET situacao = 'pago' WHERE nome = '$nome' AND situacao = 'pronto'";
                 $sql->insere($query);
             }
             return $resul;
         }
         public function pg_cartao($valor, $nome){
             $sql = new SQL();
-            $query = "UPDATE pizzas SET cartao = '$valor' WHERE nome = '$nome'";
-            $sql->insere($query);
-            $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome";
+            $query = "SELECT cartao FROM pizzas WHERE nome = '$nome' AND situacao = 'pronto' GROUP BY nome";
             $valores = $sql->select($query);
             $valores = $valores[0];
-            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'];
+            $valor += $valores['cartao'];
+            $query = "UPDATE pizzas SET cartao = '$valor' WHERE nome = '$nome' AND situacao = 'pronto'";
+            $sql->insere($query);
+            $query = "SELECT * FROM pizzas WHERE nome = '$nome' AND situacao = 'pronto' GROUP BY nome";
+            $valores = $sql->select($query);
+            $valores = $valores[0];
+            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'] - $valores['desconto'];
             if($resul == 0){
-                $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome'";
+                $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome' AND situacao = 'pronto'";
+                $sql->insere($query);
+                $query = "UPDATE bebidas SET situacao = 'pago' WHERE nome = '$nome' AND situacao = 'pronto'";
                 $sql->insere($query);
             }
             return $resul;
         }
         //FIM DAS FUNÇÕES DE PAGAMENTOS
 
+        public function remover_pedido($nome){
+            $sql = new Sql();
+            $query = "DELETE FROM pizzas WHERE nome = '$nome' AND situacao != 'pronto'";
+            $sql->insere($query);
+            $query = "DELETE FROM bebidas WHERE nome = '$nome' AND situacao != 'pronto'";
+            $sql->insere($query);
+        }
 
         public function criar_db(){
             $host = 'localhost';
@@ -214,7 +239,11 @@
             dia_mes INT(2),
             bebida VARCHAR(5),
             hora VARCHAR(15),
-            situacao VARCHAR(15)
+            situacao VARCHAR(15),
+            dinheiro VARCHAR(3) NOT NULL DEFAULT '0',
+            cartao VARCHAR(3) NOT NULL DEFAULT '0',
+            total VARCHAR(3) NOT NULL DEFAULT '0',
+            desconto VARCHAR(3) NOT NULL DEFAULT '0'
             )";
             $query4 = "CREATE TABLE IF NOT EXISTS bebidasTemp (
             id INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (id),
