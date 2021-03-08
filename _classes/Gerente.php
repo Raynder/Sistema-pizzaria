@@ -14,9 +14,9 @@
         }
 
         //FUNÇÕES DOS SLIDS
-        public function mostrar_agurdando(){
+        public function mostrar_aguardando(){
             $sql = new SQL();
-            $query = "SELECT * FROM pizzas WHERE situacao = 'aguardando' GROUP BY nome";
+            $query = "SELECT * FROM pizzas WHERE situacao = 'aguardando' GROUP BY nome ORDER BY hora";
             return $sql->select($query);
         }
         public function mostrar_bebidas(){
