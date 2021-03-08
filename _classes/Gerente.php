@@ -197,8 +197,9 @@
             $host = 'localhost';
             $usuario = 'root';
             $senha = '';
+            $db = 'dados';
 
-            $mysqli = new mysqli($host, $usuario, $senha);
+            $mysqli = new mysqli($host, $usuario, $senha,$db);
 
             setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
             date_default_timezone_set('America/Sao_Paulo');
@@ -208,9 +209,7 @@
 
             $valor = $mes - 1;
              
-            $db = $meses[$valor].$ano;
 
-            $query = "CREATE DATABASE IF NOT EXISTS $db";
             $query2 = "CREATE TABLE IF NOT EXISTS pedidosTemp (
             id INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (id),
             nome VARCHAR(32),
@@ -224,7 +223,8 @@
             dia_mes INT(2),
             bebida VARCHAR(5),
             hora VARCHAR(15),
-            situacao VARCHAR(15)
+            situacao VARCHAR(15),
+            referencia VARCHAR(6)
             )";
             $query3 = "CREATE TABLE IF NOT EXISTS pizzas (
             id INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (id),
@@ -235,11 +235,13 @@
             tamanho CHAR(1),
             borda VARCHAR(15),
             observacao VARCHAR(256),
+            mesa int(2),
             dia_sem VARCHAR(10),
             dia_mes INT(2),
             bebida VARCHAR(5),
             hora VARCHAR(15),
             situacao VARCHAR(15),
+            referencia VARCHAR(6),
             dinheiro VARCHAR(3) NOT NULL DEFAULT '0',
             cartao VARCHAR(3) NOT NULL DEFAULT '0',
             total VARCHAR(3) NOT NULL DEFAULT '0',
@@ -252,7 +254,8 @@
             dia_sem VARCHAR(10),
             dia_mes INT(2),
             hora VARCHAR(15),
-            situacao VARCHAR(15)
+            situacao VARCHAR(15),
+            referencia VARCHAR(6)
             )";
             $query5 = "CREATE TABLE IF NOT EXISTS bebidas (
             id INT NOT NULL AUTO_INCREMENT , PRIMARY KEY (id),
@@ -261,10 +264,10 @@
             dia_sem VARCHAR(10),
             dia_mes INT(2),
             hora VARCHAR(15),
-            situacao VARCHAR(15)
+            situacao VARCHAR(15),
+            referencia VARCHAR(6)
             )";
-            $mysqli->query($query) or die ($mysqli->error);
-            $mysqli = new mysqli($host, $usuario, $senha, $db);
+
             $mysqli->query($query2) or die ($mysqli->error);
             $mysqli->query($query3) or die ($mysqli->error);
             $mysqli->query($query4) or die ($mysqli->error);

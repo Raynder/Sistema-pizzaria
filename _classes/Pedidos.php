@@ -7,6 +7,7 @@
         private $mes;
         private $ano;
         private $hora;
+        private $ref;
 
         public function __construct(){
             setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
@@ -15,7 +16,8 @@
             $this->dia_sem = strftime('%A');
             $this->dia_mes = strftime('%d');
             $this->mes = strftime('%B');
-            $this->ano = strftime('%Y');  
+            $this->ano = strftime('%Y');
+            $this->ref = $this->mes.$this->ano;  
             $this->conn = new Sql();
         }
 
@@ -58,13 +60,13 @@
             $this->conn->insere($query);
         }
         public function enviar_pedido($nome, $hrbebida){
-            $query = "UPDATE pedidosTemp SET bebida = '$hrbebida', dia_sem = '$this->dia_sem', dia_mes = '$this->dia_mes', hora = '$this->hora', situacao = 'aguardando' WHERE nome = '$nome'";
+            $query = "UPDATE pedidosTemp SET bebida = '$hrbebida', dia_sem = '$this->dia_sem', dia_mes = '$this->dia_mes', hora = '$this->hora', situacao = 'aguardando', referencia = '$this->ref' WHERE nome = '$nome'";
             $this->conn->insere($query);
-            $query = "UPDATE bebidasTemp SET dia_sem = '$this->dia_sem', dia_mes = '$this->dia_mes', hora = '$hora', situacao = 'aguardando' WHERE nome = '$nome'";
+            $query = "UPDATE bebidasTemp SET dia_sem = '$this->dia_sem', dia_mes = '$this->dia_mes', hora = '$hora', situacao = 'aguardando', referencia = '$this->ref' WHERE nome = '$nome'";
             $this->conn->insere($query);
-            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao FROM pedidosTemp WHERE nome = '$nome'";
+            $query = "INSERT INTO pizzas (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao, referencia) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao, referencia FROM pedidosTemp WHERE nome = '$nome'";
             $this->conn->insere($query);
-            $query = "INSERT INTO bebidas (nome, bebida, dia_sem, dia_mes, hora, situacao) SELECT nome, bebida, dia_sem, dia_mes, hora, situacao FROM bebidasTemp WHERE nome = '$nome'";
+            $query = "INSERT INTO bebidas (nome, bebida, dia_sem, dia_mes, hora, situacao, referencia) SELECT nome, bebida, dia_sem, dia_mes, hora, situacao, referencia FROM bebidasTemp WHERE nome = '$nome'";
             $this->conn->insere($query);
             $query = "DELETE FROM pedidosTemp WHERE nome = '$nome'";
             $this->conn->insere($query);
@@ -73,12 +75,12 @@
         }
 
         public function voltar_pizza($nome){
-            $query = "INSERT INTO pedidosTemp (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao FROM pizzas WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
+            $query = "INSERT INTO pedidosTemp (nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao, referencia) SELECT nome, sabor1, sabor2, sabor3, tamanho, borda, observacao, dia_sem, dia_mes, bebida, hora, situacao, referencia FROM pizzas WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
             $this->conn->insere($query);
             $query = "DELETE FROM pizzas WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
             $this->conn->insere($query);
                
-            $query = "INSERT INTO bebidasTemp (nome, bebida, dia_sem, dia_mes, hora, situacao) SELECT nome, bebida, dia_sem, dia_mes, hora, situacao FROM bebidas WHERE nome = '$nome'";
+            $query = "INSERT INTO bebidasTemp (nome, bebida, dia_sem, dia_mes, hora, situacao, referencia) SELECT nome, bebida, dia_sem, dia_mes, hora, situacao, referencia FROM bebidas WHERE nome = '$nome'";
             $this->conn->insere($query);
             $query = "DELETE FROM bebidas WHERE nome = '$nome' AND dia_mes = '$this->dia_mes'";
             $this->conn->insere($query);

@@ -13,7 +13,7 @@
 
             $valor = $mes - 1;
              
-            $db = $meses[$valor].$ano;
+            $db = 'dados';
              
             $host = "localhost";
             $user = "root";
