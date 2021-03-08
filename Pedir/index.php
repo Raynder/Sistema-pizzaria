@@ -142,7 +142,7 @@ if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
 			<div class="row">
                 <div class="col-lg-12 corpo">
                     <div class="nome">
-                        <h1 id="letra">Seu nome:</h1>
+                        <h1 id="letra"><a href="Sistema-pizzaria/Pedir/sobre">Seu nome:</a></h1>
                         <form action="1sabores.php" method="post">
                             <input type="text" name="cliente">
                             <input type="submit" value="OK">

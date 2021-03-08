@@ -77,7 +77,7 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
             session_destroy();
             header("location:index.php?resultado=concluido");
         }
-        header("location:../gerenciar/index.php?resultado=concluido");
+        header("location:../Gerenciar/index.php?resultado=concluido");
         
     }
     $total_a_pagar = 0;
@@ -135,7 +135,7 @@ else{
                 <?php
                     if($_SESSION['nome'] == "admin21"){
                         echo("<a href='1sabores.php' class='nav-link'>NOVO PEDIDO</a>
-                        <a href='../gerenciar/index.php' class='nav-link'>PEDIDOS</a>");
+                        <a href='../Gerenciar/index.php' class='nav-link'>PEDIDOS</a>");
                     }
                 ?>
             </div>
@@ -203,9 +203,9 @@ else{
                                         <select onchange="mudaFoto3(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden esquerdo">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
-                                                <option>Calabresa</option>
-                                                <option>Bacon</option>
-                                                <option>Atum</option>
+                                                <option value="calabresa">Calabresa</option>
+                                                <option value="bacon">Bacon</option>
+                                                <option value="atum">Atum</option>
                                                 <option value="Frango_Catupiri">Frango Catupiri</option>
                                             </optgroup>
 
@@ -214,9 +214,9 @@ else{
                                         <select onchange="mudaFoto1(this.value)" name="nsab2" id="isab2" class="abs entrada-hidden direito">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
-                                                <option>Calabresa</option>
-                                                <option>Bacon</option>
-                                                <option>Atum</option>
+                                                <option value="calabresa">Calabresa</option>
+                                                <option value="bacon">Bacon</option>
+                                                <option value="atum">Atum</option>
                                                 <option value="Frango_Catupiri">Frango Catupiri</option>
                                             </optgroup>
                                         </select>
@@ -224,9 +224,9 @@ else{
                                         <select onchange="mudaFoto2(this.value)" name="nsab3" id="isab3" class="abs entrada-hidden bottom">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
-                                                <option>Calabresa</option>
-                                                <option>Bacon</option>
-                                                <option>Atum</option>
+                                                <option value="calabresa">Calabresa</option>
+                                                <option value="bacon">Bacon</option>
+                                                <option value="atum">Atum</option>
                                                 <option value="Frango_Catupiri">Frango Catupiri</option>
                                             </optgroup>
 

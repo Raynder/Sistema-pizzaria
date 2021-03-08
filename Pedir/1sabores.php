@@ -91,7 +91,7 @@ if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
             //header("location:index.php?resultado=concluido");
         }
         $_SESSION['resultado'] = 'concluido';
-        header("location:../gerenciar/index.php"); 
+        header("location:../Gerenciar/index.php"); 
     }
     $total_a_pagar = 0;
     
@@ -153,7 +153,7 @@ else{
                 <?php
                     if($_SESSION['nome'] == "admin21"){
                         echo("<a href='1sabores.php' class='nav-link aa'>NOVO PEDIDO</a>
-                        <a href='../gerenciar/index.php' class='nav-link aa'>PEDIDOS</a>");
+                        <a href='../Gerenciar/index.php' class='nav-link aa'>PEDIDOS</a>");
                     }
                 ?>
             </div>
@@ -218,9 +218,9 @@ else{
                                         <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden bottom">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
-                                                <option>Calabresa</option>
-                                                <option>Bacon</option>
-                                                <option>Atum</option>
+                                                <option value="calabresa">Calabresa</option>
+                                                <option value="bacon">Bacon</option>
+                                                <option value="atum">Atum</option>
                                                 <option value="Frango_Catupiri">Frango Catupiri</option>
                                             </optgroup>
 

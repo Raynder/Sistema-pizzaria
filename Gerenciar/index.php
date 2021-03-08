@@ -347,7 +347,7 @@ if(isset($_POST['desconto']) && !empty($_POST['desconto'])){
                             </div>
                             <?php
                                 $test = 0;
-                                if($des > 0){
+                                if(isset($des) && $des > 0){
                                     echo("<script>document.getElementById('desconto').disabled = true</script>");
                                 }
                                 if(isset($_POST['valor_recebido_din']) && !empty($_POST['valor_recebido_din'])){
