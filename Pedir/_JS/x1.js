@@ -20,6 +20,7 @@ function aux(situacao){
     }
 }
 function conferir(pos){
+    document.getElementById('func').value = "pedir_pizza"
     if(pos == 1){
         sabor1 = document.getElementById('isab1').value
 
