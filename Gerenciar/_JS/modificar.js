@@ -1,8 +1,8 @@
 function editar_pedido(cliente){
-    form = document.getElementById('func')
+    form = document.getElementById('funcc')
     document.getElementById('ver').value = 'meusPedidos'
-    document.getElementById('voltar').value = 'voltar'
-    document.getElementById('cliente').value = cliente
+    document.getElementById('func').value = 'voltar'
+    document.getElementById('valor_func').value = cliente
     form.submit()
 }
 function remover_pedido(cliente){
@@ -47,9 +47,31 @@ function pagar_com(tipo){
 
 function efetuar_pagamento(){
     form = document.getElementById("band")
-    document.getElementById("valor_total").disabled = false
-    document.getElementById("total_pagar").disabled = false
+    document.getElementById("valor_total").disable
+    document.getElementById("total_pagar").disable
+
+    valor_total = document.getElementById("valor_total").value
+    total_pagar = document.getElementById("total_pagar").value
+
+    troco = parseInt(document.getElementById("troco").value)
+    console.log(troco)
+    if(troco > 0){
+        document.getElementById('valor_din').value = total_pagar
+    }
     form.submit()
+}
+function calc_troco(element){
+    var din = parseInt(document.getElementById('valor_din').value)
+    var total = parseInt(document.getElementById('total_pagar').value)
+    console.log(din)
+    console.log(total)
+
+    if(din > total){
+        document.getElementById('troco').value = din - total
+    }
+    else{
+        document.getElementById('troco').value = 0
+    }
 }
 function remover_desconto(cliente){
     form = document.getElementById("func_interna")

@@ -21,13 +21,13 @@
         }
         public function mostrar_bebidas(){
             $sql = new SQL();
-            $query = "SELECT * FROM bebidas WHERE situacao = 'aguardando' GROUP BY nome";
+            $query = "SELECT * FROM bebidas WHERE situacao = 'aguardando' GROUP BY nome ORDER BY hora";
             return $sql->select($query);
         }
 
         public function mostrar_preparando(){
             $sql = new SQL();
-            $query = "SELECT * FROM pizzas WHERE situacao = 'preparando' GROUP BY nome";
+            $query = "SELECT * FROM pizzas WHERE situacao = 'preparando' GROUP BY nome ORDER BY hora";
             return $sql->select($query);
         }
         public function mostrar_bebidas_preparando(){
@@ -38,7 +38,7 @@
 
         public function mostrar_pronto(){
             $sql = new SQL();
-            $query = "SELECT * FROM pizzas WHERE situacao = 'pronto' GROUP BY nome";
+            $query = "SELECT * FROM pizzas WHERE situacao = 'pronto' GROUP BY nome ORDER BY hora";
             return $sql->select($query);
         }
         public function mostrar_bebidas_pronto(){
@@ -154,7 +154,7 @@
             $query = "SELECT * FROM pizzas WHERE nome = '$nome' AND situacao = 'pronto' GROUP BY nome";
             $valores = $sql->select($query);
             $valores = $valores[0];
-            $resul = $valores['total'] - $valores['dinheiro'] - $valores['cartao'] - $valores['desconto'];
+            $resul = $valores['total'] - $valores['desconto'] - $valores['cartao'] - $valores['dinheiro'];
             if($resul == 0){
                 $query = "UPDATE pizzas SET situacao = 'pago' WHERE nome = '$nome' AND situacao = 'pronto'";
                 $sql->insere($query);
@@ -187,9 +187,9 @@
 
         public function remover_pedido($nome){
             $sql = new Sql();
-            $query = "DELETE FROM pizzas WHERE nome = '$nome' AND situacao != 'pronto'";
+            $query = "DELETE FROM pizzas WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
-            $query = "DELETE FROM bebidas WHERE nome = '$nome' AND situacao != 'pronto'";
+            $query = "DELETE FROM bebidas WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
         }
 

@@ -61,7 +61,7 @@
                 </div>
         
                 <div class=$asp bloco_a_direita$asp >
-                    <img style=$asp height:50px$asp  src=$asp ../_img/editar.png$asp  alt=$asp $asp  onclick=$asp editar_pedido'$nomeCliente')$asp >
+                    <img style=$asp height:50px$asp  src=$asp ../_img/editar.png$asp  alt=$asp $asp  onclick=$asp editar_pedido('$nomeCliente')$asp >
                     <p>editar</p>
                 </div>
         

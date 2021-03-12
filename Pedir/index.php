@@ -32,11 +32,12 @@ if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
             font-family: Arial, Tahoma, sans-serif;
         }
 
-        #fundo-externo {
-            overflow: hidden; /* para que não tenha rolagem se a imagem de fundo for maior que a tela */
+        #fundo img {
+            height: 1800px;
             width: 100%;
-            height: 100%;
-            position: relative; /* criamos um contexto para posicionamento */
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         #fundo {
@@ -144,6 +145,7 @@ if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
                     <div class="nome">
                         <h1 id="letra"><a href="Sistema-pizzaria/Pedir/sobre">Seu nome:</a></h1>
                         <form action="1sabores.php" method="post">
+                            <input type="text" name="user" value="cliente" style="display:none">
                             <input type="text" name="cliente">
                             <input type="submit" value="OK">
                         </form>
