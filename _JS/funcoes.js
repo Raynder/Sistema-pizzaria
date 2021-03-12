@@ -39,11 +39,12 @@ function finalizar_pedido(total) {
             }).then((result) => {
                 form = document.getElementById('band')
                 form.reset()
+                document.getElementById('func').value = 'enviar'
                 if (result.value) {
-                    document.getElementById('final').value = 'agora'
+                    document.getElementById('valor_func').value = 'agora'
                 }
                 else{
-                    document.getElementById('final').value = 'junto'
+                    document.getElementById('valor_func').value = 'junto'
                 }
                 Swal.fire(
                     'Feito!',

@@ -1,111 +1,52 @@
 <?php
-require_once "../config.php";
-session_start();
-if(isset($_POST['cliente']) && !empty($_POST['cliente'])){
-    if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
-        $nome = $_POST['cliente'];
-        $_SESSION['cliente'] = $_POST['cliente'];
-    }
-    else{
-        $pedir = new Pedidos();
-        $nomes = $pedir->nomes($_POST['cliente']);
-        if(Count($nomes) > 0){
-            
+    require_once "../config.php";
+    session_start();
+
+    if(isset($_POST['cliente']) && !empty($_POST['cliente'])){
+        if($_POST['cliente'] == 'admin21'){
+            $user = 'admin';
         }
         else{
-            $_SESSION['nome'] = $_POST['cliente'];
-            $_SESSION['cliente'] = $_POST['cliente'];
-            $nome = $_POST['cliente'];
+            $user = $_POST['user'];
         }
-        
-    }
-    
-}
-else{
-    if(isset($_SESSION['cliente']) && !empty($_SESSION['cliente']))
-    $nome = $_SESSION['cliente'];
-}
-if(isset($_SESSION['nome']) && !empty($_SESSION['nome'])){
 
-    if(isset($_POST['tamanho'])){
-        if(!empty($_POST['tamanho'])){
-            $array = array();
-            $array[":NOME"] = $nome;
-            $cont = 0;
-    
-            if(isset($_POST['editar']) && !empty($_POST['editar'])){
-                $id_editar = $_POST['editar'];
-                $array = array(
-                    ":TAM" => $_POST['tamanho'],
-                    ":BOR" => $_POST['nbor'],
-                    ":OBS" => $_POST['obs']
-                );
-                $pedir = new Pedidos();
-                $pedir->att_pizza($array, $id_editar);
+        $nome = $_POST['cliente'];
+        $_SESSION['cliente'] = $_POST['cliente'];
+
+        if($user == 'admin'){
+            $_SESSION['user'] = $user;
+        }
+        else{
+            $pedir = new Pedidos();
+            $nomes = $pedir->nomes($_POST['cliente']);
+            if(Count($nomes) > 0){
+                header("location:index.php?nome=jaexiste");
             }
             else{
-                $nomes = array(":S1", ":S2", ":S3", ":TAM", ":BOR", ":OBS");
-            
-                foreach($_POST as $key => $value){
-                    if($cont < 6){
-                        $array[$nomes[$cont]] = $value;
-                    }
-                    $cont++;
-                }
-                
-                $pedir = new Pedidos();
-                $pedir->add_pizza($array);
+                $_SESSION['nome'] = $_POST['cliente'];
+                $_SESSION['user'] = $user;
             }
         }
-    
     }
     else{
-        if(isset($_POST['apagar'])){ 
-            $id_apagar = $_POST['apagar'];
-            $pedir = new Pedidos();
-            $pedir->remover_pizza($id_apagar);
+        if(isset($_SESSION['cliente']) && !empty($_SESSION['cliente'])){
+            $nome = $_SESSION['cliente'];
         }
-        if(isset($_POST['apagarbeb'])){ 
-            $id_apagar = $_POST['apagarbeb'];
-            $pedir = new Pedidos();
-            $pedir->remover_bebida($id_apagar);
-        }
-        if(isset($_POST['bebida']) && !empty($_POST['bebida'])){
-            $bebida = $_POST['bebida'];
-            $pedir = new Pedidos();
-            $pedir->add_bebida($nome, $bebida);
-        }
-        if(isset($_POST['voltar']) && !empty($_POST['voltar'])){
-            $nomeCliente = $_POST['cliente'];
-            $pedir = new Pedidos();
-            $pedir->voltar_pizza($nomeCliente);
+        else{
+            header("index.php");
         }
     }
-    
-    if(isset($_POST['final']) && !empty($_POST['final'])){
-        $hrbebida = $_POST['final'];
-        $pedir = new Pedidos();
-        $pedir->enviar_pedido($nome, $hrbebida);
-        if($_SESSION[nome] != 'admin21'){
-            session_destroy();
-            //header("location:index.php?resultado=concluido");
-        }
-        $_SESSION['resultado'] = 'concluido';
-        header("location:../Gerenciar/index.php"); 
-    }
-    $total_a_pagar = 0;
-    
-    $iniciar_aux = 1;
-}
-else{
-    if(Count($nomes) > 0){
-        header("location:index.php?nome=jaexiste");
-    }
-    else{
-        header("location:index.php");
-    }
-}
 
+    if(isset($_POST['func']) && !empty($_POST['func'])){
+        $func = $_POST['func'];
+        $valor_func = $_POST['valor_func'];
+        $functions = new Functions();
+        
+        $functions->$func($valor_func);
+    }
+
+    $total_a_pagar = 0;
+    $iniciar_aux = 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -151,7 +92,7 @@ else{
             <div class="row" id="">
                 <a href="index.php"><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
                 <?php
-                    if($_SESSION['nome'] == "admin21"){
+                    if($_SESSION['user'] == "admin"){
                         echo("<a href='1sabores.php' class='nav-link aa'>NOVO PEDIDO</a>
                         <a href='../Gerenciar/index.php' class='nav-link aa'>PEDIDOS</a>");
                     }
@@ -295,11 +236,11 @@ else{
                             </div>
 
                             <div id="opc3" style="display:none">
-                                <h1>Pedidos de <?=$nome;?></h1>
+                                <h1>Pedidos de <?=$_SESSION['cliente'];?></h1>
 
                             <?php
                                     $pedir = new Pedidos();
-                                    $pedidos = $pedir->mostrar_pedidos($nome);
+                                    $pedidos = $pedir->mostrar_pedidos($_SESSION['cliente']);
                                     $a = count($pedidos);
                                     if($a == 0){
                                         echo("<script>document.getElementById('ver_pedidos').style.display = 'none'</script>");
@@ -341,7 +282,7 @@ else{
                                         echo("<p class='vermelhor sem_margin'>$observacao</p>");
 
                                         //Calcular total a pagar
-                                        $total_a_pagar = $pedir->calc_total($nome);
+                                        $total_a_pagar = $pedir->calc_total($_SESSION['cliente']);
                                         ?>
                                     </div>
                                             
@@ -360,7 +301,7 @@ else{
                                         
                                     }
 
-                                    $bebidas = $pedir->mostrar_bebidas($nome);
+                                    $bebidas = $pedir->mostrar_bebidas($_SESSION['cliente']);
                                     
                                     foreach($bebidas as $beb){
                                         ?>
@@ -443,11 +384,9 @@ else{
                             </div>
                                     
                             <input type="text" id="ver" name="ver" style="display:none" value="">
-                            <input type="text" id="apagar" name="apagar" style="display:none" value="">
-                            <input type="text" id="apagarbeb" name="apagarbeb" style="display:none" value="">
-                            <input type="text" id="editar" name="editar" style="display:none" value="">
-                            <input type="text" id="bebida" name="bebida" style="display:none" value="">
-                            <input type="text" id="final" name="final" style="display:none" value="">
+                            <input type="text" id="func" name="func" style="display:none" value="">
+                            <input type="text" id="valor_func" name="valor_func" style="display:none" value="">
+
                         </form>
 
                         
