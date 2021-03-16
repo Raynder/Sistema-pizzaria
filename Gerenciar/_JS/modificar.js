@@ -29,6 +29,7 @@ function finaliza(cliente, total, situ){
     document.getElementById("valor_total").value = total
     document.getElementById("total_pagar").value = total
     document.getElementById("cliente_pagador").value = cliente
+    console.log('total: '+total+'\nCliente: '+cliente)
     if(situ == 1){
         sair_bandeja(3)
     }

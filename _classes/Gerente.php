@@ -1,4 +1,5 @@
 <?php
+    require_once("Sql.php");
 
     Class Gerente {
         private $conn;
@@ -54,6 +55,11 @@
             $query = "SELECT * FROM pizzas WHERE nome = '$nome' AND situacao != 'pago'";
             return Count($sql->select($query));
         }
+        public function total_pedidos(){
+            $sql = new SQL();
+            $query = "SELECT * FROM pizzas WHERE situacao != 'pago'";
+            return Count($sql->select($query));
+        }
         public function total_bebidas($nome){
             $sql = new SQL();
             $query = "SELECT * FROM bebidas WHERE nome = '$nome' AND situacao != 'pago'";
@@ -103,10 +109,12 @@
             $query = "UPDATE pizzas SET total = '$total_a_pagar' WHERE nome = '$nome' AND situacao != 'pago'";
             $sql->insere($query);
             $query = "SELECT * FROM pizzas WHERE nome = '$nome' GROUP BY nome AND situacao != 'pago'";
-            $valores = $sql->select($query);
-            $valores = $valores[0];
-
-            return $valores['total'] - $valores['dinheiro'] - $valores['cartao'] - $valores['desconto'];
+            if($valores = $sql->select($query)){
+                $valores = $valores[0];
+    
+                $resultot = $valores['total'] - $valores['dinheiro'] - $valores['cartao'] - $valores['desconto'];
+            }
+            return $resultot;
         }
         //FIM DAS FUNÇÕES QUE CAUCULAM TOTAIS
 
@@ -194,12 +202,12 @@
         }
 
         public function criar_db(){
-            $host = 'localhost';
-            $usuario = 'root';
-            $senha = '';
             $db = 'dados';
+            $host = "localhost";
+            $user = "root";
+            $pass = "";
 
-            $mysqli = new mysqli($host, $usuario, $senha,$db);
+            $mysqli = new mysqli($host, $user, $pass, $db) or die ($mysqli -> error);
 
             setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
             date_default_timezone_set('America/Sao_Paulo');

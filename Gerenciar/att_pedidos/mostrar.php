@@ -23,10 +23,11 @@
     $gerir = new Gerente();
     $pedidos = $gerir->$func();
 
-    $nvtot = Count($pedidos);
+
+    $nvtot = $gerir->total_pedidos();
 
     if($pedidos){
-        if($nvtot > $tot){
+        if($nvtot > $tot && $nvtot > 0){
             echo("<script>document.getElementById('audio').play()</script>");
             $_SESSION['tot'] = $nvtot;
         }
@@ -52,7 +53,6 @@
                     <p class=$asp sem_margin$asp >$situacao</p>
                     <p class=$asp sem_margin$asp >Pizzas $totPizzas</p>
                     <p class=$asp sem_margin$asp >Bebidas $totBebidas</p>
-                    ?>
                 </div>
                         
                 <div class=$asp bloco_a_direita$asp >
@@ -86,5 +86,4 @@
     else{
         echo "Não foi possivel encontrar os pedidos"; 
     }
-    
-    
+    $_SESSION['tot'] = $nvtot;

@@ -15,7 +15,7 @@ function entrar_bandeja(){
 
     var intervalo = setInterval(function(){
         if(x < 0){
-            x = x + 50
+            x = x + 100
             bandeja.style.left = x+'px'
         }
         else{
@@ -30,7 +30,7 @@ function sair_bandeja(part){
     x = 0
     func = 1
 
-    intervalo = setInterval(function(){
+    intervaloSair = setInterval(function(){
         if(x > -1100){
             bandeja.style.left = x+'px'
             x = x - 50 
@@ -48,7 +48,7 @@ function sair_bandeja(part){
                 opc4.style.display = "block"
                 entrar_bandeja()
             }
-            
+            clearInterval(intervaloSair)
         }
            
     }, 25)

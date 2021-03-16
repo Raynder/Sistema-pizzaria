@@ -58,10 +58,11 @@ if(isset($_POST['desconto_removido'])){
 
         <script src="_JS/slids.js" type="text/javascript"></script>
         <script src="_JS/modificar.js" type="text/javascript"></script>
+        <script src="_JS/alertPag.js" type="text/javascript"></script>
 
         <script>
 
-            intervalo = setInterval(function(){
+            setInterval(function(){
                 var slide = document.getElementById('slide').value
                 mostrar(slide, 1)
             },5000)
@@ -82,7 +83,6 @@ if(isset($_POST['desconto_removido'])){
                         data: {part: part},
                         success: function(msg){
                             $('#result').html(msg);
-                            clearInterval(intervalo)
                             if(val != 1){
                                 entrar_bandeja()
                             }
@@ -203,13 +203,13 @@ if(isset($_POST['desconto_removido'])){
                                     $cliente_pagador = $_POST['cliente_pagador'];
                                     $resul = $gerir->pg_dinheiro($_POST['valor_din'],$cliente_pagador);
                                     if($resul == 0){
-                                        echo("<script>alert('Pagamento concluido')</script>");
+                                        echo("<script>pago()</script>");
                                         echo("<script>window.location.href = 'http://localhost/Sistema-pizzaria/gerenciar/' </script>");
                                     }
                                     else{
                                         $total_calc = $gerir->calc_total($cliente_pagador);
+                                        echo("<script>resto()</script>");
                                         echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
-                                        echo("<script>alert('Esperando pagamento restante')</script>");
                                     }
                                     $test = 3;
                                 }
@@ -217,13 +217,13 @@ if(isset($_POST['desconto_removido'])){
                                     $cliente_pagador = $_POST['cliente_pagador'];
                                     $resul = $gerir->pg_cartao($_POST['valor_cart'],$cliente_pagador);
                                     if($resul == 0){
-                                        echo("<script>alert('Pagamento concluido')</script>");
+                                        echo("<script>pago()</script>");
                                         echo("<script>window.location.href = 'http://localhost/Sistema-pizzaria/gerenciar/' </script>");
                                     }
                                     else{
                                         $total_calc = $gerir->calc_total($cliente_pagador);
+                                        echo("<script>resto()</script>");
                                         echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
-                                        echo("<script>alert('Esperando pagamento restante')</script>");
                                     }
                                     $test = 3;
                                 }
@@ -251,7 +251,7 @@ if(isset($_POST['desconto_removido'])){
         <?php
             if(isset($_SESSION['resultado']) && !empty($_SESSION['resultado'])){
                 if($_SESSION['resultado'] == 'concluido'){
-                    echo("<script>alteracao_concluida()</script>");
+                    echo("<script>resto()</script>");
                     unset($_SESSION['resultado']);
                 }
             }
