@@ -192,8 +192,8 @@
                                                 <p>R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
                                             </figcaption>
 
-                                        <input class="bt" type="button" value="enviar" onclick="conferir(1)">
-                                        <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
+                                            <input class="bt" type="button" value="enviar" onclick="conferir(1)">
+                                            <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
 
                                         </div>
                                         
