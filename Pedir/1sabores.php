@@ -57,7 +57,6 @@
 		<link rel="stylesheet" type="text/css" href="../_css/style.css">
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
-        <link rel="stylesheet" type="text/css" href="../_css/geral.css">
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../_JS/sweetAlert.js"></script>
@@ -66,6 +65,23 @@
         <script src="_JS/auxiliar.js" type="text/javascript"></script>
         <script src="_JS/modificar.js" type="text/javascript"></script>
         <script type="text/javascript" src="../_JS/funcoes.js"></script>
+        <script src="../_JS/jquery.2.1.3.min.js"></script>
+
+        <script>
+            function qtd_sabores(qtd_sab){
+                $.ajax
+                ({
+                    type: 'POST',
+                    datatype: 'html',
+                    url: 'sabores.php',
+
+                    data: {qtd_sab: qtd_sab},
+                    success: function(msg){
+                        $('#result').html(msg);
+                    }
+                })
+            }
+        </script>
 	</head>
 
     <style>
@@ -111,9 +127,9 @@
                             
                             <div class="tamanhos" id="sabores">
                                 <h1>QUANTOS SABORES?</h1>
-                                <a href="1sabores.php"><img src="../_img/sabor1x.png" alt=""></a>
-                                <a href="2sabores.php"><img src="../_img/sabor2x.png" alt=""></a>
-                                <a href="3sabores.php"><img src="../_img/sabor3x.png" alt=""></a>
+                                <a onclick="qtd_sabores(1)"><img src="../_img/sabor1x.png" alt=""></a>
+                                <a onclick="qtd_sabores(2)"><img src="../_img/sabor2x.png" alt=""></a>
+                                <a onclick="qtd_sabores(3)"><img src="../_img/sabor3x.png" alt=""></a>
 
                             </div>
 
@@ -154,40 +170,13 @@
                                 <section class="mesa col-lg-6 col-sm-6 col-md-6 container clearfix">
 
                                 <div class="bandeja_toda">
-                                    <div class="centro x3">
-                                        <img id="esquerdo" class="bandeja" src="_img1x/tudo.png">
-
-                                        <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden bottom">
-                                            <optgroup>
-                                                <option value=" " style="display:none" selected></option>
-                                                <option value="calabresa">Calabresa</option>
-                                                <option value="bacon">Bacon</option>
-                                                <option value="atum">Atum</option>
-                                                <option value="Frango_Catupiri">Frango Catupiri</option>
-                                            </optgroup>
-
-                                        </select>
-                                        
-                                        <select name="nsab2" id="isab2" style="display:none">
-                                            <optgroup>
-                                                <option value=""></option>
-                                            </optgroup>
-                                        </select>
-
-                                        <select name="nsab3" id="isab3" style="display:none">
-                                            <optgroup>
-                                                <option value=""></option>
-                                            </optgroup>
-                                        </select>
-
-                                        <figcaption>
-                                            <p onclick="aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
-                                        </figcaption>
-
-                                        <input class="bt" type="button" value="enviar" onclick="conferir(1)">
-                                        <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
-
+                                    <div id="result">
+                                    
+                                    
                                     </div>
+                                    <input class='bt' type='button' value='enviar' onclick='x3_conferir(1)'>
+                                    <input id='ver_pedidos' class='bt confirm' type='button' value='Pedidos' onclick='sair_bandeja(2)'>
+
                                     
                                 </div>
 
@@ -231,7 +220,7 @@
 
                                 <textarea id="entrada-text" class="entrada" placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7" name="obs"></textarea>
                                         
-                                        <input type="button" value="Adicionar" onclick="conferir(2)">                                
+                                        <input type="button" value="Adicionar" onclick="x3_conferir(2)">                                
                                 </div>
 
                             </div>

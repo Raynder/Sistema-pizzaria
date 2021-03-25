@@ -159,7 +159,7 @@
                                         <img id="esquerdo" class="bandeja" src="../_img/esquerdo.png">
                                         <img id="baixo" class="bandeja" src="../_img/baixo.png">
 
-                                        <select onchange="mudaFoto3(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden esquerdo">
+                                        <select onchange="x3_mudaFoto3(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden esquerdo">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
                                                 <option value="calabresa">Calabresa</option>
@@ -170,7 +170,7 @@
 
                                         </select>
                                         
-                                        <select onchange="mudaFoto1(this.value)" name="nsab2" id="isab2" class="abs entrada-hidden direito">
+                                        <select onchange="x3_mudaFoto1(this.value)" name="nsab2" id="isab2" class="abs entrada-hidden direito">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
                                                 <option value="calabresa">Calabresa</option>
@@ -180,7 +180,7 @@
                                             </optgroup>
                                         </select>
 
-                                        <select onchange="mudaFoto2(this.value)" name="nsab3" id="isab3" class="abs entrada-hidden bottom">
+                                        <select onchange="x3_mudaFoto2(this.value)" name="nsab3" id="isab3" class="abs entrada-hidden bottom">
                                             <optgroup>
                                                 <option value=" " style="display:none" selected></option>
                                                 <option value="calabresa">Calabresa</option>
@@ -192,10 +192,10 @@
                                         </select>
 
                                         <figcaption>
-                                            <p onclick="aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
+                                            <p onclick="x3_aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
                                         </figcaption>
 
-                                        <input class="bt" type="button" value="enviar" onclick="conferir(1)">
+                                        <input class="bt" type="button" value="enviar" onclick="x3_conferir(1)">
                                         <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
 
                                     </div>

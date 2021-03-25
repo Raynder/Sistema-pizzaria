@@ -54,7 +54,7 @@ if(isset($_POST['desconto_removido'])){
         
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="_JS/sweetAlert.js"></script>
-        <script src="_JS/jquery.2.1.3.min.js"></script>
+        <script src="../_JS/jquery.2.1.3.min.js"></script>
 
         <script src="_JS/slids.js" type="text/javascript"></script>
         <script src="_JS/modificar.js" type="text/javascript"></script>

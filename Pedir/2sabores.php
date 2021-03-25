@@ -160,7 +160,7 @@
                                                 <img id="esquerdo" class="bandeja" src="_img2x/esquerdo.png">
                                             </div>
 
-                                            <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
+                                            <select onchange="x2_mudaFoto1(this.value)" name="nsab1" id="isab1" class="entrada-hidden direito2x">
                                                 <optgroup>
                                                     <option value=" " style="display:none" selected></option>
                                                     <option value="calabresa">Calabresa</option>
@@ -170,7 +170,7 @@
                                                 </optgroup>
                                             </select>
 
-                                            <select onchange="mudaFoto2(this.value)" name="nsab2" id="isab2" class="entrada-hidden esquerdo2x">
+                                            <select onchange="x2_mudaFoto2(this.value)" name="nsab2" id="isab2" class="entrada-hidden esquerdo2x">
                                                 <optgroup>
                                                     <option value=" " style="display:none" selected></option>
                                                     <option value="calabresa">Calabresa</option>
@@ -189,11 +189,16 @@
                                             </select>
 
                                             <figcaption>
-                                                <p>R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
+                                                <p onclick="x2_aux()">R$<span class="total_a_pagar" id="total_a_pagar"></span>.00</p>
                                             </figcaption>
 
+<<<<<<< HEAD
                                             <input class="bt" type="button" value="enviar" onclick="conferir(1)">
                                             <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
+=======
+                                        <input class="bt" type="button" value="enviar" onclick="x2_conferir(1)">
+                                        <input id="ver_pedidos" class="bt confirm" type="button" value="Pedidos" onclick="sair_bandeja(2)">
+>>>>>>> bandejas
 
                                         </div>
                                         

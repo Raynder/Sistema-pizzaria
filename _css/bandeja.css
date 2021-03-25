@@ -21,8 +21,8 @@
 .centro img{
     left: 0;
     width: 100%;
+    opacity: 0;
 }
-
 .x2 select{
     width: 50%;
 }
