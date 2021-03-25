@@ -57,6 +57,7 @@
 		<link rel="stylesheet" type="text/css" href="../_css/style.css">
 		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../_css/index.css">
+        <link rel="stylesheet" type="text/css" href="../_css/geral.css">
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../_JS/sweetAlert.js"></script>
@@ -395,6 +396,10 @@
 			</div>
 
         </div>
+
+        <footer>
+
+        </footer>
         
         <script src="_JS/slids.js" type="text/javascript"></script>
         <?php
