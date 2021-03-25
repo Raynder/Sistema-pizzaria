@@ -45,10 +45,10 @@ function sair_bandeja(pos){
                 if(pos == 0){
                     sabores.style.display = "block"
                     opc1.style.display = "block"
-                    aux(1)
+                    x1_aux(1)
                 }
                 if(pos == 1){
-                    aux(2)
+                    x1_aux(2)
                     tamanhos.style.display = "block"
                     opc2.style.display = "block"
                 }

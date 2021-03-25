@@ -23,6 +23,7 @@ if(isset($_GET['resultado']) && !empty($_GET['resultado'])){
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../_JS/sweetAlert.js"></script>
+        <script src="../_JS/jquery.2.1.3.min.js"></script>
 	</head>
 
     <style>

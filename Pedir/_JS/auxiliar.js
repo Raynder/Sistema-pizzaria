@@ -15,7 +15,6 @@ function selec(valor){
 }
 
 function iniciar(valor){
-    aux(valor)
     entrar_bandeja()
 }
 
