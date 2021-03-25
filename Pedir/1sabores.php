@@ -121,7 +121,7 @@
 			<div class="row">
 					<div class="col-lg-12 corpo">
 
-                        <form action="" method="get" id="band">
+                        <form action="" method="post" id="band">
 
                                 
                             
