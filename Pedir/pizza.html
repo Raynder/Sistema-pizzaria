@@ -53,235 +53,235 @@
 
                         <form action="" method="post" id="band">
                             <div class="lin">
-
-                                    
-                            
-                            <div class="tamanhos" id="sabores">
-                                <h1>QUANTOS SABORES?</h1>
-                                <a onclick="qtd_sabores(1)"><img src="../img/sabor1x.png" alt=""></a>
-                                <a onclick="qtd_sabores(2)"><img src="../img/sabor2x.png" alt=""></a>
-                                <a onclick="qtd_sabores(3)"><img src="../img/sabor3x.png" alt=""></a>
-
-                            </div>
-
-                            <div class="tamanhos" id="tamanhos" style="display:none">
-                                <h1>TAMANHO DA PIZZA?</h1>
-
-                                    <div onclick="selec('pequena')" class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="../img/sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
-                                        <figcaption>
-                                            <p>Pequena</p>
-                                        </figcaption>
-                                    </div>
-
-                                    <div onclick="selec('media')" class="imgem im2 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="../img/sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
-                                        <figcaption>
-                                            <p>Media</p>
-                                        </figcaption>
-                                    </div>
-
-                                    <div onclick="selec('grande')" class="imgem im3 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="../img/sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
-                                        <figcaption>
-                                            <p>Grande</p>
-                                        </figcaption>
-                                    </div>
                                 
-                                
-
-                            </div>
-
-
-                            <div id="opc1">
-
-                                <h1>ESCOLHA AQUI OS SABORES!</h1>
-
-
-                                <section class="mesa col-lg-6 col-sm-6 col-md-6 container clearfix">
-
-                                <div class="bandeja_toda">
-                                    
-                                    <div id='centro' class='centro x3'>
-                                        <img id='esquerdo' class='bandeja' src='img1x/tudo.png'>
-                
-                                        <select onchange='x1_mudaFoto1(this.value)' name='nsab1' id='isab1' class='abs entrada-hidden bottom'>
-                                            <optgroup>
-                                                <option value=' ' style='display:none' selected></option>
-                                                <option value='calabresa'>Calabresa</option>
-                                                <option value='bacon'>Bacon</option>
-                                                <option value='atum'>Atum</option>
-                                                <option value='Frango_Catupiri'>Frango Catupiri</option>
-                                            </optgroup>
-                
-                                        </select>
+                                <div class="conteudo">
+                                    <div class="tamanhos" id="sabores">
+                                        <h1>QUANTOS SABORES?</h1>
+                                        <a onclick="qtd_sabores(1)"><img src="../img/sabor1x.png" alt=""></a>
+                                        <a onclick="qtd_sabores(2)"><img src="../img/sabor2x.png" alt=""></a>
+                                        <a onclick="qtd_sabores(3)"><img src="../img/sabor3x.png" alt=""></a>
+    
+                                    </div>
+    
+                                    <div class="tamanhos" id="tamanhos" style="display:none">
+                                        <h1>TAMANHO DA PIZZA?</h1>
+    
+                                            <div onclick="selec('pequena')" class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <img src="../img/sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
+                                                <figcaption>
+                                                    <p>Pequena</p>
+                                                </figcaption>
+                                            </div>
+    
+                                            <div onclick="selec('media')" class="imgem im2 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <img src="../img/sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
+                                                <figcaption>
+                                                    <p>Media</p>
+                                                </figcaption>
+                                            </div>
+    
+                                            <div onclick="selec('grande')" class="imgem im3 col-lg-4 col-md-4 col-sm-4 col-4">
+                                                <img src="../img/sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
+                                                <figcaption>
+                                                    <p>Grande</p>
+                                                </figcaption>
+                                            </div>
                                         
-                                        <select name='nsab2' id='isab2' style='display:none'>
-                                            <optgroup>
-                                                <option value=''></option>
-                                            </optgroup>
-                                        </select>
-                
-                                        <select name='nsab3' id='isab3' style='display:none'>
-                                            <optgroup>
-                                                <option value=''></option>
-                                            </optgroup>
-                                        </select>
-                
-                                        <figcaption>
-                                            <p onclick='x1_aux()'>R$<span class='total_a_pagar' id='total_a_pagar'></span>.00</p>
-                                        </figcaption>
-                
-                
-                                    </div>
-
-                                    <input class='bt' type='button' value='enviar' onclick='sair_bandeja(1)'>
-                                    <input id='ver_pedidos' class='bt confirm' type='button' value='Pedidos' onclick='sair_bandeja(2)'>
-
-                                    
-                                </div>
-
-
-                                    <!--BOTÃO DE PEDIR PIZZA, E VALOR DO PEDIDO -->
-                                    <div class="row">
-                                        <!--<input class="botao-pedir col-lg-6 col-md-6 col-sm-6 col-6" type="image" src="_imagens/confirmar.png"> -->
-
-                                        <valor id="valor"class="col-lg-6 col-md-6 col-sm-6 col-6 right"><h2 id="valorhtml"></h2></valor>
-                                    </div>
-
-
-                                    
-                                </section>
-
-                            </div>
-
-                            <div id="opc2" style="display:none">
-
-
-                                <div class="checks">
-                                
-                                    <input type="checkbox" name="tamanho" value="pequena" id="pequena">
-                                    <input type="checkbox" name="tamanho" value="media" id="media">
-                                    <input type="checkbox" name="tamanho" value="grande" id="grande">
-
-                                </div>
-
-                                <h1>DEFINA A BORDA!</h1>
-
-                                <div>
-                                    <select name="nbor" class="bordas">
-                                        <option selected value=" ">Nenhuma Borda</option>
-                                        <option value="Catupiri ">Borda de Catupiri</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-12">
-                                    <label id="titulo"><p>Observações:</p></label>
-                                </div>
-                                <div class="col-lg-12">
-
-                                <textarea id="entrada-text" class="entrada" placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7" name="obs"></textarea>
                                         
-                                        <input type="button" value="Adicionar" onclick="x3_conferir(2)">                                
-                                </div>
-
-                            </div>
-
-                            <div id="opc3" style="display:none">
-                                <h1>Pedidos de </h1>
-
-
-                                
-                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
-                                    <div class="bloco">
-                                        <img src="img1x/<?=$sabor1?>.png" class="pizza" alt="">
+    
                                     </div>
-
-                                    <div class="bloco">
-                                       
+    
+    
+                                    <div id="opc1">
+    
+                                        <h1>ESCOLHA AQUI OS SABORES!</h1>
+    
+    
+                                        <section class="mesa col-lg-6 col-sm-6 col-md-6 container clearfix">
+    
+                                        <div class="bandeja_toda">
+                                            
+                                            <div id='centro' class='centro x3'>
+                                                <img id='esquerdo' class='bandeja' src='img1x/tudo.png'>
+                        
+                                                <select onchange='x1_mudaFoto1(this.value)' name='nsab1' id='isab1' class='abs entrada-hidden bottom'>
+                                                    <optgroup>
+                                                        <option value=' ' style='display:none' selected></option>
+                                                        <option value='calabresa'>Calabresa</option>
+                                                        <option value='bacon'>Bacon</option>
+                                                        <option value='atum'>Atum</option>
+                                                        <option value='Frango_Catupiri'>Frango Catupiri</option>
+                                                    </optgroup>
+                        
+                                                </select>
+                                                
+                                                <select name='nsab2' id='isab2' style='display:none'>
+                                                    <optgroup>
+                                                        <option value=''></option>
+                                                    </optgroup>
+                                                </select>
+                        
+                                                <select name='nsab3' id='isab3' style='display:none'>
+                                                    <optgroup>
+                                                        <option value=''></option>
+                                                    </optgroup>
+                                                </select>
+                        
+                                                <figcaption>
+                                                    <p onclick='x1_aux()'>R$<span class='total_a_pagar' id='total_a_pagar'></span>.00</p>
+                                                </figcaption>
+                        
+                        
+                                            </div>
+    
+                                            <input class='bt' type='button' value='enviar' onclick='sair_bandeja(1)'>
+                                            <input id='ver_pedidos' class='bt confirm' type='button' value='Pedidos' onclick='sair_bandeja(2)'>
+    
+                                            
+                                        </div>
+    
+    
+                                            <!--BOTÃO DE PEDIR PIZZA, E VALOR DO PEDIDO -->
+                                            <div class="row">
+                                                <!--<input class="botao-pedir col-lg-6 col-md-6 col-sm-6 col-6" type="image" src="_imagens/confirmar.png"> -->
+    
+                                                <valor id="valor"class="col-lg-6 col-md-6 col-sm-6 col-6 right"><h2 id="valorhtml"></h2></valor>
+                                            </div>
+    
+    
+                                            
+                                        </section>
+    
+                                    </div>
+    
+                                    <div id="opc2" style="display:none">
+    
+    
+                                        <div class="checks">
+                                        
+                                            <input type="checkbox" name="tamanho" value="pequena" id="pequena">
+                                            <input type="checkbox" name="tamanho" value="media" id="media">
+                                            <input type="checkbox" name="tamanho" value="grande" id="grande">
+    
+                                        </div>
+    
+                                        <h1>DEFINA A BORDA!</h1>
+    
+                                        <div>
+                                            <select name="nbor" class="bordas">
+                                                <option selected value=" ">Nenhuma Borda</option>
+                                                <option value="Catupiri ">Borda de Catupiri</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <label id="titulo"><p>Observações:</p></label>
+                                        </div>
+                                        <div class="col-lg-12">
+    
+                                        <textarea id="entrada-text" class="entrada" placeholder="Dica: Sem cebola na de Calabresa e sem azeitona em todas." rows="7" name="obs"></textarea>
+                                                
+                                                <input type="button" value="Adicionar" onclick="x3_conferir(2)">                                
+                                        </div>
+    
+                                    </div>
+    
+                                    <div id="opc3" style="display:none">
+                                        <h1>Pedidos de </h1>
+    
+    
+                                        
+                                        <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                            <div class="bloco">
+                                                <img src="img1x/<?=$sabor1?>.png" class="pizza" alt="">
+                                            </div>
+    
+                                            <div class="bloco">
+                                            
+                                            </div>
+                                                    
+                                            <div class="bloco_a_direita">
+                                                <img style="height:50px" src="../img/remover.png" alt="" onclick="remover_pizza()">
+                                                <p>remover</p>
+                                            </div>
+    
+                                            <div class="bloco_a_direita">
+                                                <img style="height:50px" src="../img/editar.png" alt="" onclick="editar_pizza()">
+                                                <p>editar</p>
+                                            </div>
+                                        </div>
+    
+    
+                                        
+                                        <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                            <div class="bloco">
+                                                <img src="../img/bebidas/.png" class="pizza" alt="">
+                                            </div>
+    
+                                            <div class="bloco">
+                                            
+                                            </div>
+                                                    
+                                            <div class="bloco_a_direita">
+                                                <img style="height:50px" src="../img/remover.png" alt="" onclick="remover_bebida()">
+                                                <p>remover</p>
+                                            </div>
+    
+                                        </div>
+                                    
+                                            <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
+                                            <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
+                                            <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido()">
+    
+                                        </div>
+                                        
+                                    </div>
+    
+                                    <div id="opc4" style="display:none">
+                                        <div class="pedido bebidas col-lg-12 col-md-12 col-sm-12">
+    
+                                        <div class="bloco">
+                                                <img onclick="adicionarbeb('Coca_2lt')" src="../img/_bebidas/Coca_2lt.png" alt="">
+                                                <figcaption>
+                                                    <p>Coca-cola 2Lt</p>
+                                                </figcaption>
+                                            </div>
+                                            <div class="bloco">
+                                                <img onclick="adicionarbeb('Coca_600ml')" src="../img/_bebidas/Coca_600ml.png" alt="">
+                                                <figcaption>
+                                                    <p>Coca-cola 600ml</p>
+                                                </figcaption>
+                                            </div>
+                                            <div class="bloco">
+                                                <img onclick="adicionarbeb('Coca_lata')" src="../img/_bebidas/Coca_lata.png" alt="">
+                                                <figcaption>
+                                                    <p>Coca-cola Lata</p>
+                                                </figcaption>
+                                            </div>
+                                            <div class="bloco">
+                                                <img onclick="adicionarbeb('Guarana_2lt')" src="../img/_bebidas/Guarana_2lt.png" alt="">
+                                                <figcaption>
+                                                    <p>Guarana 2Lt</p>
+                                                </figcaption>
+                                            </div>
+                                            <div class="bloco">
+                                                <img onclick="adicionarbeb('Guarana_600ml')" src="../img/_bebidas/Guarana_600ml.png" alt="">
+                                                <figcaption>
+                                                    <p>Guarana 600ml</p>
+                                                </figcaption>
+                                            </div>
+                                            <div class="bloco">
+                                                <img onclick="adicionarbeb('Guarana_lata')" src="../img/_bebidas/Guarana_lata.png" alt="">
+                                                <figcaption>
+                                                    <p>Guarana Lata</p>
+                                                </figcaption>
+                                            </div>
+                                        </div>
                                     </div>
                                             
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../img/remover.png" alt="" onclick="remover_pizza()">
-                                        <p>remover</p>
-                                    </div>
-
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../img/editar.png" alt="" onclick="editar_pizza()">
-                                        <p>editar</p>
-                                    </div>
+                                    <input type="text" id="ver" name="ver" style="display:none" value="">
+                                    <input type="text" id="func" name="func" style="display:none" value="">
+                                    <input type="text" id="valor_func" name="valor_func" style="display:none" value="">
                                 </div>
-
-
-                                
-                                <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
-                                    <div class="bloco">
-                                        <img src="../img/bebidas/.png" class="pizza" alt="">
-                                    </div>
-
-                                    <div class="bloco">
-                                       
-                                    </div>
-                                            
-                                    <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../img/remover.png" alt="" onclick="remover_bebida()">
-                                        <p>remover</p>
-                                    </div>
-
-                                </div>
-                               
-                                    <input class="bt" type="button" value="Pedir mais" onclick="pedir_mais()">
-                                    <input class="bt" type="button" value="Bebidas" onclick="bebidas()">
-                                    <input class="bt confirm" type="button" value="Finalizar pedido" onclick="finalizar_pedido()">
-
-                                </div>
-                                
-                            </div>
-
-                            <div id="opc4" style="display:none">
-                                <div class="pedido bebidas col-lg-12 col-md-12 col-sm-12">
-
-                                <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_2lt')" src="../img/_bebidas/Coca_2lt.png" alt="">
-                                        <figcaption>
-                                            <p>Coca-cola 2Lt</p>
-                                        </figcaption>
-                                    </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_600ml')" src="../img/_bebidas/Coca_600ml.png" alt="">
-                                        <figcaption>
-                                            <p>Coca-cola 600ml</p>
-                                        </figcaption>
-                                    </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_lata')" src="../img/_bebidas/Coca_lata.png" alt="">
-                                        <figcaption>
-                                            <p>Coca-cola Lata</p>
-                                        </figcaption>
-                                    </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_2lt')" src="../img/_bebidas/Guarana_2lt.png" alt="">
-                                        <figcaption>
-                                            <p>Guarana 2Lt</p>
-                                        </figcaption>
-                                    </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_600ml')" src="../img/_bebidas/Guarana_600ml.png" alt="">
-                                        <figcaption>
-                                            <p>Guarana 600ml</p>
-                                        </figcaption>
-                                    </div>
-                                    <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_lata')" src="../img/_bebidas/Guarana_lata.png" alt="">
-                                        <figcaption>
-                                            <p>Guarana Lata</p>
-                                        </figcaption>
-                                    </div>
-                                </div>
-                            </div>
-                                    
-                            <input type="text" id="ver" name="ver" style="display:none" value="">
-                            <input type="text" id="func" name="func" style="display:none" value="">
-                            <input type="text" id="valor_func" name="valor_func" style="display:none" value="">
 
                             </div>
 

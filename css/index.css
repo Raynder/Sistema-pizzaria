@@ -13,7 +13,7 @@ a.nav-link.aa {
     width: 30%;
 }
 h1{
-    font-size: 40pt;
+    font-size: 32pt;
     font-family: 'minhafont';
     font-weight: 900;
     word-spacing: 6px;
@@ -47,4 +47,9 @@ form {
     font-weight: normal;
     font-style: normal;
 
+}
+.conteudo{
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
 }
