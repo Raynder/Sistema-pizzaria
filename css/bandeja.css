@@ -3,6 +3,9 @@
     position: relative;
     float: left;
 }
+select#isab1 {
+    height: 588px;
+}
 .direito{
     float: right;
     top: 25px;
@@ -21,7 +24,7 @@
 .centro img{
     left: 0;
     width: 100%;
-    opacity: 0;
+    opacity: 1;
 }
 .x2 select{
     width: 50%;
@@ -41,6 +44,7 @@
     margin: 0 20px 0 20px
 }
 form{
+    height: 1300px;
     position: relative;
 }
 .checks input {

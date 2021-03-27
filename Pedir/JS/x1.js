@@ -1,6 +1,6 @@
 function x1_mudaFoto1(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
     console.log(foto)
-    x = "_img1x/"+foto+".png";
+    x = "img1x/"+foto+".png";
     document.getElementById("esquerdo").src = x;
 }
 function x1_aux(situacao){
