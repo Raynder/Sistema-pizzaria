@@ -43,9 +43,6 @@
 form{
     position: relative;
 }
-#band{
-    left: -800px;
-}
 .checks input {
     position: relative;
     width: 1px;
