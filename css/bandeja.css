@@ -35,9 +35,7 @@ select#isab1 {
 .bandeja_toda img{
     position: absolute;
 }
-.tamanhos{
-    margin: 40px;
-}
+
 .tamanhos img{
     width: 20%;
     height: 20%;
@@ -115,4 +113,12 @@ input#desconto {
     left: 50%;
     position: relative;
     transform: translateX(-50%);
+}
+.lin {
+    height: 100%;
+    background: transparent;
+    border: 5px solid #d4950f;
+    border-radius: 180px;
+    width: 90%;
+    margin: 2% 5% 0 5%;
 }

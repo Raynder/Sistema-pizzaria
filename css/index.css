@@ -2,7 +2,7 @@ nav{
     padding: 10px;
     color: white;
     font-size: 16pt;
-    background-color: #713801;
+    background-color: rgb(71 71 71);
 }
 a{
     width: 20%;
@@ -13,25 +13,38 @@ a.nav-link.aa {
     width: 30%;
 }
 h1{
-    font-family: 'Abril Fatface', cursive;
+    font-size: 40pt;
+    font-family: 'minhafont';
+    font-weight: 900;
+    word-spacing: 6px;
+    color: #d4950f;
 }
-body{
-    background: linear-gradient(to left,#935213, #ffa549, #935213);
+body {
     background-size: 1000px;
+    background-color: #cacaca;
 }
 footer {
     position: absolute;
-    background-color: rgb(113 56 1);
+    background-color: rgb(71 71 71);
     color: white;
     height: 80px;
     font-size: 16pt;
     bottom: -10px;
     width: 100%;
-}form {
+}
+form {
     top: 20px;
     padding: 30px 0px 80px 0px;
-    margin: 40px;
-    background-color: #713801;
-    border-radius: 75px;
+    margin: 80px;
+    border-radius: 180px;
     color: #fff;
+    background: radial-gradient(transparent -90%,black 100%);
+}
+@font-face {
+    font-family: 'minhafont';
+    src: url('fonts/gilroy-light-webfont.woff2') format('woff2'),
+         url('fonts/ilroy-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
