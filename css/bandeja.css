@@ -51,10 +51,6 @@ form{
     margin: 0;
     padding: 0;
 }
-select.bordas {
-    padding: 20px;
-    border-radius: 30px;
-}
 
 img.pizza {
     width: 60%;
@@ -84,7 +80,7 @@ img.pizza {
 }
 .bt{
     border-radius: 15px;
-    width: 30%;
+    width: 45%;
     background-image: linear-gradient(45deg, #dcab13, transparent);
     margin: 1%;
 }
@@ -121,4 +117,20 @@ input#desconto {
     border-radius: 180px;
     width: 90%;
     margin: 2% 5% 0 5%;
+}
+textarea#entrada-text {
+    font-size: 16pt;
+}
+.btn-primary {
+    width: 100%;
+    background-color: #ce910f;
+    border-color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.enviar {
+    background-color: green;
+    width: 25%;
+    left: 2%;
+    position: absolute;
 }
