@@ -57,6 +57,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/bandeja.css">
         <link rel="stylesheet" type="text/css" href="../css/index.css">
+        <link rel="stylesheet" type="text/css" href="../css/tougle.css">
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="../JS/sweetAlert.js"></script>
@@ -175,7 +176,7 @@
                                             
                                             
                                             </div>
-                                            <input class='bt' type='button' value='enviar' onclick='x3_conferir(1)'>
+                                            <input class='bt' type='button' value='Avançar' onclick='x3_conferir(1)'>
                                             <input id='ver_pedidos' class='bt confirm' type='button' value='Pedidos' onclick='sair_bandeja(2)'>
 
                                             
@@ -231,6 +232,53 @@
                                         </div>
 
                                     </div>
+                                </div>
+
+                                <div id="ingredientes" style="display:none">
+                                    <h1>Pizza de Calabresa</h1>
+
+                                    <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                        <div class="bloco">
+                                            <h2 class='sem_margin'>Calabresa</h2>
+                                        </div>
+                                        
+                                        <div class="bloco_a_direita">
+                                            <input type="checkbox" class="tougle" name="" id="">
+                                        </div>
+                                    </div>
+
+                                    <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                        <div class="bloco">
+                                            <h2 class='sem_margin'>Mussarela</h2>
+                                        </div>
+                                        
+                                        <div class="bloco_a_direita">
+                                            <input type="checkbox" class="tougle" name="" id="">
+                                        </div>
+                                    </div>
+
+                                    <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                        <div class="bloco">
+                                            <h2 class='sem_margin'>Cebola</h2>
+                                        </div>
+                                        
+                                        <div class="bloco_a_direita">
+                                            <input type="checkbox" class="tougle" name="" id="">
+                                        </div>
+                                    </div>
+
+                                    <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
+                                        <div class="bloco">
+                                            <h2 class='sem_margin'>Molho de tomate</h2>
+                                        </div>
+                                        
+                                        <div class="bloco_a_direita">
+                                            <input type="checkbox" class="tougle" name="" id="">
+                                        </div>
+                                    </div>
+
+                                    <input class='bt' type='button' value='Avançar' onclick='sair_bandeja(1)'>
+
                                 </div>
 
                                         <div id="opc3" style="display:none">

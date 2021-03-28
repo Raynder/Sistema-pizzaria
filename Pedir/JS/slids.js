@@ -40,6 +40,7 @@ function sair_bandeja(pos){
                 opc2.style.display = "none"
                 opc3.style.display = "none"
                 opc4.style.display = "none"
+                ingredientes.style.display = "none"
                 tamanhos.style.display = "none"
                 sabores.style.display = "none"
                 if(pos == 0){
@@ -48,7 +49,6 @@ function sair_bandeja(pos){
                     x3_aux(1)
                 }
                 if(pos == 1){
-                    x3_aux(2)
                     tamanhos.style.display = "block"
                     opc2.style.display = "block"
                 }
@@ -57,6 +57,10 @@ function sair_bandeja(pos){
                 }
                 if(pos == 3){
                     opc4.style.display = "block"
+                }
+                if(pos == 4){
+                    ingredientes.style.display = "block"
+                    x3_aux(2)
                 }
                 intervalo2 = setInterval(function(){
                     if(x < 0){

@@ -128,7 +128,7 @@ function x3_conferir(pos){
         sabor3 = document.getElementById('isab3').value
 
         if(sabor1 != " " && sabor2 != " " && sabor3 != " "){
-            sair_bandeja(1)
+            sair_bandeja(4)
         }
         else{
             alert("Escolha todos os sabores.")
