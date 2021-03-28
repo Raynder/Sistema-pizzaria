@@ -152,7 +152,6 @@ if(isset($_POST['desconto_removido'])){
                                 <span id="result"></span>
                                 <input type="text" style="display:none" id="slide" value="aguardando">
                             </div>
-
                             
                             <div id="opc4" style="display:none">
                                 <form action="" method="post" id="pagamento">
