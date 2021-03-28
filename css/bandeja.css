@@ -65,7 +65,7 @@ img.pizza {
 }
 .pizzas {
     margin-bottom: 2%;
-    border: solid #d67a1c8c 8px;
+    border-bottom: solid #d4950f 4px;
 }
 .bebidas .bloco{
     margin: 2%;

@@ -35,12 +35,12 @@ function x1_aux(situacao){
 
 function x2_mudaFoto1(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
     console.log(foto)
-    x = "_img2x/"+foto+"1.png";
+    x = "img2x/"+foto+"1.png";
     document.getElementById("esquerdo").src = x;
 }
 function x2_mudaFoto2(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
     console.log(foto)
-    x = "_img2x/"+foto+"2.png";
+    x = "img2x/"+foto+"2.png";
     document.getElementById("direito").src = x;
 }
 function x2_aux(situacao){
@@ -76,17 +76,17 @@ function x2_aux(situacao){
 
 function x3_mudaFoto1(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
 
-    var x = "_img3x/"+foto+"1.png";
+    var x = "img3x/"+foto+"1.png";
     document.getElementById("direito").src = x;
 }
 function x3_mudaFoto2(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
 
-    var x = "_img3x/"+foto+"2.png";
+    var x = "img3x/"+foto+"2.png";
     document.getElementById("baixo").src = x;
 }
 function x3_mudaFoto3(foto) { /* Essa função faz a mudança da imagem que aparece na pizza do lado esquerdo*/
 
-    var x = "_img3x/"+foto+"3.png";
+    var x = "img3x/"+foto+"3.png";
     document.getElementById("esquerdo").src = x;
 }
 function x3_aux(situacao){

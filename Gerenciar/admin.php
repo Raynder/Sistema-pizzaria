@@ -21,16 +21,16 @@ else{
 	<head>
 		<meta charset="utf-8">
 		<title>ERP</title>
-		<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../_css/style.css">
-		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
-        <link rel="stylesheet" type="text/css" href="../_css/index.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/bandeja.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
         
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="_JS/sweetAlert.js"></script>
+        <script src="JS/sweetAlert.js"></script>
 
-        <script src="_JS/slids.js" type="text/javascript"></script>
-        <script src="_JS/modificar.js" type="text/javascript"></script>
+        <script src="JS/slids.js" type="text/javascript"></script>
+        <script src="JS/modificar.js" type="text/javascript"></script>
         
 	</head>
 
@@ -44,7 +44,7 @@ else{
 	<body>
         <nav>
             <div class="row" id="">
-                <a href="admin.php"><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
+                <a href="admin.php"><img src="../img/icone.png" class="icone" width="80" height="60"></a>
                 <?php
                     if($_SESSION['nome'] == "admin21"){
                         $asp = '"';

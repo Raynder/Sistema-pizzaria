@@ -11,7 +11,7 @@
             case 1:
                 echo(
                     "<div id='centro' class='centro x3'>
-                        <img id='esquerdo' class='bandeja' src='_img1x/tudo.png'>
+                        <img id='esquerdo' class='bandeja' src='img1x/tudo.png'>
 
                         <select onchange='x1_mudaFoto1(this.value)' name='nsab1' id='isab1' class='abs entrada-hidden bottom'>
                             <optgroup>
@@ -49,8 +49,8 @@
                 echo(
                     "<div id='centro' class='centro x2'>
                     <div class='tee'>
-                        <img id='direito' class='bandeja' src='_img2x/direito.png'>
-                        <img id='esquerdo' class='bandeja' src='_img2x/esquerdo.png'>
+                        <img id='direito' class='bandeja' src='img2x/direito.png'>
+                        <img id='esquerdo' class='bandeja' src='img2x/esquerdo.png'>
                     </div>
 
                     <select onchange='x2_mudaFoto1(this.value)' name='nsab1' id='isab1' class='entrada-hidden direito2x'>
@@ -93,10 +93,10 @@
             case 3:
                 echo(
                     "<div id='centro' class='centro x3'>
-                    <img id='toda_bandeja' class='bandeja' src='../_img/tudo.png'>
-                        <img id='direito' class='bandeja' src='../_img/direito.png'>
-                        <img id='esquerdo' class='bandeja' src='../_img/esquerdo.png'>
-                        <img id='baixo' class='bandeja' src='../_img/baixo.png'>
+                    <img id='toda_bandeja' class='bandeja' src='../img/tudo.png'>
+                        <img id='direito' class='bandeja' src='../img/direito.png'>
+                        <img id='esquerdo' class='bandeja' src='../img/esquerdo.png'>
+                        <img id='baixo' class='bandeja' src='../img/baixo.png'>
 
                         <select onchange='x3_mudaFoto3(this.value)' name='nsab1' id='isab1' class='abs entrada-hidden esquerdo'>
                             <optgroup>

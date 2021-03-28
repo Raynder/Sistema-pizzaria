@@ -16,10 +16,10 @@ else{
 	<head>
 		<meta charset="utf-8">
 		<title>ERP</title>
-		<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../_css/style.css">
-		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
-        <link rel="stylesheet" type="text/css" href="../_css/index.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/bandeja.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
         
         <script src="jquery.2.1.3.min.js"></script>
 
@@ -62,7 +62,7 @@ else{
 	<body>
         <nav>
             <div class="row" id="">
-                <a href=""><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
+                <a href=""><img src="../img/icone.png" class="icone" width="80" height="60"></a>
             </div>
         </nav>
 

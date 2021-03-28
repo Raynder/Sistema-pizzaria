@@ -35,13 +35,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>ERP</title>
-		<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../_css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="../_JS/sweetAlert.js"></script>
+        <script src="../JS/sweetAlert.js"></script>
 	</head>
 
     <style>
@@ -154,7 +154,7 @@
 	<body>
     <div id="fundo-externo">
         <div id="fundo" onclick="alerta()">
-            <img src="../_img/fundo.png" alt="" />
+            <img src="../img/fundo.png" alt="" />
         </div>
     </div>
         <div id="site" class="container-fluid text-center">

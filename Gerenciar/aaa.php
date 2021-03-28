@@ -77,18 +77,18 @@ else{
 	<head>
 		<meta charset="utf-8">
 		<title>ERP</title>
-		<link rel="stylesheet" type="text/css" href="../_css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../_css/style.css">
-		<link rel="stylesheet" type="text/css" href="../_css/bandeja.css">
-        <link rel="stylesheet" type="text/css" href="../_css/index.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/bandeja.css">
+        <link rel="stylesheet" type="text/css" href="../css/index.css">
         
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <script src="_JS/sweetAlert.js"></script>
+        <script src="JS/sweetAlert.js"></script>
 
-        <script src="_JS/x1.js" type="text/javascript"></script>
-        <script src="_JS/auxiliar.js" type="text/javascript"></script>
-        <script src="_JS/modificar.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../_JS/funcoes.js"></script>
+        <script src="JS/x1.js" type="text/javascript"></script>
+        <script src="JS/auxiliar.js" type="text/javascript"></script>
+        <script src="JS/modificar.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../JS/funcoes.js"></script>
 	</head>
 
     <style>
@@ -114,7 +114,7 @@ else{
 	<body>
         <nav>
             <div class="row" id="">
-                <a href="index.php"><img src="../_img/icone.png" class="icone" width="80" height="60"></a>
+                <a href="index.php"><img src="../img/icone.png" class="icone" width="80" height="60"></a>
                 <?php
                     if($_SESSION['nome'] == "admin21"){
                         echo("<a href='1sabores.php' class='nav-link'>NOVO PEDIDO</a>
@@ -135,9 +135,9 @@ else{
                             
                             <div class="tamanhos" id="sabores">
                                 <h1>QUANTOS SABORES?</h1>
-                                <a href="1sabores.php"><img src="../_img/sabor1x.png" alt=""></a>
-                                <a href="2sabores.php"><img src="../_img/sabor2x.png" alt=""></a>
-                                <a href="3sabores.php"><img src="../_img/sabor3x.png" alt=""></a>
+                                <a href="1sabores.php"><img src="../img/sabor1x.png" alt=""></a>
+                                <a href="2sabores.php"><img src="../img/sabor2x.png" alt=""></a>
+                                <a href="3sabores.php"><img src="../img/sabor3x.png" alt=""></a>
 
                             </div>
 
@@ -145,21 +145,21 @@ else{
                                 <h1>TAMANHO DA PIZZA?</h1>
 
                                     <div onclick="selec('pequena')" class="imgem im1 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="../_img/sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
+                                        <img src="../img/sabor1x.png" alt="pizza pequena" class="imgt" id="idpequena">
                                         <figcaption>
                                             <p>Pequena</p>
                                         </figcaption>
                                     </div>
 
                                     <div onclick="selec('media')" class="imgem im2 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="../_img/sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
+                                        <img src="../img/sabor1x.png" alt="pizza media"  class="imgt" id="idmedia">
                                         <figcaption>
                                             <p>Media</p>
                                         </figcaption>
                                     </div>
 
                                     <div onclick="selec('grande')" class="imgem im3 col-lg-4 col-md-4 col-sm-4 col-4">
-                                        <img src="../_img/sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
+                                        <img src="../img/sabor1x.png" alt="pizza grande" class="imgt" id="idgrande">
                                         <figcaption>
                                             <p>Grande</p>
                                         </figcaption>
@@ -179,7 +179,7 @@ else{
 
                                 <div class="bandeja_toda">
                                     <div class="centro x3">
-                                        <img id="esquerdo" class="bandeja" src="_img1x/tudo.png">
+                                        <img id="esquerdo" class="bandeja" src="img1x/tudo.png">
 
                                         <select onchange="mudaFoto1(this.value)" name="nsab1" id="isab1" class="abs entrada-hidden bottom">
                                             <optgroup>
@@ -284,7 +284,7 @@ else{
                                 
                                 <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
                                     <div class="bloco">
-                                        <img src="_img1x/<?=$sabor1?>.png" class="pizza" alt="">
+                                        <img src="img1x/<?=$sabor1?>.png" class="pizza" alt="">
                                     </div>
 
                                     <div class="bloco">
@@ -322,12 +322,12 @@ else{
                                     </div>
                                             
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_pizza(<?=$id_pizza;?>)">
+                                        <img style="height:50px" src="../img/remover.png" alt="" onclick="remover_pizza(<?=$id_pizza;?>)">
                                         <p>remover</p>
                                     </div>
 
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/editar.png" alt="" onclick="editar_pizza(<?=$id_pizza;?>)">
+                                        <img style="height:50px" src="../img/editar.png" alt="" onclick="editar_pizza(<?=$id_pizza;?>)">
                                         <p>editar</p>
                                     </div>
                                 </div>
@@ -345,7 +345,7 @@ else{
                                 
                                 <div class="pedido pizzas col-lg-12 col-md-12 col-sm-12">
                                     <div class="bloco">
-                                        <img src="../_img/_bebidas/<?=$beb['bebida'];?>.png" class="pizza" alt="">
+                                        <img src="../img/bebidas/<?=$beb['bebida'];?>.png" class="pizza" alt="">
                                     </div>
 
                                     <div class="bloco">
@@ -358,7 +358,7 @@ else{
                                     </div>
                                             
                                     <div class="bloco_a_direita">
-                                        <img style="height:50px" src="../_img/remover.png" alt="" onclick="remover_bebida(<?=$id_beb;?>)">
+                                        <img style="height:50px" src="../img/remover.png" alt="" onclick="remover_bebida(<?=$id_beb;?>)">
                                         <p>remover</p>
                                     </div>
 
@@ -380,37 +380,37 @@ else{
                                 <div class="pedido bebidas col-lg-12 col-md-12 col-sm-12">
 
                                 <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_2lt')" src="../_img/_bebidas/Coca_2lt.png" alt="">
+                                        <img onclick="adicionarbeb('Coca_2lt')" src="../img/bebidas/Coca_2lt.png" alt="">
                                         <figcaption>
                                             <p>Coca-cola 2Lt</p>
                                         </figcaption>
                                     </div>
                                     <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_600ml')" src="../_img/_bebidas/Coca_600ml.png" alt="">
+                                        <img onclick="adicionarbeb('Coca_600ml')" src="../img/bebidas/Coca_600ml.png" alt="">
                                         <figcaption>
                                             <p>Coca-cola 600ml</p>
                                         </figcaption>
                                     </div>
                                     <div class="bloco">
-                                        <img onclick="adicionarbeb('Coca_lata')" src="../_img/_bebidas/Coca_lata.png" alt="">
+                                        <img onclick="adicionarbeb('Coca_lata')" src="../img/bebidas/Coca_lata.png" alt="">
                                         <figcaption>
                                             <p>Coca-cola Lata</p>
                                         </figcaption>
                                     </div>
                                     <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_2lt')" src="../_img/_bebidas/Guarana_2lt.png" alt="">
+                                        <img onclick="adicionarbeb('Guarana_2lt')" src="../img/bebidas/Guarana_2lt.png" alt="">
                                         <figcaption>
                                             <p>Guarana 2Lt</p>
                                         </figcaption>
                                     </div>
                                     <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_600ml')" src="../_img/_bebidas/Guarana_600ml.png" alt="">
+                                        <img onclick="adicionarbeb('Guarana_600ml')" src="../img/bebidas/Guarana_600ml.png" alt="">
                                         <figcaption>
                                             <p>Guarana 600ml</p>
                                         </figcaption>
                                     </div>
                                     <div class="bloco">
-                                        <img onclick="adicionarbeb('Guarana_lata')" src="../_img/_bebidas/Guarana_lata.png" alt="">
+                                        <img onclick="adicionarbeb('Guarana_lata')" src="../img/bebidas/Guarana_lata.png" alt="">
                                         <figcaption>
                                             <p>Guarana Lata</p>
                                         </figcaption>
@@ -433,7 +433,7 @@ else{
 
         </div>
         
-        <script src="_JS/slids.js" type="text/javascript"></script>
+        <script src="JS/slids.js" type="text/javascript"></script>
         <?php
             if(isset($_POST['ver'])){
                 $f = $_POST['ver'];

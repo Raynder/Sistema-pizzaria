@@ -45,7 +45,7 @@
         
             echo("<div class=$asp pedido pizzas col-lg-12 col-md-12 col-sm-12$asp >
                 <div class=$asp bloco bloco_img$asp >
-                    <img src=$asp _img/cliente.png$asp  class=$asp pizza$asp  alt=$asp $asp >
+                    <img src=$asp img/cliente.png$asp  class=$asp pizza$asp  alt=$asp $asp >
                 </div>
         
                 <div class=$asp bloco$asp >
@@ -56,19 +56,19 @@
                 </div>
                         
                 <div class=$asp bloco_a_direita$asp >
-                    <img style=$asp height:50px$asp  src=$asp ../_img/remover.png$asp  alt=$asp $asp  onclick=$asp remover_pedido('$nomeCliente')$asp >
+                    <img style=$asp height:50px$asp  src=$asp ../img/remover.png$asp  alt=$asp $asp  onclick=$asp remover_pedido('$nomeCliente')$asp >
                     <p>remover</p>
                 </div>
         
                 <div class=$asp bloco_a_direita$asp >
-                    <img style=$asp height:50px$asp  src=$asp ../_img/editar.png$asp  alt=$asp $asp  onclick=$asp editar_pedido('$nomeCliente')$asp >
+                    <img style=$asp height:50px$asp  src=$asp ../img/editar.png$asp  alt=$asp $asp  onclick=$asp editar_pedido('$nomeCliente')$asp >
                     <p>editar</p>
                 </div>
         
                 <div class=$asp bloco_a_direita$asp >
                 
-                    <script src=$asp _JS/modificar.js$asp  type=$asp text/javascript$asp ></script>
-                    <img style=$asp height:50px$asp  src=$asp _img/relogio.png$asp  alt=$asp $asp  onclick=$asp $func_js('$nomeCliente'");
+                    <script src=$asp JS/modificar.js$asp  type=$asp text/javascript$asp ></script>
+                    <img style=$asp height:50px$asp  src=$asp img/relogio.png$asp  alt=$asp $asp  onclick=$asp $func_js('$nomeCliente'");
                     if($func_js == 'finaliza'){
                         echo(",");
                         echo($gerir->calc_total($nomeCliente));
@@ -77,7 +77,7 @@
                     echo(")$asp >
                     <p>$nome_js</p>
                     
-                    <script src=$asp _JS/modificar.js$asp  type=$asp text/javascript$asp ></script>
+                    <script src=$asp JS/modificar.js$asp  type=$asp text/javascript$asp ></script>
                 </div>
             </div>");
             

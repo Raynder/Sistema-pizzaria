@@ -21,7 +21,7 @@
             echo("
                     <div class=$asp pedido pizzas col-lg-12 col-md-12 col-sm-12$asp >
                 <div class=$asp bloco$asp >
-                    <img src=$asp _img1x/$sabor1.png$asp  class=$asp pizza$asp  alt=$asp $asp >
+                    <img src=$asp img1x/$sabor1.png$asp  class=$asp pizza$asp  alt=$asp $asp >
                 </div>
             
                 <div class=$asp bloco$asp >
@@ -58,7 +58,7 @@
             echo("
             <div class=$asp pedido pizzas col-lg-12 col-md-12 col-sm-12$asp >
                 <div class=$asp bloco$asp >
-                    <img src=$asp ../_img/_bebidas/$nomebeb.png$asp  class=$asp pizza$asp  alt=$asp $asp >
+                    <img src=$asp ../img/bebidas/$nomebeb.png$asp  class=$asp pizza$asp  alt=$asp $asp >
                 </div>
 
                 <div class=$asp bloco$asp >
