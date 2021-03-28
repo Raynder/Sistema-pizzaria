@@ -106,7 +106,7 @@ if(isset($_POST['desconto_removido'])){
         .contexto {
             min-height: 100%;
             /* equal to footer height */
-            margin-bottom: -142px; 
+            margin-bottom: -22px; 
         }
         .contexto:after {
             content: "";
