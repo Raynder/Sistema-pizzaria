@@ -1,47 +1,3 @@
-<?php
-require_once "../config.php";
-session_start();
-$total_a_pagar = 0;
-
-
-if(isset($_POST['desconto']) && !empty($_POST['desconto'])){
-    $gerir = new Gerente();
-    $cliente_pagador = $_POST['cliente_pagador'];
-    $total_calc = $gerir->calc_total($cliente_pagador);
-    $desconto = $_POST['desconto'];
-    $resultado = ($total_calc / 100) * $desconto;
-    $gerir->alterar_desconto($resultado, $cliente_pagador);
-}
-
-if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
-    $gerir = new Gerente();
-    if($_SESSION['user'] == "admin"){
-        if(isset($_POST['acao']) && !empty($_POST['acao'])){
-            $nomePedido = $_POST['cliente_acao'];
-            $acao = $_POST['acao'];
-            $gerir->$acao($nomePedido);
-        }
-    }
-    else{
-        header("location:../pedir/index.php");
-    }
-    $_SESSION['tot'] = Count($gerir->mostrar_aguardando());
-}
-else{
-    header("location:../pedir/index.php");
-}
-if(isset($_POST['apagar'])){ 
-    $nome_apagar = $_POST['apagar'];
-    $gerir = new Gerente();
-    $gerir->remover_pedido($nome_apagar);
-}
-if(isset($_POST['desconto_removido'])){ 
-    $remov = $_POST['desconto_removido'];
-    $gerir = new Gerente();
-    $gerir->remover_desconto($remov);
-}
-
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -57,38 +13,7 @@ if(isset($_POST['desconto_removido'])){
         <script src="JS/modificar.js" type="text/javascript"></script>
         <script src="JS/alertPag.js" type="text/javascript"></script>
 
-        <script>
-
-            setInterval(function(){
-                var slide = document.getElementById('slide').value
-                mostrar(slide, 1)
-            },5000)
-
-            function mostrar(part){
-                ajaxLoad('aguardando', 'result')
-                ajaxLoad('preparando', 'result2')
-                ajaxLoad('pronto', 'result3')
-                
-            }
-
-            function ajaxLoad(part, idElement) {
-                $.ajax
-                ({
-                    type: 'POST',
-                    dataType: 'html',
-                    url: 'att_pedidos/mostrar.php',
-
-                    data: {part: part},
-                    success: function(msg){
-                        $('#'+idElement).html(msg);
-                    }
-                });
-            }
-            
-            function play(){
-                document.getElementById('audio').play()
-            }    
-        </script>
+       
         
 	</head>
 
@@ -142,15 +67,7 @@ if(isset($_POST['desconto_removido'])){
         <nav>
             <div class="row" id="">
                 <a href="admin.php"><img src="../img/icone.png" class="icone" width="80" height="60"></a>
-                <?php
-                    if($_SESSION['user'] == "admin"){
-                        $asp = '"';
-                        echo("<a href='../pedir/1sabores.php' class='nav-link'>NOVO PEDIDO</a>
-                        <a onclick=$asp sair_bandeja('aguardando',0)$asp class='nav-link'>PEDIDOS</a>
-                        <a onclick=$asp sair_bandeja('preparando',0)$asp  class='nav-link'>PREPARANDO</a>
-                        <a onclick=$asp sair_bandeja('pronto',0)$asp  class='nav-link'>PRONTOS</a>");
-                    }
-                ?>
+              
             </div>
         </nav>
 
@@ -241,45 +158,6 @@ if(isset($_POST['desconto_removido'])){
                             </div> -->
 
                             
-                            <?php
-                                $test = 0;
-                                if(isset($des) && $des > 0){
-                                    echo("<script>document.getElementById('desconto').disabled = true</script>");
-                                }
-                                if(isset($_POST['valor_din']) && !empty($_POST['valor_din'])){
-                                    $cliente_pagador = $_POST['cliente_pagador'];
-                                    $resul = $gerir->pg_dinheiro($_POST['valor_din'],$cliente_pagador);
-                                    if($resul == 0){
-                                        echo("<script>pago()</script>");
-                                        echo("<script>window.location.href = 'http://localhost/Sistema-pizzaria/gerenciar/' </script>");
-                                    }
-                                    else{
-                                        $total_calc = $gerir->calc_total($cliente_pagador);
-                                        echo("<script>resto()</script>");
-                                        echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
-                                    }
-                                    $test = 3;
-                                }
-                                if(isset($_POST['valor_cart']) && !empty($_POST['valor_cart'])){
-                                    $cliente_pagador = $_POST['cliente_pagador'];
-                                    $resul = $gerir->pg_cartao($_POST['valor_cart'],$cliente_pagador);
-                                    if($resul == 0){
-                                        echo("<script>pago()</script>");
-                                        echo("<script>window.location.href = 'http://localhost/Sistema-pizzaria/gerenciar/' </script>");
-                                    }
-                                    else{
-                                        $total_calc = $gerir->calc_total($cliente_pagador);
-                                        echo("<script>resto()</script>");
-                                        echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
-                                    }
-                                    $test = 3;
-                                }
-                                if(isset($_POST['desconto_removido']) && !empty($_POST['desconto_removido'])){
-                                    $cliente_pagador = $_POST['desconto_removido'];
-                                    $total_calc = $gerir->calc_total($cliente_pagador);
-                                    echo("<script>finaliza('$cliente_pagador',$total_calc, 1)</script>");
-                                }
-                            ?>
                             <script>
                                 window.onload = mostrar(0, 0)
                             </script>
@@ -314,22 +192,6 @@ if(isset($_POST['desconto_removido'])){
     
         </script>
 
-        <?php
-            if(isset($_SESSION['resultado']) && !empty($_SESSION['resultado'])){
-                if($_SESSION['resultado'] == 'concluido'){
-                    echo("<script>resto()</script>");
-                    unset($_SESSION['resultado']);
-                }
-            }
-            if(isset($_POST['acao']) && !empty($_POST['acao'])){
-                if($_POST['acao'] == 'preparar'){
-                    echo("<script>muda(1)</script>");
-                }
-                if($_POST['acao'] == 'terminar'){
-                    echo("<script>muda(2)</script>");
-                }
-            }
-        ?>
         
 	</body>
 </html>
