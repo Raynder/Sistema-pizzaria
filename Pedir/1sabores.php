@@ -461,6 +461,7 @@
                     $iniciar_aux = 2;
                 }
             }
+            //echo("<script>alert('location:index.php?resultado=concluido')</script>");
         ?>
         <script>
             window.onload = iniciar(<?=$iniciar_aux;?>)
