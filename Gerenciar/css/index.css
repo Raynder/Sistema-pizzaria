@@ -1,0 +1,51 @@
+nav{
+    padding: 10px;
+    color: white;
+    font-size: 16pt;
+    background-color: rgb(71 71 71);
+}
+a{
+    width: 20%;
+    color: white;
+    text-align: center;
+}
+a.nav-link.aa {
+    width: 30%;
+}
+h1{
+    font-size: 32pt;
+    font-family: 'minhafont';
+    font-weight: 900;
+    word-spacing: 6px;
+    color: #d4950f;
+}
+body {
+    background-size: 1000px;
+    background-color: #cacaca;
+}
+footer {
+    position: absolute;
+    background-color: rgb(71 71 71);
+    color: white;
+    height: 80px;
+    font-size: 16pt;
+    bottom: -10px;
+    width: 100%;
+}
+form {
+    color: #fff;
+    background: radial-gradient(transparent -90%,black 100%);
+}
+@font-face {
+    font-family: 'minhafont';
+    src: url('fonts/gilroy-light-webfont.woff2') format('woff2'),
+         url('fonts/ilroy-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.conteudo{
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
+}

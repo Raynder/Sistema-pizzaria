@@ -132,18 +132,9 @@ if(isset($_POST['desconto_removido'])){
             width: 31%;
             float: left;
         }
-        
         .bloco h1{
             font-size: 16pt;
             border-bottom: solid 1px #000000d4;
-            margin-bottom: 0px;
-        }
-        td {
-            width: 1%;
-            font-weight: bold;
-        }
-        tr{
-            margin-top: 10px;
         }
     </style>
 
@@ -186,38 +177,8 @@ if(isset($_POST['desconto_removido'])){
                         
                             <div id="opc1" class="bloco" style="display:block">
                                 <h1>FILA DE PEDIDOS</h1>
+                                
 
-                                <table >
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>Mesa</td>
-                                        <td>Itens</td>
-                                        <td>SubTotal</td>
-                                    </tr>
-                                    <tr>
-                                        <td>224</td>
-                                        <td>4</td>
-                                        <td>2</td>
-                                        <td>30,00</td>
-                                    </tr>
-                                    </tr>
-                                    <tr>
-                                        <td>215</td>
-                                        <td>8</td>
-                                        <td>7</td>
-                                        <td>120,00</td>
-                                    </tr>
-                                    </tr>
-                                    <tr>
-                                        <td>201</td>
-                                        <td>2</td>
-                                        <td>5</td>
-                                        <td>50,00</td>
-                                    </tr>
-                                </table>
-                                
-                                
-                                
                                 <!-- <span id="result">
                                 </span> -->
                                 <input type="text" style="display:none" id="slide" value="aguardando">
@@ -227,35 +188,6 @@ if(isset($_POST['desconto_removido'])){
                             <div id="opc2" class="bloco" style="display:block">
                                 <h1>PREPARANDO</h1>
 
-                                <table >
-                                    <tr class="titulo_tabela">
-                                        <td>ID</td>
-                                        <td>Mesa</td>
-                                        <td>Itens</td>
-                                        <td>SubTotal</td>
-                                    </tr>
-                                    <tr>
-                                        <td>224</td>
-                                        <td>4</td>
-                                        <td>2</td>
-                                        <td>30,00</td>
-                                    </tr>
-                                    </tr>
-                                    <tr>
-                                        <td>215</td>
-                                        <td>8</td>
-                                        <td>7</td>
-                                        <td>120,00</td>
-                                    </tr>
-                                    </tr>
-                                    <tr>
-                                        <td>201</td>
-                                        <td>2</td>
-                                        <td>5</td>
-                                        <td>50,00</td>
-                                    </tr>
-                                </table>
-
                                 <!-- <span id="result2">
                                 </span> -->
                                 <input type="text" style="display:none" id="" value="aguardando">
@@ -263,35 +195,6 @@ if(isset($_POST['desconto_removido'])){
                             
                             <div id="opc" class="bloco" style="display:block">
                                 <h1>PRONTOS</h1>
-
-                                <table >
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>Mesa</td>
-                                        <td>Itens</td>
-                                        <td>SubTotal</td>
-                                    </tr>
-                                    <tr>
-                                        <td>224</td>
-                                        <td>4</td>
-                                        <td>2</td>
-                                        <td>30,00</td>
-                                    </tr>
-                                    </tr>
-                                    <tr>
-                                        <td>215</td>
-                                        <td>8</td>
-                                        <td>7</td>
-                                        <td>120,00</td>
-                                    </tr>
-                                    </tr>
-                                    <tr>
-                                        <td>201</td>
-                                        <td>2</td>
-                                        <td>5</td>
-                                        <td>50,00</td>
-                                    </tr>
-                                </table>
 
                                 <!-- <span id="result3">
                                 </span> -->

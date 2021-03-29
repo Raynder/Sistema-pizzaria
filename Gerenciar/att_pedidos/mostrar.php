@@ -45,7 +45,7 @@
         
             echo("<div class=$asp pedido pizzas col-lg-12 col-md-12 col-sm-12$asp >
                 <div class=$asp bloco bloco_img$asp >
-                    <img src=$asp img/cliente.png$asp  class=$asp pizza$asp  alt=$asp $asp >
+                    <img src='img/cliente.jpg'  class=$asp pizza$asp  alt=$asp $asp >
                 </div>
         
                 <div class=$asp bloco$asp >
