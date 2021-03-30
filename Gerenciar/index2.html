@@ -53,10 +53,21 @@
     </script>
 
     <style>
+        /*Todo*/
+        .row{
+            padding: 10px;
+        }
+        /**/
+
+        /*Nav*/
+        .tipo-fila{
+        }
+        /**/
+        /*Janela de pedidos*/
         .pedido {
+            margin: 5px 0 5px 0;
             height: 80px;
             padding: 10px;
-            margin: 10px;
             border: solid 1px;
             border-radius: 10px;
         }
@@ -83,18 +94,36 @@
         .dir{
             text-align: right;
         }
+        /*Fim da janela de pedidos*/
+
+        /*Janela de Comanda*/
+
+        .comanda {
+            height: 800px;
+            padding: 8px;
+            border: solid 1px orange;
+            border-radius: 10px;
+            align-items: center;
+            background: radial-gradient(transparent -4%, black 88%);
+        }
+        .comanda h1{
+            color: orange;
+            text-align: center;
+        }
+        /*Fim da anela de Comanda*/
     </style>
 
-    <div >
+    <div class="conteudo_todo col-12">
         <div class="row">
             <div class="col-sm-7">
-            
-                <nav class="nav nav-pills nav-justified">
+                <!-- Navegação de fila de pedidos -->
+                <nav class="nav nav-pills nav-justified tipo-fila">
                     <a id="nav-1" class="nav-item nav-link active" onclick="addClass(this)" href="#">Pedidos</a>
                     <a id="nav-2" class="nav-item nav-link" onclick="addClass(this)" href="#">Preparando</a>
                     <a id="nav-3" class="nav-item nav-link" onclick="addClass(this)" href="#">Pronto</a>
                 </nav>
 
+                <!-- Class onde sera listado os pedidos-->
                 <div class="pedido">
 
                     <div class="bloc imge">
@@ -114,6 +143,7 @@
                     </div>
 
                 </div>
+
                 <div class="pedido">
 
                     <div class="bloc imge">
@@ -133,8 +163,16 @@
                     </div>
 
                 </div>
+
             </div>
+
+            <!--Janela lateral de informações-->
             <div class="col-sm-5">
+                <!-- Comanda -->
+                <div class="comanda">
+                    <h1>Comanda</h1>
+                </div>
+                
 
             </div>
         </div>
