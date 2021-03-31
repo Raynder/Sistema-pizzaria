@@ -10,7 +10,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///F:/temp/Sistema-pizzaria/Gerenciar/index2.html",
+            "url": "localhost/Sistema-pizzaria/Gerenciar/index2.html",
             "webRoot": "${workspaceFolder}"
         }
     ]

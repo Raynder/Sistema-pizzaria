@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 
@@ -54,6 +55,12 @@
 
     <style>
         /*Todo*/
+        body{
+            background-image: url(img/banner2.jpg);
+            background-attachment: fixed;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
         .row{
             padding: 10px;
         }
@@ -104,13 +111,26 @@
             border: solid 1px orange;
             border-radius: 10px;
             align-items: center;
-            background: radial-gradient(transparent -4%, black 88%);
+            background: radial-gradient(transparent -83%, black 88%);
         }
         .comanda h1{
             color: orange;
             text-align: center;
         }
+        .comanda p{
+            color: white;
+        }
+        .comanda img{
+            height: 100%;;
+        }
         /*Fim da anela de Comanda*/
+
+        /*Outros*/
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            color: #fff;
+            background-color: orange;
+        }
+        /**/
     </style>
 
     <div class="conteudo_todo col-12">
@@ -171,6 +191,16 @@
                 <!-- Comanda -->
                 <div class="comanda">
                     <h1>Comanda</h1>
+
+                    <div class="pedido">
+                        <img src="../img/tudo.png" alt="pizza" class="bloc">
+                        <div class="bloc">
+                            <p class="codigo">Calabresa X Bacon</p class="codigo">
+                            <p>Tamanho G</p>
+                            <p>Observações</p>
+                        </div>
+                        
+                    </div>
                 </div>
                 
 
